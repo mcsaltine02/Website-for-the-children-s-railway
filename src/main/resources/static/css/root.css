@@ -27,7 +27,7 @@ body {
 p, a, label, li, td{
     font-size: 19px;
 }
-h1{font-size: 34px; color: var(--red);}
+h1{font-size: 32px;color: var(--red);}
 
 .body-wraper main{
     margin-right: 354px;
@@ -50,10 +50,10 @@ h1{font-size: 34px; color: var(--red);}
 }
 @media (max-width: 659px) {
     .body-wraper header a{
-    font-size: 20px;
-}
-p, a, label, li, td{
-    font-size: 17px;
-}
-h1{font-size: 34px; color: var(--red);}
+        font-size: 20px;
+    }
+    p, a, label, li, td{
+        font-size: 17px;
+    }
+    h1{font-size: 34px; color: var(--red);}
 }

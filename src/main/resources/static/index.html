@@ -13,6 +13,13 @@
     <link rel="stylesheet" href="css/footer.css">
 
     <script defer src="js/main.js"></script>
+
+    <style>
+        .post { border: 2px solid black;background-color: white; margin-bottom: 20px; padding: 15px; border-radius: 5px; }
+        .post-text { margin-bottom: 10px; white-space: pre-wrap; }
+        .post-meta {  margin-bottom: 10px; }
+        .post-image { max-width: 100%; height: auto; margin-top: 10px; }
+    </style>
 </head>
 
 <body>
@@ -238,9 +245,7 @@
         } catch (error) {
             loading.style.display = 'none';
             errorDiv.textContent = `Ошибка загрузки: ${error.message}. Проверьте:
-          1. Запущен ли сервер Spring Boot.
-          2. Действителен ли токен в application.properties.
-          3. Подписан ли ваш аккаунт на dskzd, если группа приватная.`;
+          1. Действителен ли токен в application.properties`;
             errorDiv.style.display = 'block';
             console.error('Подробности:', error);
         }
@@ -281,9 +286,9 @@
         <div class="post">
           <div class="post-meta">
             Дата: ${new Date(post.date * 1000).toLocaleString('ru-RU')} |
-            Лайки: ${post.likes?.count || 0} |
-            Комментарии: ${post.comments?.count || 0} |
-            Репосты: ${post.reposts?.count || 0}
+             Лайки: ${post.likes?.count || 0} |
+             Комментарии: ${post.comments?.count || 0} |
+             Репосты: ${post.reposts?.count || 0}
           </div>
           ${textHtml}
           ${attachmentsHtml.join('')}

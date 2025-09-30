@@ -33,6 +33,7 @@ main a:hover,
     display: flex;
     margin: 10px auto;
     padding: 15px;
+    border-radius: 10px;
     padding-top: 0px;
     flex-wrap: wrap;
     flex-direction: row;
@@ -83,9 +84,9 @@ main a:hover,
     padding: 10px;
     padding-top: 0px;
     text-align: justify;
-    /* background-color: white; */
+    background-color: white;
     border-radius: 10px;
-    /* border: 2px solid; */
+    border: 2px solid;
 }
 
 
@@ -106,11 +107,14 @@ main a:hover,
 #become_railway {
     position: relative;
     text-align: justify;
-    padding: 27px;
+    padding: 15px;
+    margin-right: 10px;
     padding-bottom: 18px;
 }
 
 .name_become_railway {
+    background-color: white;
+    border-radius: 10px 10px 0px 0px;
     text-align: center;
     color: var(--red);
 }
@@ -127,6 +131,9 @@ main a:hover,
 }
 
 .text_become_railway {
+    border-radius: 10px;
+    border: 2px solid black;
+    background-color: white;
     position: relative;
     padding-bottom: 26px;
     margin: 10px auto;
@@ -170,9 +177,9 @@ main a:hover,
     max-width: 650px;
     margin: 10px;
     padding: 10px;
-    /* background-color: white; */
+    background-color: white;
     border-radius: 10px;
-    /* border: 2px solid; */
+    border: 2px solid;
 }
 
 .addres_how_to_find_us {
@@ -219,6 +226,7 @@ main a:hover,
 
 #Start_Info{
     display: grid;
+    background-color: var(--darck_blue);
     grid-template-columns: 1fr,300px,300px,1fr;
     grid-template-rows: repeat(2, 1fr);
     max-width: 1200px;
@@ -255,6 +263,8 @@ main a:hover,
 }
 #become_railway{
     position: fixed;
+    border-radius: 10px;
+    background-color: var(--darck_blue);
     right: 0;
     width: 300px;
 }
@@ -268,7 +278,7 @@ main a:hover,
     left: 0;
     width: 350px; /* Ð¤Ð¸ÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ð°Ñ ÑˆÐ¸Ñ€Ð¸Ð½Ð° ÑÐ°Ð¹Ð´Ð±Ð°Ñ€Ð° */
     height: calc(100vh - 160px ); /* Ð’Ñ‹ÑÐ¾Ñ‚Ð° Ð½Ð° Ð²ÐµÑÑŒ ÑÐºÑ€Ð°Ð½ Ð¼Ð¸Ð½ÑƒÑ header */
-    background-color: var(--white_blue);
+    background-color: var(--darck_blue);
     padding: 20px;
     z-index: 900; /* ÐœÐµÐ½ÑŒÑˆÐµ, Ñ‡ÐµÐ¼ Ñƒ header, Ñ‡Ñ‚Ð¾Ð±Ñ‹ ÑÐ°Ð¹Ð´Ð±Ð°Ñ€ Ð±Ñ‹Ð» Ð½Ð¸Ð¶Ðµ */
 }
