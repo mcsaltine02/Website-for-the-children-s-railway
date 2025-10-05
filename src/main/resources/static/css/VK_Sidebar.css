@@ -1,10 +1,10 @@
-.bottom_decorate {
-
+.decorate_bottom_sidebar{
 
 }
 
 .sidebar {
-    width: 350px;
+    /* overflow: hidden; */
+    width: 352px;
     position: sticky;
     top: 100px;
 }
@@ -33,12 +33,14 @@
 }
 
 .name_sidebar_VK {
-    position: fixed;
+    position: sticky;
+    top: -72px;
     background-color: var(--darck_blue);
     width: 350px;
     margin-top: -72px;
+    margin-left: -9px;
     padding-bottom: 3px;
-    padding-top: 3px;
+    /* padding-top: 3px; */
     display: flex;
     align-items: center;
     justify-content: space-evenly;
