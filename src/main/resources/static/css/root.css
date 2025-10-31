@@ -21,13 +21,14 @@ body {
     font-size: 22px;
 }
 .body-wraper footer{
+    width: 100%;
     margin-right: 354px;
     margin-left: 354px;
 }
 p, a, label, li, td{
     font-size: 19px;
 }
-h1{font-size: 32px;color: var(--red);}
+h1{font-size: 36px;color: var(--red);}
 
 .body-wraper main{
     margin-right: 354px;

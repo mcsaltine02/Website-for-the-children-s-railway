@@ -20,7 +20,6 @@ public class VkService {
     private final String GROUP_ID = "2608975";
     private final String API_VERSION = "5.199";
     private final String VK_API_URL = "https://api.vk.com/method/wall.get";
-    private final String VK_VIDEO_URL = "https://api.vk.com/method/video.get";
 
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
@@ -55,26 +54,5 @@ public class VkService {
         }
     }
 
-    public JsonNode fetchVideo(String videoId) throws Exception {
-        String url = String.format("%s?videos=%s&access_token=%s&v=%s",
-                VK_VIDEO_URL, videoId, accessToken, API_VERSION);
 
-        try {
-            logger.debug("Sending request to VK API for video: {}", url);
-            ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-            JsonNode jsonNode = objectMapper.readTree(response.getBody());
-
-            if (jsonNode.has("error")) {
-                JsonNode error = jsonNode.get("error");
-                String errorMessage = "VK API Error " + error.get("error_code").asText() + ": " + error.get("error_msg").asText();
-                logger.error(errorMessage);
-                throw new Exception(errorMessage);
-            }
-
-            return jsonNode;
-        } catch (Exception e) {
-            logger.error("Failed to fetch video from VK API", e);
-            throw new Exception("Failed to fetch video: " + e.getMessage(), e);
-        }
-    }
 }

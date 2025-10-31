@@ -31,7 +31,10 @@
     height: auto;
     margin-top: 10px;
 }
-
+.vk-wraper{
+    padding: 30px;
+    background-color: #658A42;
+}
 .name_sidebar_VK {
     position: sticky;
     top: -72px;
@@ -44,4 +47,24 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 12px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--back);
+    background: var(--white_blue);
+    border-radius: 40px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: var(--white_blue);
+    background: var(--back);
+    border-radius: 6px;
+}
+
+.name_sidebar_VK image {
+    width: 50px;
 }

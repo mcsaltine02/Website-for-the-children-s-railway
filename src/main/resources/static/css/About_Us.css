@@ -132,8 +132,13 @@ main a:hover,
 }
 
 .name_become_railway {
-    background-color: white;
+    background-color: var(--back);
     border-radius: 10px 10px 0px 0px;
+    padding-bottom: 10px;
+    margin-left: -13px;
+    margin-top: -14px;
+    margin-right: -13px;
+    margin-bottom: 16px;
     text-align: center;
     color: var(--red);
 }
@@ -302,11 +307,4 @@ main a:hover,
     padding: 13px;
     padding-top: 72px;
     z-index: 900;
-}
-.sidebar::-webkit-scrollbar {
-
-}
-
-.name_sidebar_VK image {
-    width: 50px;
 }

@@ -41,7 +41,7 @@
 <div style=" margin-top: 100px;">
 
     <div class="sidebar">
-        <div>
+        <div class="vk-wraper">
             <div class="name_sidebar_VK">
                 <img src="images/icons8-vk-48.png" style="width: 50px">
                 <h3 style="color: var(--white_blue); font-size: 27px;">Наше ВК сообщество</h3>
@@ -268,7 +268,7 @@
         } catch (error) {
             loading.style.display = 'none';
             errorDiv.textContent = `Ошибка загрузки: ${error.message}. Проверьте:
-          1. Действителен ли токен в application.properties`;
+            1. Действителен ли токен в application.properties`;
             errorDiv.style.display = 'block';
             console.error('Подробности:', error);
         }
