@@ -31,3 +31,21 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# IDE
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+
+# Maven
+target/
+.m2/
+
+# Секреты
+application-local.properties
+.env
+
+# Логи
+logs/

@@ -3,50 +3,82 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
-    <link rel="stylesheet" href="css/root.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/About_Us.css">
-    <link rel="stylesheet" href="css/shema.css">
-    <link rel="stylesheet" href="css/about_us_block_values.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link href="css/root.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
+    <link href="css/About_Us.css" rel="stylesheet">
+    <link href="css/VK_Sidebar.css" rel="stylesheet">
+    <link href="css/shema.css" rel="stylesheet">
+    <link href="css/about_us_block_values.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
 
     <script defer src="js/main.js"></script>
 
     <style>
-        .post { border: 2px solid black;background-color: white; margin-bottom: 20px; padding: 15px; border-radius: 5px; }
-        .post-text { margin-bottom: 10px; white-space: pre-wrap; }
-        .post-meta {  margin-bottom: 10px; }
-        .post-image { max-width: 100%; height: auto; margin-top: 10px; }
+        .post {
+            border: 2px solid black;
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .post-text {
+            margin-bottom: 10px;
+            white-space: pre-wrap;
+        }
+
+        .post-meta {
+            margin-bottom: 10px;
+        }
+
+        .post-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+
     </style>
 </head>
 
 <body>
-    <div class="body-wraper">
+<div class="body-wraper">
 
-        <header class=" header">
-            <div class="head">
-                <div class="logo">
-                    <img src="images/логотипБезСердца.png" alt="Логотип">
-                </div>
-                <button class="header__burger-btn" id="burger">
-                    <span></span><span></span><span></span>
-                </button>
-                <nav class="menu" id="menu">
-                    <ul class="menu_list">
-                        <li class="menu_item"><a class="menu_link" id="about_us" href="index.html">О нас</a></li>
-                        <li class="menu_item"><a class="menu_link" href="passengers.html">Пассажирам</a></li>
-                        <li class="menu_item"><a class="menu_link" href="#">Учащимся</a></li>
-                        <li class="menu_item"><a class="menu_link" href="#">Инф. безоп.</a></li>
-                    </ul>
-                </nav>
+    <header class=" header">
+            <div class="logo">
+                <img alt="Логотип" src="images/логотипБезСердца.png">
             </div>
-        </header>
+            <button class="header__burger-btn" id="burger">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="menu" id="menu">
+                <ul class="menu_list">
+                    <li class="menu_item"><a class="menu_link" href="index.html" id="about_us">О нас</a></li>
+                    <li class="menu_item"><a class="menu_link" href="passengers.html">Пассажирам</a></li>
+                    <li class="menu_item"><a class="menu_link" href="#">Учащимся</a></li>
+                    <li class="menu_item"><a class="menu_link" href="#">Инф. безоп.</a></li>
+                </ul>
+            </nav>
+    </header>
+
+    <div>
         <div class="sidebar">
-            <div id="loading">Загрузка постов...</div>
-            <div id="posts"></div>
-            <div id="error" style="display: none;"></div>
+            <div>
+            <div class="name_sidebar_VK" style=" position: fixed;background-color: var(--darck_blue);width:350px;
+                margin-top: -72px;padding-bottom: 3px;padding-top: 3px;display: flex; align-items: center;
+                justify-content: space-evenly;">
+                <img src="images/icons8-vk-48.png" style="width: 50px">
+                <h3 style="color: var(--white_blue); font-size: 27px;">Наше ВК сообщество</h3>
+            </div>
+
+                <div class="bottom_decorate"></div>
+                <div id="loading" style="color: white">Загрузка постов...</div>
+                <div id="posts"></div>
+                <div id="error" style="display: none;"></div>
+            </div>
+
+            <span ></span>
         </div>
 
         <main>
@@ -94,16 +126,15 @@
                     </p>
                 </div>
                 <div class="img_all" id="img_old">
-                    <img src="images/photo_1.jpg" alt="" class="img_start_Info">
-                    <a href="#" class="link_old_photo">Старые фотографии</a>
+                    <img alt="" class="img_start_Info" src="images/photo_1.jpg">
+                    <a class="link_old_photo" href="#">Старые фотографии</a>
                 </div>
                 <div class="img_all" id="img_new">
-                    <img src="images/photo_1.jpg" alt="" class="img_start_Info">
-                    <a href="#" class="link_new_photo">Новые фотографии</a>
+                    <img alt="" class="img_start_Info" src="images/photo_1.jpg">
+                    <a class="link_new_photo" href="#">Новые фотографии</a>
                 </div>
 
             </div>
-
 
 
             <div id="How_to_find_us">
@@ -111,21 +142,21 @@
                 <div class="how_to_drive">
 
                     <div class="on_the_car">
-                        <h3>ОБЩЕСТВЕННЫМ ТРАНСПОРТОМ</h2>
-                            <ul class="list_how_to_find_us">
-                                <li>на общественном транспорте следуйте до остановки «20-я линия»;</li>
-                                <li>пройдите пешком 300 метров и справа вы увидите здание Ростовской ДЖД;</li>
-                                <li>касса находится на перроне станции «Солнечная».</li>
-                            </ul>
+                        <h3>ОБЩЕСТВЕННЫМ ТРАНСПОРТОМ</h3>
+                        <ul class="list_how_to_find_us">
+                            <li>на общественном транспорте следуйте до остановки «20-я линия»;</li>
+                            <li>пройдите пешком 300 метров и справа вы увидите здание Ростовской ДЖД;</li>
+                            <li>касса находится на перроне станции «Солнечная».</li>
+                        </ul>
                     </div>
 
                     <div class="on_the_bas">
-                        <h3>НА АВТОМОБИЛЕ</h2>
-                            <ul class="list_how_to_find_us">
-                                <li>г. Ростов-на-Дону, проспект Шолохова д. 29;</li>
-                                <li>парковка находится на территории РДЖД;</li>
-                                <li>касса находится на перроне станции «Солнечная».</li>
-                            </ul>
+                        <h3>НА АВТОМОБИЛЕ</h3>
+                        <ul class="list_how_to_find_us">
+                            <li>г. Ростов-на-Дону, проспект Шолохова д. 29;</li>
+                            <li>парковка находится на территории РДЖД;</li>
+                            <li>касса находится на перроне станции «Солнечная».</li>
+                        </ul>
                     </div>
 
                 </div>
@@ -133,41 +164,40 @@
 
             <div class="img_shema">
                 <h1 class="shema_name">Схема</h1>
-                <img src="images/схема.png" alt="">
+                <img alt="" src="images/схема.png">
 
             </div>
-
 
 
             <div class="block_values">
                 <h1 class="name_block_values">Ценности юных железнодорожников</h1>
                 <span class="block_values_flex">
                     <div class="block_one">
-                        <input type="checkbox" id="one" />
+                        <input id="one" type="checkbox"/>
                         <label for="one"></label>
                     </div>
                     <div class="block_two">
-                        <input type="checkbox" id="two" />
+                        <input id="two" type="checkbox"/>
                         <label for="two"></label>
                     </div>
                     <div class="block_three">
-                        <input type="checkbox" id="three" />
+                        <input id="three" type="checkbox"/>
                         <label for="three"></label>
                     </div>
                     <div class="block_four">
-                        <input type="checkbox" id="four" />
+                        <input id="four" type="checkbox"/>
                         <label for="four"></label>
                     </div>
                     <div class="block_five">
-                        <input type="checkbox" id="five" />
+                        <input id="five" type="checkbox"/>
                         <label for="five"></label>
                     </div>
                     <div class="block_six">
-                        <input type="checkbox" id="six" />
+                        <input id="six" type="checkbox"/>
                         <label for="six"></label>
                     </div>
                     <div class="block_seven">
-                        <input type="checkbox" id="seven" />
+                        <input id="seven" type="checkbox"/>
                         <label for="seven"></label>
                     </div>
                 </span>
@@ -196,35 +226,37 @@
             <span class="decorate_name_become_railway_one decorate_name_become_railway"></span>
             <span class="decorate_name_become_railway_two decorate_name_become_railway"></span>
         </div>
-
-        <footer>
-            <div class="container_footer">
-                <div class="contacts">
-                    <p class="important">Контакты</p>
-                    <a href="tel:+78142332211">+7(814)-233-22-11</a>
-                    <p>schmshi@gmail.com</p>
-                    <p>г. Ростов-на-Дону<br>проспект Шолохова, 29</p>
-                </div>
-                <div class="Operating_Mode">
-                    <p class="important">Режим работы</p>
-                    <p>Вт, Ср,Чт, Вс<br>10:00–12:00<br>14:00–16:00</p>
-                    <p>Пт, Сб, Пн<br>Выходной</p>
-                </div>
-                <div class="Quick_Links">
-                    <p class="important">Быстрые ссылки</p>
-                    <p>Расписания движения</p>
-                    <p>Учебные программы</p>
-                    <p>Фотогалерея</p>
-                </div>
-                <div class="We_are_social">
-                    <p class="important">Мы в соцсетях</p>
-                    <p>ВКонтанте</p>
-                    <p>Telegram</p>
-                </div>
-            </div>
-        </footer>
     </div>
-    <script>
+
+
+    <footer>
+        <div class="container_footer">
+            <div class="contacts">
+                <p class="important">Контакты</p>
+                <a href="tel:+78142332211">+7(814)-233-22-11</a>
+                <p>schmshi@gmail.com</p>
+                <p>г. Ростов-на-Дону<br>проспект Шолохова, 29</p>
+            </div>
+            <div class="Operating_Mode">
+                <p class="important">Режим работы</p>
+                <p>Вт, Ср,Чт, Вс<br>10:00–12:00<br>14:00–16:00</p>
+                <p>Пт, Сб, Пн<br>Выходной</p>
+            </div>
+            <div class="Quick_Links">
+                <p class="important">Быстрые ссылки</p>
+                <p>Расписания движения</p>
+                <p>Учебные программы</p>
+                <p>Фотогалерея</p>
+            </div>
+            <div class="We_are_social">
+                <p class="important">Мы в соцсетях</p>
+                <p>ВКонтанте</p>
+                <p>Telegram</p>
+            </div>
+        </div>
+    </footer>
+</div>
+<script>
     async function fetchPosts() {
         const loading = document.getElementById('loading');
         const errorDiv = document.getElementById('error');

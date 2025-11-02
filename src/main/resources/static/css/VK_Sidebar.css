@@ -1,0 +1,14 @@
+.bottom_decorate{
+
+    position: fixed;
+
+    /* margin-top: 713px; */
+
+    bottom: 0;
+
+    width: 350px;
+
+    height: 40px;
+
+    background-color: var(--darck_blue);
+}
