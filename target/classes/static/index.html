@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Document</title>
+    <link href="css/root.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
+    <link href="css/About_Us.css" rel="stylesheet">
+    <link href="css/VK_Sidebar.css" rel="stylesheet">
+    <link href="css/shema.css" rel="stylesheet">
+    <link href="css/about_us_block_values.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
+
+    <script defer src="js/main.js"></script>
+
+</head>
+
+<body>
+
+
+<header class="header" style="">
+    <div class="logo">
+        <img alt="Логотип" src="images/логотипБезСердца.png">
+    </div>
+    <button class="header__burger-btn" id="burger">
+        <span></span><span></span><span></span>
+    </button>
+    <nav class="menu" id="menu">
+        <ul class="menu_list">
+            <li class="menu_item"><a class="menu_link" href="index.html" id="about_us">О нас</a></li>
+            <li class="menu_item"><a class="menu_link" href="passengers.html">Пассажирам</a></li>
+            <li class="menu_item"><a class="menu_link" href="#">Учащимся</a></li>
+            <li class="menu_item"><a class="menu_link" href="#">Инф. безоп.</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<div style="margin-top: 50px;display: grid;grid-template-columns: 381px 1fr 326px;">
+
+    <div class="vk-wraper">
+        <div class="sidebar">
+            <div class="name_sidebar_VK">
+                <img src="images/icons8-vk-48.png" style="width: 50px">
+                <h3 style="color: var(--white_blue); font-size: 27px;">Наше ВК сообщество</h3>
+            </div>
+            <div class="decorate_bottom_sidebar"></div>
+            <div class="bottom_decorate"></div>
+            <div id="loading" style="color: white">Загрузка постов...</div>
+            <div id="posts"></div>
+            <div id="error" style="display: none;"></div>
+        </div>
+    </div>
+
+
+    <main>
+        <h1 class="block_name_Start_Info">История</h1>
+        <div id="Start_Info">
+
+
+            <div class="block_old">
+                <p class="text_old_photo">Ростовская детская железная дорога (ДЖД) начала свою историю в
+                    1940 году,
+                    когда 4 августа, в День железнодорожника, был дан старт строительству. Уже 9 ноября того
+                    же года
+                    состоялось торжественное открытие дороги. Первый подвижной состав включал паровоз
+                    ЮП-305,
+                    мотовоз
+                    М-72 и пять мягких двухосных вагонов, объединенных в состав «Малыш». Для обслуживания
+                    дороги
+                    было
+                    построено депо с мастерскими, оснащенными современным на тот момент оборудованием.
+                    С началом Великой Отечественной войны ДЖД закрыли, а подвижной состав эвакуировали в
+                    Тбилиси.
+                    После
+                    войны, в 1945 году, было принято решение восстановить дорогу, несмотря на разрушения. К
+                    1947
+                    году
+                    движение по малому кольцу длиной около 2 км было открыто, а в 1948 году завершилось
+                    строительство
+                    большого кольца протяженностью 3,15 км, увеличив общую длину дороги до 4,45 км. В 1949
+                    году юные
+                    железнодорожники получили новый паровоз КЧ4-101, построенный на заводе «Шкода».
+                </p>
+            </div>
+
+
+            <div class="block_new">
+                <p class="text_new_photo">В 1950-е годы дорога активно развивалась: появились новые вагоны,
+                    внедрялись
+                    современные системы сигнализации и связи, а в 1961 году ДЖД была названа в честь Юрия
+                    Гагарина.
+                    В
+                    1970-е годы дорога стала лауреатом премии Ленинского комсомола, но из-за строительства
+                    Дворца
+                    культуры «Ростов-Май» ее длина сократилась до 4,09 км.
+                    В 1980-е годы парк пополнился новыми вагонами и тепловозами, а в 1986 году открылся
+                    четырехэтажный
+                    учебный корпус на станции Солнечная. В 1990-е годы часть инфраструктуры была
+                    демонтирована, но
+                    дорога продолжала работать. В 2000-е годы паровоз Гр-185, символ ДЖД, прошел ремонт и
+                    вернулся в
+                    строй. Были введены новые составы – «Тихий Дон» и «Атаман Платов», а также современные
+                    системы
+                    управления движением.
+                    Сегодня Ростовская ДЖД – это современный учебный комплекс с развитой инфраструктурой.
+                    Юные
+                    железнодорожники осваивают профессии в специализированных кабинетах, а дорога продолжает
+                    оставаться
+                    важным центром обучения и сохранения железнодорожных традиций.
+                </p>
+            </div>
+            <div class="img_all" id="img_old">
+                <img alt="" class="img_start_Info" src="images/photo_1.jpg">
+                <a class="link_old_photo" href="#">Старые фотографии</a>
+            </div>
+            <div class="img_all" id="img_new">
+                <img alt="" class="img_start_Info" src="images/photo_1.jpg">
+                <a class="link_new_photo" href="#">Новые фотографии</a>
+            </div>
+
+        </div>
+
+
+        <div id="How_to_find_us">
+            <h1 class="name_how_to_find_us">Как добраться</h1>
+            <div class="how_to_drive">
+
+                <div class="on_the_car">
+                    <h3>ОБЩЕСТВЕННЫМ ТРАНСПОРТОМ</h3>
+                    <ul class="list_how_to_find_us">
+                        <li>на общественном транспорте следуйте до остановки «20-я линия»;</li>
+                        <li>пройдите пешком 300 метров и справа вы увидите здание Ростовской ДЖД;</li>
+                        <li>касса находится на перроне станции «Солнечная».</li>
+                    </ul>
+                </div>
+
+                <div class="on_the_bas">
+                    <h3>НА АВТОМОБИЛЕ</h3>
+                    <ul class="list_how_to_find_us">
+                        <li>г. Ростов-на-Дону, проспект Шолохова д. 29;</li>
+                        <li>парковка находится на территории РДЖД;</li>
+                        <li>касса находится на перроне станции «Солнечная».</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="img_shema">
+            <h1 class="shema_name">Схема</h1>
+            <img alt="" src="images/схема.png">
+
+        </div>
+
+
+        <div class="block_values">
+            <h1 class="name_block_values">Ценности юных железнодорожников</h1>
+            <span class="block_values_flex">
+                <div>
+                    <h2>Взаимопомощь и взаимоуважение</h2>
+                    <div class="separator"></div>
+                    <div>Основа безопасности и слаженной работы коллектива. Это понимание, что успех зависит от каждого,
+                        а уважение к коллегам, пассажирам и старшим наставникам создает доверительную и профессиональную
+                        атмосферу, где все готовы прийти на выручку.
+                    </div>
+                </div>
+                <div>
+                    <h2>Добро и поддержка</h2>
+                    <div class="separator"></div>
+                    <div>Готовность бескорыстно помогать тем, кто в этом нуждается, создавая вокруг себя позитивную
+                        и комфортную среду. Это вера в то, что даже небольшой добрый поступок делает мир лучше,
+                        а поддержка товарища помогает преодолеть любые трудности.
+                    </div>
+                </div>
+                <div>
+                    <h2>Волонтерство</h2>
+                    <div class="separator"></div>
+                    <div>Добровольная и активная гражданская позиция, выражающаяся в реальных делах на благо общества.
+                        Это стремление безвозмездно делиться своим временем, энергией и знаниями, чтобы помочь людям,
+                        городу или природе, проявляя социальную ответственность.
+                    </div>
+                </div>
+                <div>
+                    <h2>Созидательный труд</h2>
+                    <div class="separator"></div>
+                    <div>Осознанный и творческий подход к любой работе, будь то управление макетом или уборка
+                        территории. Это стремление не просто выполнить задание, а сделать его качественно, с душой,
+                        видя в труде возможность создать что-то ценное и полезное.
+                    </div>
+                </div>
+                <div>
+                    <h2>Стремление к мечте</h2>
+                    <div class="separator"></div>
+                    <div>Умение ставить высокие цели и неустанно двигаться к их достижению, преодолевая препятствия.
+                        Эта ценность заряжает энергией для учебы и самосовершенствования, превращая детское увлечение
+                        железной дорогой в реальную жизненную перспективу.
+                    </div>
+                </div>
+                <div>
+                    <h2>Путь к профессии</h2>
+                    <div class="separator"></div>
+                    <div>Целенаправленное освоение знаний и практических навыков, которые закладывают прочный фундамент
+                        для будущей карьеры в железнодорожной отрасли. Это первый и осознанный шаг от игры к настоящему
+                        делу, возможность примерить на себя роль профессионала.
+                    </div>
+                </div>
+                <div>
+                    <h2>Забота о природе</h2>
+                    <div class="separator"></div>
+                    <div>Ответственное и бережное отношение к окружающей среде, понимание хрупкости природы и своей
+                        роли в ее сохранении. Это реальные действия — от поддержания чистоты на территории дороги
+                        до участия в экологических акциях.
+                    </div>
+                </div>
+                <div>
+                    <h2>Любовь к стране</h2>
+                    <div class="separator"></div>
+                    <div>Глубокое чувство патриотизма, которое выражается не в словах, а в поступках: в уважении к
+                        истории, в стремлении быть полезным своей малой Родине и всей России, в гордости за ее
+                        достижения и железнодорожные традиции.
+                    </div>
+                </div>
+                <div>
+                    <h2>Историческая память</h2>
+                    <div class="separator"></div>
+                    <div>Связующая нить между поколениями, уважение к прошлому своей страны и железнодорожной отрасли.
+                        Это знание героических страниц истории, сохранение традиций и понимание, что настоящее и будущее
+                        построено на фундаменте подвигов и труда предшественников.
+                    </div>
+                </div>
+            </span>
+        </div>
+
+
+    </main>
+
+
+    <div class="become_railway">
+        <h1 class="name_become_railway">Как стать юным железнодорожником</h1>
+        <p class="text_become_railway">Детская железная дорога – это отличная возможность получить реальные
+            профессиональные навыки, попробовать себя в той или иной железнодорожной профессии.
+            Здесь вы получите достойную практическую подготовку, а в будущем станете успешными специалистами.
+            Ведь ранняя профессиональная ориентация – это отличный способ помочь определиться с будущей
+            профессией,
+            открыть новые горизонты для достижения целей.
+            Приглашаем стать частью нашей команды, влиться в ряды юных железнодорожников.
+            <b>Подать заявку</b> можно на Карьерном портале ОАО «РЖД» по ссылке
+            <span class="link_becom_railway">
+                    <a href="https://team.rzd.ru/juniors/railways/122/application" target="_blank"><b>Подать
+                            заявление</b></a>
+                </span>
+        </p>
+
+
+        <span class="decorate_name_become_railway_one decorate_name_become_railway"></span>
+        <span class="decorate_name_become_railway_two decorate_name_become_railway"></span>
+    </div>
+
+</div>
+
+
+<footer>
+    <div class="container_footer">
+        <div class="contacts">
+            <p class="important">Контакты</p>
+            <a href="tel:+78142332211">+7(814)-233-22-11</a>
+            <p>schmshi@gmail.com</p>
+            <p>г. Ростов-на-Дону<br>проспект Шолохова, 29</p>
+        </div>
+        <div class="Operating_Mode">
+            <p class="important">Режим работы</p>
+            <p>Вт, Ср,Чт, Вс<br>10:00–12:00<br>14:00–16:00</p>
+            <p>Пт, Сб, Пн<br>Выходной</p>
+        </div>
+        <div class="Quick_Links">
+            <p class="important">Быстрые ссылки</p>
+            <p>Расписания движения</p>
+            <p>Учебные программы</p>
+            <p>Фотогалерея</p>
+        </div>
+        <div class="We_are_social">
+            <p class="important">Мы в соцсетях</p>
+            <p>ВКонтанте</p>
+            <p>Telegram</p>
+        </div>
+    </div>
+</footer>
+
+</div>
+<script>
+    async function fetchPosts() {
+        const loading = document.getElementById('loading');
+        const errorDiv = document.getElementById('error');
+        const postsDiv = document.getElementById('posts');
+
+        try {
+            loading.style.display = 'block';
+            errorDiv.style.display = 'none';
+
+            const wallUrl = 'http://localhost:8081/vk-proxy';
+            const response = await fetch(wallUrl);
+            const data = await response.json();
+            console.log('VK API Response:', data);
+            if (data.error) {
+                throw new Error(data.error);
+            }
+            await displayPosts(data.response.items);
+        } catch (error) {
+            loading.style.display = 'none';
+            errorDiv.textContent = `Ошибка загрузки: ${error.message}. Проверьте:
+            1. Действителен ли токен в application.properties`;
+            errorDiv.style.display = 'block';
+            console.error('Подробности:', error);
+        }
+    }
+
+    async function displayPosts(posts) {
+        const loading = document.getElementById('loading');
+        const container = document.getElementById('posts');
+        loading.style.display = 'none';
+
+        if (posts.length === 0) {
+            container.innerHTML = '<p>Нет постов в сообществе или доступ ограничен.</p>';
+            return;
+        }
+
+        const postsHtml = await Promise.all(posts.map(async post => {
+            console.log('Post attachments:', post.attachments);
+            let hasVideo = false;
+            const attachmentsHtml = await Promise.all((post.attachments || []).map(async att => {
+                console.log('Attachment:', att);
+                if (att.type === 'photo') {
+                    const size = att.photo.sizes[att.photo.sizes.length - 1];
+                    return `<img src="${size.url}" alt="Фото" class="post-image">`;
+                } else if (att.type === 'video') {
+                    hasVideo = true;
+                    const videoUrl = `https://vk.com/video${att.video.owner_id}_${att.video.id}`;
+                    return `<a href="${videoUrl}" class="post-video-link" target="_blank">Ссылка на видео</a>`;
+                }
+                return '';
+            }));
+
+            // Если текста нет и нет видео, не добавляем post-text
+            const textHtml = post.text && post.text.trim() ?
+                `<div class="post-text">${post.text}</div>` :
+                (hasVideo ? `<div class="post-text">Ссылка на видео</div>` : '');
+
+            return `
+        <div class="post">
+          <div class="post-meta">
+            Дата: ${new Date(post.date * 1000).toLocaleString('ru-RU')} |
+             Лайки: ${post.likes?.count || 0} |
+             Комментарии: ${post.comments?.count || 0} |
+             Репосты: ${post.reposts?.count || 0}
+          </div>
+          ${textHtml}
+          ${attachmentsHtml.join('')}
+        </div>
+        `;
+        }));
+        container.innerHTML = postsHtml.join('');
+    }
+
+    fetchPosts();
+</script>
+</body>
+
+</html>

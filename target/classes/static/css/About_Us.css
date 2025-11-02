@@ -1,0 +1,311 @@
+main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 15px;
+    align-content: center;
+}
+
+main {
+    display: flex;
+    top: 70px;
+    margin-left: 10px;
+    margin-right: 10px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: flex-start;
+}
+
+
+.sidebar img{
+    width: 300px;
+}
+
+#about_us {
+    font-weight: 900;
+}
+
+#Start_Info,
+#become_railway,
+#How_to_find_us,
+.img_shema,
+.block_values {
+    margin-top: 70px;
+}
+
+main a:hover,
+.link_becom_railway:hover{
+    background-color: var(--white_blue);
+}
+
+#Start_Info {
+    display: flex;
+    margin: 10px auto;
+    padding: 6px;
+    border-radius: 10px;
+    padding-top: 0px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.img_start_Info {
+    width: 300px;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+.img_all {
+    width: min-content;
+    margin: 10px;
+}
+
+.block_old,
+.block_new {
+    max-width: 1200px;
+}
+
+.link_old_photo,
+.link_new_photo {
+    position: relative;
+    left: 66px;
+    bottom: 16px;
+    border: solid 2px black;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.block_old,
+.block_new {
+    margin-top: 10px;
+    display: flex;
+}
+
+.text_old_photo,
+.text_new_photo,
+.text_become_railway{
+    margin: 10px;
+    padding: 10px;
+    padding-top: 0px;
+    text-align: justify;
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid;
+}
+
+
+.block_name_Start_Info {
+    padding-top: 48px;
+    /* margin-bottom: -20px; */
+    text-align: center;
+    color: var(--red);
+}
+
+.decorate_name_Start_Info {
+    width: 38%;
+    height: 38px;
+    top: -5px;
+    right: 0px;
+}
+
+.become_railway {
+    width: 300px;
+    position: fixed;
+    top: 110px;
+    right: 0px;
+    text-align: justify;
+    padding: 13px;
+    margin-right: 10px;
+    padding-bottom: 18px;
+    border-radius: 10px;
+    background-color: #003C58;
+}
+
+.name_become_railway {
+    background-color: var(--back);
+    border-radius: 10px 10px 0px 0px;
+    padding-bottom: 10px;
+    margin-left: -13px;
+    margin-top: -14px;
+    margin-right: -13px;
+    margin-bottom: 16px;
+    text-align: center;
+    color: var(--red);
+}
+
+.link_becom_railway {
+    position: absolute;
+    left: 25%;
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+    margin-top: 27px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.text_become_railway {
+    border-radius: 10px;
+    border: 2px solid black;
+    background-color: white;
+    position: relative;
+    padding-bottom: 26px;
+    margin: 10px auto;
+    max-width: 600px;
+}
+
+.text_become_railway a {
+    color: black;
+    text-decoration: none;
+}
+
+#How_to_find_us {
+    margin-top: 100px;
+    display: flex;
+    height: fit-content;
+    width: 100%;
+    /* padding: 10px; */
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.name_how_to_find_us {
+    text-align: center;
+    color: var(--red);
+    margin: 10px;
+    padding-bottom: 10px;
+}
+
+.how_to_drive {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.on_the_bas,
+.on_the_car {
+    max-width: 650px;
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid;
+}
+
+.addres_how_to_find_us {
+    display: none;
+    position: absolute;
+    right: 11px;
+    top: 10px;
+}
+
+#How_to_find_us h3 {
+    color: var(--red);
+    margin-bottom: 5px;
+}
+
+#How_to_find_us li {
+    margin: 0px 0px 0px 12px;
+}
+
+.list_how_to_find_us {
+    margin-left: 10px;
+}
+
+.block_values {
+    padding: 10px;
+    height: fit-content;
+    position: relative;
+    margin: 20px auto;
+}
+
+.name_block_values {
+    color: var(--red);
+    text-align: center;
+    padding-bottom: 10px;
+    margin: 10px;
+}
+
+.block_values_flex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0px auto;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+#Start_Info{
+    /* display: grid; */
+    background-color: var(--darck_blue);
+    grid-template-columns: 1fr,300px,300px,1fr;
+    grid-template-rows: repeat(2, 1fr);
+    max-width: 1000px;
+}
+.block_old{
+    grid-column: span 2 / span 2;
+}
+.block_new{
+    grid-column: span 2/ span 2;
+    grid-column-start: 2;
+    grid-row-start: 2
+}
+#img_old{
+    grid-column-start: 3;
+    grid-row-start: 1;
+}
+#img_new{
+    grid-column-start: 1;
+    grid-row-start: 2;
+}
+
+@media (max-width: 990px) {
+    #Start_Info{
+        display: flex;
+    }
+    .block_new, .block_old{width: 100%;}
+}
+
+
+@media (max-width: 910px) {
+    #How_to_find_us {
+        flex-direction: column;
+    }
+}
+#become_railway{
+    position: fixed;
+    border-radius: 10px;
+    background-color: var(--darck_blue);
+    right: 0;
+    top: 40px;
+    width: 300px;
+}
+
+.sidebar{
+    /* position: fixed; */
+    border-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    /* margin-left: 0px; */
+    overflow-y: auto;
+    top: 110px;
+    left: 0;
+    width: 350px;
+    height: calc(100vh - 250px);
+    background-color: var(--darck_blue);
+    padding: 13px;
+    padding-top: 72px;
+    z-index: 900;
+}

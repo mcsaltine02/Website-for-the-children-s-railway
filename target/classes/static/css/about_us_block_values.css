@@ -1,0 +1,77 @@
+.block_values div {
+  /* text-align: center; */
+  max-width: 400px;
+  margin: 10px;
+  padding: 10px;
+  padding-top: 0px;
+  /* text-align: justify; */
+  /* background-color: var(--darck_blue); */
+  /* border-radius: 10px; */
+  /* border: 2px solid; */
+}
+
+.block_values div div{
+  margin: 10px;
+  padding: 10px;
+  padding-top: 0px;
+  text-align: justify;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid;
+}
+.block_values h2{
+  color: #E31E29;
+  text-align: center;
+}
+.block_values .separator{
+  display: none;
+}
+input {
+  display: none;
+}
+label {
+  display: block;
+  cursor: pointer;
+}
+.block_one label:after {
+  content: 'Патриотизм';
+}
+.block_one input:checked ~ label:after {
+  content: 'Дорога носит имя Юрия Гагарина, что подчеркивает связь с историей страны и ее достижениями. Участие в жизни ДЖД воспитывает чувство гордости за свою страну и ее транспортную систему.';
+}
+.block_two label:after {
+  content: 'Командный дух';
+}
+.block_two input:checked ~ label:after {
+  content: 'Железная дорога — это слаженная работа многих специалистов. Дети учатся взаимодействовать в команде, распределять задачи и поддерживать друг друга, что важно для будущей профессиональной деятельности.';
+}
+.block_three label:after {
+  content: 'Связь поколений';
+}
+.block_three input:checked ~ label:after {
+  content: 'ДЖД сохраняет традиции, передавая знания и опыт от старших поколений младшим. Например, восстановление паровоза Гр-185 в 2000 году стало возможным благодаря усилиям ветеранов, которые не позволили уничтожить исторический экспонат.';
+}
+.block_four label:after {
+  content: 'Любовь к профессии';
+}
+.block_four input:checked ~ label:after {
+  content: 'Юные железнодорожники с ранних лет погружаются в мир железнодорожного транспорта, изучая его историю и современные технологии. Это формирует уважение к профессии и стремление развиваться в этой сфере.';
+}
+.block_five label:after {
+  content: 'Инновации и развитие';
+}
+.block_five input:checked ~ label:after {
+  content: 'Юные железнодорожники знакомятся с современными технологиями, такими как микропроцессорные системы управления и автоматизация. Это стимулирует интерес к инженерным специальностям и научно-техническому творчеству.';
+}
+.block_six label:after {
+  content: 'Ответственность и дисциплина';
+}
+.block_six input:checked ~ label:after {
+  content: 'Работа на железной дороге требует строгого соблюдения правил и регламентов. Юные железнодорожники учатся быть внимательными, собранными и ответственными за безопасность пассажиров и коллег.';
+}
+.block_seven label:after {
+  content: 'Забота о комфорте и безопасности';
+}
+.block_seven input:checked ~ label:after {
+  content: 'На ДЖД создана комфортная среда для всех, включая маломобильных граждан. Это учит детей быть внимательными к потребностям других и стремиться к созданию удобных и безопасных условий для всех.';
+}
