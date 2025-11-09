@@ -32,11 +32,11 @@ footer div {
     max-width: 900px;
 }
 
-@media (max-width:880px) {
-    footer div{
-        margin: 10px 20px 10px 20px;
-    } 
-    footer{
-        padding: 0px;
-    }
-}
+/*@media (max-width:880px) {*/
+/*    footer div{*/
+/*        margin: 10px 20px 10px 20px;*/
+/*    } */
+/*    footer{*/
+/*        padding: 0px;*/
+/*    }*/
+/*}*/
