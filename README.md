@@ -57,7 +57,7 @@ curl "https://api.vk.com/method/wall.get?owner_id=-2608975&count=10&access_token
    - Добавить в системную переменную PATH путь к папке bin внутри установленного Maven, например %M2_HOME%\bin.
    - Убедиться, что в PATH добавлен путь к Java JDK.
     
-## 4.4. Проверить установку командой.
+## 4.4. Проверить установку:cmd.
 Должна вывести версию Maven, версию Java и информацию об ОС
 ```bash
 mvn -version
