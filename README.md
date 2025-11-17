@@ -1,6 +1,8 @@
 # 1. Клонируйте репозиторий:cmd
 ```bash
-    git clone https://github.com/ваш-username/ваш-repo.git
+    git clone
+```
+```
     cd "путь, куда выклонировали гит"
 ```
 
@@ -22,7 +24,7 @@
 1. Ниже будет `Ключи доступа`, скопируйте `Сервисный ключ доступа` он же Токен
 
 ## Шаг 3: Проверить токен (необязательно, но желательно)
-`Измените` url подставив вместо `ВАШ_ТОКЕН` на свой токен
+`Измените` url подставив вместо `ВАШ_ТОКЕН` на свой токен.
 В этвете должен быть json - всё работает
 ```bash
 curl "https://api.vk.com/method/wall.get?owner_id=-2608975&count=10&access_token=ВАШ_ТОКЕН&v=5.199"
@@ -45,8 +47,11 @@ curl "https://api.vk.com/method/wall.get?owner_id=-2608975&count=10&access_token
 ``` 
 
 # 4. Запустите проект:cmd
+Установите Java 24 если не установлена
 ```bash
     mvn clean install
+```
+```bash
     mvn spring-boot:run
 ``` 
 
