@@ -30,7 +30,7 @@ public class VkService {
     }
 
     public JsonNode fetchPosts() throws Exception {
-        String url = String.format("%s?owner_id=-%s&count=10&access_token=%s&v=%s",
+        String url = String.format("%s?owner_id=-%s&count=10&extended=1&access_token=%s&v=%s",
                 VK_API_URL, GROUP_ID, accessToken, API_VERSION);
 
         try {

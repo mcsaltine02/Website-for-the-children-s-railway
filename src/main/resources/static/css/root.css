@@ -1,9 +1,9 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: "IBM_Plex_Sans", "Arial", sans-serif;
+    /*font-family: "IBM_Plex_Sans", "Arial", sans-serif;*/
     /* font-family: 'PT Sans'; */
-    font-family: 'IBM_Plex_Sans';
+    font-family: 'FSRAILWAY Book', serif;
     font-weight: 400;
 }
 :root{
@@ -27,6 +27,7 @@ body {
 /*}*/
 p, a, label, li, td{
     font-size: 19px;
+    text-decoration: none;
 }
 h1{font-size: 36px;color: var(--red);}
 

@@ -1,9 +1,16 @@
 #informationSecurity{font-weight: bold}
 main{
+    display: flex;
     padding-top: 100px;
+    text-align: center;
+    /* margin: 0px auto; */
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
 }
 .class{
     /* height: 200px; */
+    width: 800px;
     background-color: var(--darck_blue);
     margin: 20px;
     padding: 10px;
