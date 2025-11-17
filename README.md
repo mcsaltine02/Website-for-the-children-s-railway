@@ -47,7 +47,13 @@ curl "https://api.vk.com/method/wall.get?owner_id=-2608975&count=10&access_token
 ``` 
 
 # 4. Запустите проект:cmd
-## 4.1. Установите Java 24 если не установлена
+## 4.1. Установить Java 17 или выше
+   - https://www.oracle.com/java/technologies/downloads/
+   - Настройте переменную окружения JAVA_HOME
+   - Проверить корректность установки
+```bash
+java -version
+```
 ## 4.2. Скачать дистрибутив Maven 
    - Открыть сайт: https://maven.apache.org/download.cgi и скачать maven (обычно zip-архив)
    - Распаковать архив Maven в удобную папку на компьютере.
