@@ -29,9 +29,11 @@ curl "https://api.vk.com/method/wall.get?owner_id=-2608975&count=10&access_token
 
 
 # 3. Установите переменную окружения:cmd
+(Windows)
 ```bash для Windows
     set VK_ACCESS_TOKEN=ваш_токен
-``` 
+```
+(Linux)
 ```bash для Linux
     export VK_ACCESS_TOKEN='ваш_токен'
 ``` 
