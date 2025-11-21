@@ -1,9 +1,8 @@
 # 1. Клонируйте репозиторий:cmd
 ```bash
-    git clone
-```
-```
-    cd "путь, куда выклонировали гит"
+    git clone -b master https://github.com/mcsaltine02/Website-for-the-children-s-railway
+
+    cd Website-for-the-children-s-railway
 ```
 
 # 2. Получите свой токен VK
@@ -34,7 +33,7 @@ curl "https://api.vk.com/method/wall.get?owner_id=-2608975&count=10&access_token
 # 3. Установите переменную окружения:cmd
 (Windows)
 ```bash для Windows
-    set VK_ACCESS_TOKEN=ваш_токен
+    setx VK_ACCESS_TOKEN=ваш_токен
 ```
 (Linux)
 ```bash для Linux
