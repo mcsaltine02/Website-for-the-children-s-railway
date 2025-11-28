@@ -1,0 +1,165 @@
+
+.container {max-width: 1400px;margin: 0 auto;margin-top: 60px;padding: 16px;}
+
+
+.upload-section {/* background: white; */padding: 20px;/* border-radius: 12px; *//* box-shadow: 0 6px 20px rgba(0,0,0,0.08); */margin-bottom: 20px;text-align: center;}
+.upload-section input[type="file"] { margin: 10px 0; }
+.upload-section button { padding: 12px 28px; background: #1e40af; color: white; border: none; border-radius: 8px; cursor: pointer; }
+.upload-section button:hover { background: #1e3a8a; }
+.success {color: #166534;/* background: #dcfce7; */padding: 10px;border-radius: 8px;margin-top: 10px;}
+.error { color: #991b1b; background: #fee2e2; padding: 10px; border-radius: 8px; margin-top: 10px; }
+
+/* === Фильтры === */
+.filters {
+    display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center;
+}
+.filters select, .filters input {
+    padding: 12px 14px; border: 2px solid #cbd5e1; border-radius: 10px; font-size: 1em; min-width: 180px;
+}
+.filters input { flex: 1; max-width: 360px; }
+
+/* === ДЕСКТОПНАЯ ТАБЛИЦА (только > 768px) === */
+#scheduleContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    /* background: #cbd5e1; */
+    border-radius: 12px;
+    /* overflow: hidden; */
+}
+
+/* Заголовок таблицы (только на десктопе) */
+#scheduleContainer::before {
+    white-space: pre;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1.5fr 1.2fr;
+    background: #1e40af;
+    color: white;
+    font-weight: 600;
+    padding: 16px;
+    text-align: left;
+    font-size: 1.05em;
+}
+
+/* Строки таблицы */
+.lesson-row {
+    display: none; /* скрываем на мобильных */
+    background: white;
+}
+@media (min-width: 769px) {
+    .lesson-row {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1fr 1.5fr 1.2fr;
+    }
+    .lesson-row .cell {
+        padding: 14px 16px;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    .lesson-row:hover { background: #f8fafc; }
+    .group { font-weight: 600; color: #1e40af; }
+}
+
+/* === КАРТОЧКИ ДЛЯ МОБИЛЬНЫХ (≤ 768px) === */
+.lesson-card {
+    display: block;
+    background: white;
+    margin-bottom: 12px;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-left: 5px solid var(--darck_blue);
+}
+/* === ДЕСКТОПНАЯ ТАБЛИЦА — ИСПРАВЛЕНО! === */
+@media (min-width: 769px) {
+    #scheduleContainer {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    /* Фиксированный заголовок таблицы */
+    .table-header {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1fr 1.5fr 1.2fr;
+        background: #1e40af;
+        color: white;
+        font-weight: 600;
+        font-size: 1.05em;
+    }
+    .table-header > div {
+        padding: 16px;
+        text-align: left;
+    }
+
+    /* Строки таблицы */
+    .lesson-row {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1fr 1.5fr 1.2fr;
+        background: white;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    .lesson-row:hover {
+        background: #f8fafc;
+    }
+    .lesson-row .cell {
+        padding: 14px 16px;
+    }
+    .lesson-row .group {
+        font-weight: 600;
+        color: var(--darck_blue);
+    }
+}
+
+/* На мобильных — заголовок скрываем */
+@media (max-width: 768px) {
+    .table-header {
+        display: none !important;
+    }
+}
+/* === АДАПТИВНОСТЬ: показываем только нужное === */
+@media (min-width: 769px) {
+    .lesson-card { display: none !important; }
+    .lesson-row, .table-header { display: grid; }
+}
+
+@media (max-width: 768px) {
+    .lesson-card { display: block; }
+    .lesson-row { display: none !important; }
+    .table-header { display: none !important; }
+}
+
+.card-day {
+    font-weight: 600;
+    color: var(--darck_blue);
+    font-size: 1.1em;
+    margin-bottom: 4px;
+}
+.card-time {
+    font-weight: 600;
+    font-size: 1.25em;
+    color: var(--darck_blue);
+    margin-bottom: 8px;
+}
+.card-group {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--darck_blue);
+    margin-bottom: 8px;
+}
+.card-info {
+    color: #475569;
+    font-size: 0.95em;
+}
+
+/* === Пустое состояние === */
+.empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: #64748b;
+    font-size: 1.3em;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+

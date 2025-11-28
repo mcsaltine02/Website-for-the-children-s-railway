@@ -1,0 +1,126 @@
+.header{
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    background-color: rgba(240, 248, 255, 0.2);
+    backdrop-filter: blur(5px);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+.logo{
+    width: 312px;
+}
+.logo img{
+    width: 100%;
+    border-radius: 10px;
+}
+header a{
+    margin: 10px;
+    color: #003C58;
+    font-size: 16px;
+}
+
+.header__burger-btn{
+    display: none;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+    z-index: 2;
+    margin-right: 10px;
+}
+.header__burger-btn span{
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background-color: black;
+    left: 5px;
+    transition: background-color .2s, opacity .25s, transform .5s;
+    will-change: transform;
+}
+.header__burger-btn span:nth-child(1){
+    transform: translateY(-10px);
+}
+.header__burger-btn span:nth-child(2){}
+.header__burger-btn span:nth-child(3){
+    transform: translateY(10px);
+}
+
+.header.open .header__burger-btn span:nth-child(1){
+    transform: translateY(0) rotate(45deg);
+    background-color: white;
+}
+.header.open .header__burger-btn span:nth-child(2){
+    opacity: 0;
+}
+.header.open .header__burger-btn span:nth-child(3){
+    transform: translateY(0) rotate(-45deg);
+    background-color: white;
+}
+
+.menu_list{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.menu_link{
+    font-size: 20px;
+    text-decoration: none;
+}
+.menu_item{
+    padding: 5px;
+}
+
+@media (max-width: 890px) {
+    .header__burger-btn {
+        display: block;
+    }
+
+    .menu {
+        position: absolute;
+        right: -171px;
+        top: 0;
+        width: 169px;
+        background-color: var(--darck_blue);
+        border-bottom: 2px solid black;
+        border-left: 2px solid black;
+        padding: 86px 0px 7px 20px;
+        margin: -20px;
+        transition: transform .5s, visibility .5s;
+        visibility: hidden;
+    }
+
+    .menu_list {
+        display: block;
+    }
+
+    .menu_link {
+        color: white;
+        font-size: 21px;
+        display: block;
+        padding: 10px 0px;
+    }
+
+    .header.open .menu {
+        transform: translateX(-100%);
+        visibility: visible;
+    }
+}
+@media (max-width:510px) {
+    .logo{
+        width: 270px;
+    }
+
+}
+@media (max-width:410px) {
+    .logo{
+        width: 230px;
+    }
+
+}

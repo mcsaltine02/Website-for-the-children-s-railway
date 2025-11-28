@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Учащимся</title>
+    <link rel="stylesheet" th:href="@{/css/students.css}">
+    <link rel="stylesheet" th:href="@{/css/raspisanie.css}">
+    <link rel="stylesheet" th:href="@{/css/root.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <script defer th:src="@{js/main.js}"></script>
+
+</head>
+
+<body>
+
+
+<header class="header" style="">
+    <div class="logo">
+        <img alt="Логотип" th:src="@{/images/логотипБезСердца.png}">
+    </div>
+    <button class="header__burger-btn" id="burger">
+        <span></span><span></span><span></span>
+    </button>
+    <nav class="menu" id="menu">
+        <ul class="menu_list">
+            <li class="menu_item"><a class="menu_link" href="index.html" id="about_us">О нас</a></li>
+            <li class="menu_item"><a class="menu_link" href="passengers.html" id="passengers">Пассажирам</a></li>
+            <li class="menu_item"><a class="menu_link" href="#" id="students">Учащимся</a></li>
+            <li class="menu_item"><a class="menu_link" href="informationSecurity.html">Инф. безоп.</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<div class="container">
+
+    <header>
+        <h1 style="text-align: center">Ростовская детская железная дорога</h1>
+        <p style="text-align: center">Расписание теоретических занятий на 2025–2026 учебный год</p>
+    </header>
+
+
+    <div>
+        <form th:action="@{/raspisanie/upload}" method="post" enctype="multipart/form-data" style="
+            text-align: center; margin: 63px;">
+            <input type="file" name="file" accept=".xlsx" required>
+            <button type="submit">
+                Обновить расписание
+            </button>
+        </form>
+        <div th:if="${message}" th:text="${message}"></div>
+        <div th:if="${error}" th:text="${error}"></div>
+    </div>
+
+    <!-- Фильтры -->
+    <div class="filters">
+        <select id="dayFilter">
+            <option value="">Все дни</option>
+            <option th:each="day : ${days}" th:value="${day}" th:text="${day}"></option>
+        </select>
+        <input type="text" id="searchInput" placeholder="Поиск по группе, учителю...">
+    </div>
+
+    <!-- Расписание -->
+    <div id="scheduleContainer">
+
+        <!-- Заголовок таблицы (только на десктопе) -->
+        <div style="display: none">
+            <div>День недели</div>
+            <div>Время</div>
+            <div>Кабинет</div>
+            <div>Учитель</div>
+            <div>Группа</div>
+        </div>
+
+        <th:block th:each="lesson : ${lessons}">
+            <!-- Мобильная карточка -->
+            <div class="lesson-card" th:data-day="${lesson.day()}">
+                <div class="card-day" th:text="${lesson.day()}"></div>
+                <div class="card-time" th:text="${lesson.time()}"></div>
+                <div class="card-group" th:text="${lesson.group()}"></div>
+                <div class="card-info">
+                    <span th:text="${lesson.cabinet()}"></span> •
+                    <span th:text="${lesson.teacher()}"></span>
+                </div>
+            </div>
+
+            <!-- Десктопная строка -->
+            <div class="lesson-row" th:data-day="${lesson.day()}">
+                <div class="cell" th:text="${lesson.day()}"></div>
+                <div class="cell" th:text="${lesson.time()}"></div>
+                <div class="cell" th:text="${lesson.cabinet()}"></div>
+                <div class="cell" th:text="${lesson.teacher()}"></div>
+                <div class="cell group" th:text="${lesson.group()}"></div>
+            </div>
+        </th:block>
+    </div>
+
+    <div th:if="${#lists.isEmpty(lessons)}">
+        Расписание не загружено.<br>Загрузите Excel-файл выше
+    </div>
+
+</div>
+
+
+<footer>
+    <div class="container_footer">
+        <div class="contacts">
+            <p class="important">Контакты</p>
+            <a href="tel:+78632512704">+7 (863) 251-27-04</a>
+            <p>mail@gmail.com</p>
+            <p>г. Ростов-на-Дону<br>проспект Шолохова, 29</p>
+        </div>
+        <div class="Operating_Mode">
+            <p class="important">Режим работы</p>
+            <p>Вт, Ср,Чт, Вс<br>10:00–12:00<br>14:00–16:00</p>
+            <p>Пт, Сб, Пн<br>Выходной</p>
+        </div>
+        <div class="Quick_Links">
+            <p class="important">Быстрые ссылки</p>
+            <p>Расписания движения</p>
+            <p>Учебные программы</p>
+            <p>Фотогалерея</p>
+        </div>
+        <div class="We_are_social">
+            <p class="important">Мы в соцсетях</p>
+            <p><a href="https://vk.com/dskzd" target="_blank">ВКонтанте</a></p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const dayFilter = document.getElementById('dayFilter');
+    const searchInput = document.getElementById('searchInput');
+    const items = document.querySelectorAll('.lesson-card, .lesson-row');
+
+    function filter() {
+        const day = dayFilter.value;
+        const query = searchInput.value.toLowerCase().trim();
+
+        items.forEach(item => {
+            const itemDay = item.dataset.day;
+            const text = item.textContent.toLowerCase();
+
+            const matchesDay = !day || itemDay === day;
+            const matchesSearch = !query || text.includes(query);
+
+            item.style.display = matchesDay && matchesSearch ? '' : 'none';
+        });
+    }
+
+    dayFilter?.addEventListener('change', filter);
+    searchInput?.addEventListener('input', filter);
+    filter(); // первый запуск
+</script>
+
+</body>
+
+</html>

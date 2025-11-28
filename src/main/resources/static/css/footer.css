@@ -1,0 +1,42 @@
+footer {
+    background-color: var(--darck_blue);
+    margin-top: 50px;
+    padding: 20px;
+}
+
+footer div .important {
+    color: white;
+    text-align: center;
+    border-bottom: 1px solid var(--red);
+    margin-bottom: 10px;
+}
+
+footer div a,
+footer div p {
+    color: white;
+    text-decoration: none;
+    margin-top: 5px;
+}
+
+footer div {
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+}
+
+.container_footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 900px;
+}
+
+/*@media (max-width:880px) {*/
+/*    footer div{*/
+/*        margin: 10px 20px 10px 20px;*/
+/*    } */
+/*    footer{*/
+/*        padding: 0px;*/
+/*    }*/
+/*}*/
