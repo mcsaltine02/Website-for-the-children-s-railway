@@ -1,30 +1,87 @@
-.block_values div {
-  max-width: 400px;
-  margin: 10px;
-  padding: 10px;
-  padding-top: 0px;
-}
-
-.block_values div div{
-  margin: 10px;
-  padding: 10px;
-  text-align: justify;
-  background-color: white;
-  border-radius: 10px;
-  border: 2px solid;
-}
 .block_values h2{
   color: #E31E29;
   text-align: center;
   font-size: larger;
 }
-.block_values .separator{
-  display: none;
+
+
+.image-content{
+  position: relative;
+  display: flex;
+  width: 300px;
+  border-radius: 0px 0px 10px 0px;
+  background-color: var(--gray_blue);
+  backdrop-filter: blur(5px);
+  padding: 10px;
+  border: 4px solid var(--back);
+  border-top-left-radius: 10px;
+  border-top-color: var(--darck_blue);
+  border-left-color: var(--darck_blue);
+  flex-direction: column;
 }
-input {
-  display: none;
+.image-box img{
+  height: 469px;
+  width: 700px;
+  border-radius: 10px;
+  object-fit: cover;
 }
-label {
-  display: block;
+.image-box{display: flex;height: 469px;flex-direction: row-reverse;}
+
+.image-header{
+  padding-bottom: 10px;
+}
+.image-box p{
+
+}
+
+.button-slider-block_values{
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: auto;
+
+}
+
+.button-slider-block_values
+.button-slider-block_values_next,
+.button-slider-block_values_pref{
+  padding: 10px;
+  margin: 10px;
+  border: 2px solid var(--darck_blue);
+  border-radius: 10px;
+  background-color: var(--back);
+}
+.button-slider-block_values
+.button-slider-block_values_next:hover,
+.button-slider-block_values
+.button-slider-block_values_pref:hover{
   cursor: pointer;
+  /*margin: 12px;*/
+}
+.image-box {
+  display: none;
+
+}
+.image-box.active {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1090px) {
+  .image-box.active {
+    flex-direction: column-reverse;
+    height: fit-content;
+  }
+  .image-content{
+    width: auto; !important;
+  }
+  .image-box img{
+    width: auto;!important;
+  }
 }

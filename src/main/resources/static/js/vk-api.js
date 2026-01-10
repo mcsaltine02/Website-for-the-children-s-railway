@@ -1,7 +1,39 @@
-async function fetchPosts() {
+const CACHE_KEY = 'vk_posts_cache';
+const CACHE_TTL = 60 * 60 * 1000; // 10 минут
+
+// === КЭШИРОВАНИЕ ===
+function getCachedPosts() {
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (!cached) return null;
+    const {data, timestamp} = JSON.parse(cached);
+    if (Date.now() - timestamp > CACHE_TTL) {
+        localStorage.removeItem(CACHE_KEY);
+        return null;
+    }
+    return data;
+}
+
+function setCachedPosts(data) {
+    const cacheObj = {data, timestamp: Date.now()};
+    localStorage.setItem(CACHE_KEY, JSON.stringify(cacheObj));
+}
+
+// === ОСНОВНАЯ ЗАГРУЗКА ===
+async function fetchPosts(forceRefresh = false) {
     const loading = document.getElementById('loading');
     const errorDiv = document.getElementById('error');
     const postsDiv = document.getElementById('posts');
+
+    if (forceRefresh) {
+        localStorage.removeItem(CACHE_KEY);
+    }
+
+    const cached = getCachedPosts();
+    if (cached && !forceRefresh) {
+        loading.style.display = 'none';
+        displayPosts(cached.response.items);
+        return;
+    }
 
     try {
         loading.style.display = 'block';
@@ -13,6 +45,7 @@ async function fetchPosts() {
 
         if (data.error) throw new Error(data.error.error_msg || 'VK API error');
 
+        setCachedPosts(data);
         displayPosts(data.response.items);
     } catch (error) {
         loading.style.display = 'none';
@@ -22,6 +55,7 @@ async function fetchPosts() {
     }
 }
 
+// === ОТОБРАЖЕНИЕ ПОСТОВ ===
 function displayPosts(posts) {
     const loading = document.getElementById('loading');
     const container = document.getElementById('posts');
@@ -49,36 +83,52 @@ function displayPosts(posts) {
         }
 
         const allAtt = [...attachments, ...repostAttachments];
-        const photoUrls = [];
+        const fullPhotoUrls = []; // полные размеры для модалки
 
         const photoItems = allAtt
             .filter(att => att.type === 'photo')
             .map(att => {
                 hasPhoto = true;
                 const photo = att.photo;
-                const size = photo.sizes.sort((a, b) => b.width - a.width)[0];
-                photoUrls.push(size.url);
-                return size.url;
+                const sizes = photo.sizes;
+
+                // Полный размер для модалки
+                const fullSize = sizes.sort((a, b) => b.width - a.width)[0];
+                fullPhotoUrls.push(fullSize.url);
+
+                // Превью для поста (меньший размер)
+                const previewSize = sizes.find(s => s.type === 'z') ||
+                    sizes.find(s => s.type === 'y') ||
+                    sizes.find(s => s.type === 'x') ||
+                    sizes.sort((a, b) => b.width - a.width)[1] || fullSize;
+
+                return previewSize.url;
             });
 
-        // ОГРАНИЧИВАЕМ ДО 3 ФОТО
-        const visiblePhotos = photoItems.slice(0, 3);
-        const hiddenCount = photoItems.length - 3;
+        // HTML для фото (только видимые 3)
+        const photosHtml = photoItems.map((url, i) => {
+            const isLastVisible = i === 2 && photoItems.length > 3;
+            const hiddenCount = photoItems.length > 3 ? photoItems.length - 3 : 0;
 
-        const photosHtml = visiblePhotos.map((url, i) => {
-            const isLast = i === visiblePhotos.length - 1;
-            let html = `<img src="${url}" class="post-imag-item" loading="lazy">`;
-            if (isLast && hiddenCount > 0) {
-                html = `<div class="post-imag-item blurred" style="position:relative;">
-                    <img src="${url}" loading="lazy" style="filter:blur(4px); width:100%; height:100%; object-fit:cover;">
-                    <div class="vk-plus">+${hiddenCount}</div>
-                </div>`;
+            if (isLastVisible) {
+                // Третье фото с оверлеем вместо blur
+                return `
+                    <div class="post-imag-item overlay-plus" style="position:relative; overflow:hidden;">
+                        <img src="${url}" loading="lazy" decoding="async" style="width:100%; object-fit:cover;">
+                        <div class="vk-plus-overlay"></div>
+                        <div class="vk-plus">+${hiddenCount}</div>
+                    </div>`;
             }
-            return html;
+
+            if (i < 3) {
+                return `<img src="${url}" class="post-imag-item" loading="lazy" decoding="async">`;
+            }
+
+            return ''; // скрытые фото не рендерим вообще
         }).join('');
 
         const attachmentsHtml = allAtt.map(att => {
-            if (att.type === 'photo') return ''; // фото обрабатываем отдельно
+            if (att.type === 'photo') return '';
             if (att.type === 'video') {
                 hasVideo = true;
                 const video = att.video;
@@ -116,17 +166,17 @@ function displayPosts(posts) {
         const textHtml = fullText ? `<div class="post-text"><p>${fullText.replace(/\n/g, '<br>')}</p></div>` : '';
 
         if (copyHistory.length > 0) {
-            const repostPhotosBlock = photoUrls.length > 0 ? `
-        <div class="post-imag" data-photos='${JSON.stringify(photoUrls)}'>
-            ${photosHtml}
-        </div>
-    ` : '';
+            const repostPhotosBlock = fullPhotoUrls.length > 0 ? `
+                <div class="post-imag" data-photos='${JSON.stringify(fullPhotoUrls)}'>
+                    ${photosHtml}
+                </div>
+            ` : '';
 
             repostHtml = `<div class="repost"><p><strong>Репост:</strong><br>${textHtml}${repostPhotosBlock || attachmentsHtml}</p></div>`;
         }
 
-        const photosBlock = photoUrls.length > 0 ? `
-            <div class="post-imag" data-photos='${JSON.stringify(photoUrls)}'>
+        const photosBlock = fullPhotoUrls.length > 0 ? `
+            <div class="post-imag" data-photos='${JSON.stringify(fullPhotoUrls)}'>
                 ${photosHtml}
             </div>
         ` : '';
@@ -142,53 +192,82 @@ function displayPosts(posts) {
     });
 
     container.innerHTML = postsHtml.join('');
-    initVkPhotoBlocks();
-}
 
-function initVkPhotoBlocks() {
-    const blocks = document.querySelectorAll('.post-imag');
-    blocks.forEach(block => {
-        const images = block.querySelectorAll('.post-imag-item');
+    // Предзагрузка полных фото
+    document.querySelectorAll('.post-imag').forEach(block => {
         const photoUrls = JSON.parse(block.dataset.photos || '[]');
-
-        if (images.length === 0) return;
-
-
-        if (images.length > 4) {
-            const lastImg = images[images.length - 1];
-            const remaining = images.length - 4;
-            lastImg.style.position = 'relative';
-            lastImg.style.filter = 'blur(4px)';
-            lastImg.insertAdjacentHTML('beforeend', `<div class="vk-plus">+${remaining}</div>`);
-        }
-
-        images.forEach((img, i) => {
-            if (i >= 4 && images.length > 4) return; // не кликабельно +?
-            img.style.cursor = 'pointer';
-            img.addEventListener('click', () => openVkModal(photoUrls, i));
+        photoUrls.forEach(url => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = url;
+            document.head.appendChild(link);
         });
     });
+
+    // Ленивая инициализация кликов через IntersectionObserver
+    initPhotoBlocksLazy();
 }
 
-// === мОДАЛКА  ===
+// Ленивая инициализация галерей
+function initPhotoBlocksLazy() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const block = entry.target;
+                const photoUrls = JSON.parse(block.dataset.photos || '[]');
+                const items = block.querySelectorAll('.post-imag-item');
+
+                items.forEach((item, i) => {
+                    if (i >= 3) return;
+                    item.style.cursor = 'pointer';
+                    item.addEventListener('click', () => openVkModal(photoUrls, i));
+                });
+
+                observer.unobserve(block);
+            }
+        });
+    }, {rootMargin: '200px'}); // загружаем заранее
+
+    document.querySelectorAll('.post-imag').forEach(block => observer.observe(block));
+}
+
+// === МОДАЛКА ===
 let currentVkIndex = 0;
 let currentVkPhotos = [];
+
+function preloadNext() {
+    if (currentVkPhotos.length <= 1) return;
+    const nextIndex = (currentVkIndex + 1) % currentVkPhotos.length;
+    const img = new Image();
+    img.src = currentVkPhotos[nextIndex];
+}
 
 function openVkModal(photos, startIndex) {
     currentVkPhotos = photos;
     currentVkIndex = startIndex;
 
-
     const modal = document.getElementById('vk-modal') || createVkModal();
     const img = modal.querySelector('img');
+    const loadingEl = modal.querySelector('.vk-modal-loading');
     const prevBtn = modal.querySelector('.vk-modal-prev');
     const nextBtn = modal.querySelector('.vk-modal-next');
+
+    loadingEl.style.display = 'block';
+    img.style.display = 'none';
+
+    img.onload = () => {
+        loadingEl.style.display = 'none';
+        img.style.display = 'block';
+    };
+
     img.src = photos[startIndex];
+    preloadNext();
 
     if (photos.length <= 1) {
         prevBtn.style.display = 'none';
         nextBtn.style.display = 'none';
-    } else{
+    } else {
         prevBtn.style.display = 'flex';
         nextBtn.style.display = 'flex';
     }
@@ -203,8 +282,9 @@ function createVkModal() {
     modal.className = 'vk-modal';
     modal.innerHTML = `
         <div class="vk-modal-close">×</div>
-        <div class="vk-modal-nav vk-modal-prev" style="user-select: none;">🡄</div>
-        <div class="vk-modal-nav vk-modal-next" style="user-select: none;">🡆</div>
+        <div class="vk-modal-nav vk-modal-prev">🡄</div>
+        <div class="vk-modal-nav vk-modal-next">🡆</div>
+        <div class="vk-modal-loading">Загрузка...</div>
         <img src="" alt="">
     `;
     document.body.appendChild(modal);
@@ -213,20 +293,40 @@ function createVkModal() {
     const prevBtn = modal.querySelector('.vk-modal-prev');
     const nextBtn = modal.querySelector('.vk-modal-next');
     const img = modal.querySelector('img');
+    const loadingEl = modal.querySelector('.vk-modal-loading');
 
     closeBtn.onclick = () => {
         modal.classList.remove('active');
         document.body.style.overflow = '';
     };
+
     prevBtn.onclick = () => {
         currentVkIndex = (currentVkIndex - 1 + currentVkPhotos.length) % currentVkPhotos.length;
+        loadingEl.style.display = 'block';
+        img.style.display = 'none';
+        img.onload = () => {
+            loadingEl.style.display = 'none';
+            img.style.display = 'block';
+        };
         img.src = currentVkPhotos[currentVkIndex];
+        preloadNext();
     };
+
     nextBtn.onclick = () => {
         currentVkIndex = (currentVkIndex + 1) % currentVkPhotos.length;
+        loadingEl.style.display = 'block';
+        img.style.display = 'none';
+        img.onload = () => {
+            loadingEl.style.display = 'none';
+            img.style.display = 'block';
+        };
         img.src = currentVkPhotos[currentVkIndex];
+        preloadNext();
     };
-    modal.onclick = (e) => { if (e.target === modal) closeBtn.click(); };
+
+    modal.onclick = (e) => {
+        if (e.target === modal) closeBtn.click();
+    };
 
     document.addEventListener('keydown', e => {
         if (!modal.classList.contains('active')) return;
@@ -237,5 +337,22 @@ function createVkModal() {
 
     return modal;
 }
+
+// Кнопка обновления
+document.addEventListener('DOMContentLoaded', () => {
+    const refreshBtn = document.getElementById('refresh-btn');
+    const svgIcon = refreshBtn.innerHTML; // Сохраните исходный SVG-код
+
+    if (refreshBtn) {
+        refreshBtn.addEventListener('click', () => {
+            refreshBtn.innerHTML = '<span>Обновление...</span>'; // Замените содержимое на текст
+
+            fetchPosts(true).finally(() => {
+                refreshBtn.innerHTML = svgIcon; // Восстановите SVG после обновления
+            });
+        });
+    }
+});
+
 
 fetchPosts();

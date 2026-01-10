@@ -1,0 +1,143 @@
+#informationSecurity{
+    font-weight: bold
+}
+main {
+    padding-top: 61px;
+}
+
+h1 {}
+.pdf-container{
+
+    display: flex;
+
+    flex-wrap: wrap;
+}
+.section {
+    background: var(--gray_blue);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 40px;
+    margin-right: 80px;
+    border: 1px solid;
+}
+
+.section h2 {
+    padding: 20px;
+    font-size: 33px;
+}
+.content{
+    padding-left: 40px;
+}
+h4{
+    position: absolute;
+    bottom: 3px;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    margin: 5px;
+}
+
+.extra-content {}
+
+.extra-content img {}
+
+.extra-content a {}
+
+.no-files {}
+
+.pdf-block-wrapper {display: flex;flex-direction: column-reverse;margin: 20px;overflow: hidden;}
+
+.open-link {}
+
+.pdf-block {
+    width: min-content;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.pdf-block h3 {}
+
+.pdf-block canvas {}
+
+.pdf-block .error {}
+
+.pdf-block-wrapper:hover .pdf-block {}
+
+.download-icon {}
+
+.download-icon:hover {}
+
+.download-icon svg {
+    position: absolute;
+    right: 10px;
+    background-color: var(--darck_blue);
+}
+
+@media (max-width: 768px) {
+    .section {}
+    .pdf-block {}
+    .download-icon {}
+    h1 {}
+    .section h2 {}
+}
+
+
+.scroll-progress {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+}
+
+.progress-line {
+    position: absolute;
+    width: 3px;
+    height: 100%;
+    border-radius: 3px;
+}
+
+.progress-dots {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    pointer-events: auto;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--darck_blue);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: var(--darck_blue);
+}
+
+.dot:hover {
+    background: var(--darck_blue);
+    transform: scale(1.5);
+}
+
+.section {
+    scroll-margin-top: 100px;
+    position: relative;
+    overflow: hidden;
+}
+.decorate_img_pdf_bloc{
+    position: absolute;
+    height: 100%;
+    width: 300px;
+    right: 0;
+    top: 0;
+    z-index: 0;
+    object-fit: cover;
+    filter: brightness(0.5);
+}

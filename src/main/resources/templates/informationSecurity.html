@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все документы</title>
+    <link th:href="@{css/root.css}" rel="stylesheet">
+    <link th:href="@{css/header.css}" rel="stylesheet">
+    <link th:href="@{css/footer.css}" rel="stylesheet">
+    <link th:href="@{css/informationSecurity_PDF.css}" rel="stylesheet">
+    <script th:src="@{js/main.js}" defer></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+
+</head>
+<body>
+<header th:insert="~{fragment :: header}"></header>
+
+<main>
+    <!-- Вертикальная шкала слева -->
+    <div class="scroll-progress">
+        <div class="progress-line"></div>
+        <div class="progress-dots">
+            <div class="dot active" data-target="#section-1" title="Обучающимся"></div>
+            <div class="dot" data-target="#section-2" title="Педагогам"></div>
+            <div class="dot" data-target="#section-3" title="Родителям"></div>
+            <div class="dot" data-target="#section-4" title="Локальные акты"></div>
+            <div class="dot" data-target="#section-5" title="Нормативное регулирование"></div>
+            <div class="dot" data-target="#section-6" title="Детские безопасные сайты"></div>
+        </div>
+    </div>
+
+    <div th:each="cat, stat : ${categories}" class="section" th:id="'section-' + ${stat.index + 1}">
+        <h2 th:text="${cat.name}">Категория</h2>
+
+        <!-- Правильная вставка динамического фрагмента -->
+        <div class="extra-content"
+             th:insert="${cat.fragmentName} :: content"
+             th:remove="tag">
+        </div>
+
+
+<!--        <div th:if="${cat.files.isEmpty()}" class="no-files">-->
+<!--            В этой категории пока нет документов-->
+<!--        </div>-->
+
+        <!-- Остальные PDF-блоки -->
+        <div th:if="${!cat.files.isEmpty()}">
+            <div class="pdf-container">
+                <div th:each="file, iter : ${cat.files}" class="pdf-block-wrapper">
+
+                    <div class="pdf-block"
+                         th:id="'block-' + ${stat.index} + '-' + ${iter.index}"
+                         th:data-pdf-url="@{'/pdfs/' + ${cat.folder} + '/' + ${file}}"
+                         style="cursor: pointer;">
+
+                        <h4 th:text="${file}">Название.pdf</h4>
+                        <canvas th:id="'canvas-' + ${stat.index} + '-' + ${iter.index}"></canvas>
+
+                        <!-- Иконка скачивания -->
+                        <a th:href="@{'/pdfs/' + ${cat.folder} + '/' + ${file}}"
+                           th:download="${file}"
+                           class="download-icon"
+                           title="Скачать PDF"
+                           onclick="event.stopPropagation();">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 15L12 3M12 15L8 11M12 15L16 11M19 21H5"
+                                      stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="12" cy="12" r="11" fill="#28a745" opacity="0"/>
+                            </svg>
+                        </a>
+
+                        <p th:id="'error-' + ${stat.index} + '-' + ${iter.index}" class="error"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img th:src="@{'/isImages/' + ${cat.fragmentName} + '.jpeg'}" class="decorate_img_pdf_bloc" alt="not found">
+    </div>
+</main>
+
+<footer th:insert="~{fragment :: footer}"></footer>
+
+<!--отображение ПДФ-->
+<script th:inline="javascript">
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.worker.min.js';
+
+    const categories = /*[[${categories}]]*/ [];
+
+    categories.forEach((cat, catIndex) => {
+        cat.files.forEach((filename, fileIndex) => {
+            const canvasId = `canvas-${catIndex}-${fileIndex}`;
+            const canvas = document.getElementById(canvasId);
+            const errorMsg = document.getElementById(`error-${catIndex}-${fileIndex}`);
+
+            if (!canvas) return;
+
+            const pdfUrl = `/pdfs/${cat.folder}/${encodeURIComponent(filename)}`;
+
+            const loadingTask = pdfjsLib.getDocument(pdfUrl);
+
+            loadingTask.promise
+                .then(pdfDoc => pdfDoc.getPage(1))
+                .then(page => {
+                    const scale = 0.3;
+                    const viewport = page.getViewport({scale});
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+                    const ctx = canvas.getContext("2d");
+                    return page.render({canvasContext: ctx, viewport}).promise;
+                })
+                .then(() => console.log(`Отрендерен: ${cat.name} / ${filename}`))
+                .catch(err => {
+                    console.error(`Ошибка: ${filename}`, err);
+                    if (errorMsg) {
+                        errorMsg.textContent = `Не удалось загрузить ${filename}`;
+                        errorMsg.style.display = "block";
+                    }
+                });
+        });
+    });
+</script>
+
+<!--точки скроллинга-->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('.section');
+        const dots = document.querySelectorAll('.dot');
+
+        // Клик по точке → скролл
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const targetId = dot.getAttribute('data-target');
+                const target = document.querySelector(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Отслеживание текущей секции
+        const observer = new IntersectionObserver(
+            entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Убираем active у всех
+                        dots.forEach(d => d.classList.remove('active'));
+
+                        // Находим индекс текущей секции
+                        const index = Array.from(sections).indexOf(entry.target);
+                        if (index !== -1 && dots[index]) {
+                            dots[index].classList.add('active');
+                        }
+                    }
+                });
+            },
+            {
+                threshold: 0.5,           // 50% секции видно → активна
+                rootMargin: '-10% 0px -40% 0px' // учитывает хедер/футер
+            }
+        );
+
+        sections.forEach(section => observer.observe(section));
+    });
+</script>
+
+<!-- обработка клика по ПДФ для его открытия -->
+<script th:inline="javascript">
+    // Обработчик клика по всему блоку PDF
+    document.querySelectorAll('.pdf-block').forEach(block => {
+        block.addEventListener('click', function (e) {
+            // Если кликнули по иконке скачивания — не открываем
+            if (e.target.closest('.download-icon')) {
+                return;
+            }
+
+            const url = this.dataset.pdfUrl;
+            if (url) {
+                window.open(url, '_blank');
+            }
+        });
+    });
+</script>
+</body>
+</html>
