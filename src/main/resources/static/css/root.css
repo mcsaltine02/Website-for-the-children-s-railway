@@ -7,6 +7,7 @@
     --red: #E31E29;
     --darck_blue: #003C58;
     --white_blue: #B0DBF6;
+    --blue: #0086bc;
     --gray_blue: #d5e6f4;
     --green: #658A42;
     --white_green: #A8CD78;
@@ -22,7 +23,12 @@ p, a, label, li, td{
     font-size: 18px;
     text-decoration: none;
 }
-h1{font-size: 34px;color: var(--darck_blue);}
+h1{
+    font-size: 33px;
+    color: var(--darck_blue);
+}
+
+
 
 ::-webkit-scrollbar {
     width: 0;

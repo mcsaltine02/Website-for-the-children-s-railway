@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Все документы</title>
     <link th:href="@{css/root.css}" rel="stylesheet">
+    <link th:href="@{css/dot-scroll.css}" rel="stylesheet">
     <link th:href="@{css/header.css}" rel="stylesheet">
     <link th:href="@{css/footer.css}" rel="stylesheet">
     <link th:href="@{css/informationSecurity_PDF.css}" rel="stylesheet">
@@ -29,20 +30,16 @@
             <div class="dot" data-target="#section-6" title="Детские безопасные сайты"></div>
         </div>
     </div>
+    <script src="js/dot-scroll.js"></script>
 
     <div th:each="cat, stat : ${categories}" class="section" th:id="'section-' + ${stat.index + 1}">
-        <h2 th:text="${cat.name}">Категория</h2>
+        <h1 th:text="${cat.name}">Категория</h1>
 
         <!-- Правильная вставка динамического фрагмента -->
         <div class="extra-content"
              th:insert="${cat.fragmentName} :: content"
              th:remove="tag">
         </div>
-
-
-<!--        <div th:if="${cat.files.isEmpty()}" class="no-files">-->
-<!--            В этой категории пока нет документов-->
-<!--        </div>-->
 
         <!-- Остальные PDF-блоки -->
         <div th:if="${!cat.files.isEmpty()}">
@@ -54,8 +51,8 @@
                          th:data-pdf-url="@{'/pdfs/' + ${cat.folder} + '/' + ${file}}"
                          style="cursor: pointer;">
 
-                        <h4 th:text="${file}">Название.pdf</h4>
                         <canvas th:id="'canvas-' + ${stat.index} + '-' + ${iter.index}"></canvas>
+                        <h4 th:text="${file}">Название.pdf</h4>
 
                         <!-- Иконка скачивания -->
                         <a th:href="@{'/pdfs/' + ${cat.folder} + '/' + ${file}}"
@@ -76,7 +73,7 @@
                 </div>
             </div>
         </div>
-        <img th:src="@{'/isImages/' + ${cat.fragmentName} + '.jpeg'}" class="decorate_img_pdf_bloc" alt="not found">
+
     </div>
 </main>
 
@@ -119,49 +116,6 @@
                     }
                 });
         });
-    });
-</script>
-
-<!--точки скроллинга-->
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const sections = document.querySelectorAll('.section');
-        const dots = document.querySelectorAll('.dot');
-
-        // Клик по точке → скролл
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                const targetId = dot.getAttribute('data-target');
-                const target = document.querySelector(targetId);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // Отслеживание текущей секции
-        const observer = new IntersectionObserver(
-            entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Убираем active у всех
-                        dots.forEach(d => d.classList.remove('active'));
-
-                        // Находим индекс текущей секции
-                        const index = Array.from(sections).indexOf(entry.target);
-                        if (index !== -1 && dots[index]) {
-                            dots[index].classList.add('active');
-                        }
-                    }
-                });
-            },
-            {
-                threshold: 0.5,           // 50% секции видно → активна
-                rootMargin: '-10% 0px -40% 0px' // учитывает хедер/футер
-            }
-        );
-
-        sections.forEach(section => observer.observe(section));
     });
 </script>
 

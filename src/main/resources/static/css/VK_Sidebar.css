@@ -4,6 +4,10 @@
     margin-left: 10px;
     z-index: 997;
 }
+a{
+    color:white;
+    cursor: pointer;
+}
 
 .sidebar {
     overflow-y: auto;
@@ -38,6 +42,7 @@
 /*}*/
 
 .post {
+    position: relative;
     background-color: #00000030;
     margin-bottom: 20px;
     padding: 15px;
@@ -50,13 +55,16 @@
 }
 
 .post-meta {
+    position: absolute;
+    right: 0;
+    bottom: 0;
     color: white;
     text-align: right;
-    margin: 10px 0 0;
+    /* margin: 10px 0 0; */
     background-color: #00000030;
     width: fit-content;
     padding: 10px;
-    border-radius: 5px 5px 0 0;
+    border-radius: 10px;
     align-self: flex-end; /* Ã‘â€¡Ã‘â€šÃÂ¾ÃÂ±Ã‘â€¹ ÃÂ²Ã‘â€¹Ã‘â‚¬ÃÂ°ÃÂ²ÃÂ½ÃÂ¸ÃÂ²ÃÂ°Ã‘â€šÃ‘Å’ ÃÂ¿ÃÂ¾ ÃÂ¿Ã‘â‚¬ÃÂ°ÃÂ²ÃÂ¾ÃÂ¼Ã‘Æ’ ÃÂºÃ‘â‚¬ÃÂ°Ã‘Å½ ÃÂ² .posts */
 }
 
