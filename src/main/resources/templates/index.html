@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>О нас</title>
+    <link th:href="@{css/root.css}" rel="stylesheet">
+    <link th:href="@{css/header.css}" rel="stylesheet">
+    <link th:href="@{css/About_Us.css}" rel="stylesheet">
+    <link th:href="@{css/VK_Sidebar.css}" rel="stylesheet">
+    <link th:href="@{css/shema.css}" rel="stylesheet">
+    <link th:href="@{css/about_us_block_values.css}" rel="stylesheet">
+    <link th:href="@{css/footer.css}" rel="stylesheet">
+    <link th:href="@{css/slider.css}" rel="stylesheet">
+
+    <script defer th:src="@{js/main.js}"></script>
+    <script defer th:src="@{js/vk-api.js}"></script>
+
+</head>
+
+<body>
+
+
+
+
+<header th:insert="~{fragment :: header}"></header>
+
+<div style="margin-top: 93px; grid-template-columns: 381px 1fr 326px;">
+
+
+    <div class="combo_vk_how_to_become">
+
+
+
+        <!--        <div class="vk-wraper">-->
+        <div class="sidebar">
+            <div class="name_sidebar_VK">
+                <a href="https://vk.com/dskzd" target="_blank" style="display: contents;">
+                    <img th:src="@{images/icons8-vk-48.png}" style="width: 50px">
+                    <h3 style="color: #1976d2;font-size: 23px;">Наше ВК сообщество</h3>
+                </a>
+                <button id="refresh-btn" style="margin: 10px; background: none;border: none;">
+                    <svg fill="#000000" width="20px" height="20px" viewBox="0 0 24 24" id="update-alt" data-name="Flat Line"
+                         xmlns="http://www.w3.org/2000/svg" class="icon flat-line">
+                        <path id="primary" d="M5.07,8A8,8,0,0,1,20,12"
+                              style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
+                        <path id="primary-2" data-name="primary" d="M18.93,16A8,8,0,0,1,4,12"
+                              style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
+                        <polyline id="primary-3" data-name="primary" points="5 3 5 8 10 8"
+                                  style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline>
+                        <polyline id="primary-4" data-name="primary" points="19 21 19 16 14 16"
+                                  style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline>
+                    </svg>
+                </button>
+            </div>
+            <div class="decorate_bottom_sidebar"></div>
+            <div class="bottom_decorate"></div>
+            <div id="loading" style="color: white"><p>Загрузка постов...</p></div>
+            <div id="posts" class="posts"><p></p></div>
+            <div id="error" style="display: none;"></div>
+
+            <div class="vk-scroll-dots" id="vk-scroll-dots"></div> <!-- Новые точки -->
+        </div>
+        <!--        </div>-->
+        <div class="become_railway">
+            <h1 class="name_become_railway">Как стать юным железнодорожником</h1>
+            <p class="text_become_railway">
+                Приглашаем стать частью нашей команды, влиться в ряды юных железнодорожников.
+                <a href="https://team.rzd.ru/juniors/railways/122/application" target="_blank">
+                    <b>Подать заявку</b>
+                </a>
+                 можно на Карьерном портале ОАО «РЖД» по ссылке
+                Детская железная дорога – это отличная возможность получить реальные
+                профессиональные навыки, попробовать себя в той или иной железнодорожной профессии.
+                Здесь вы получите достойную практическую подготовку, а в будущем станете успешными специалистами.
+                Ведь ранняя профессиональная ориентация – это отличный способ помочь определиться с будущей
+                профессией,
+                открыть новые горизонты для достижения целей.
+            </p>
+        </div>
+
+    </div>
+    <span class="link_becom_railway">
+                    <a href="https://team.rzd.ru/juniors/railways/122/application" target="_blank">
+                        <b style="color: var(--back);">Подать заявление</b>
+                    </a>
+    </span>
+
+
+    <main>
+
+        <section class="history-section">
+
+            <!-- ФОНОВЫЙ СЛАЙДЕР — ЭТО НОВЫЙ БЛОК! -->
+            <div class="slider-background" id="slider-background">
+                <div class="slides-wrapper-bg" id="slides-wrapper-bg"></div>
+            </div>
+
+            <div class="slider-foreground">
+                <button class="nav-btn prev" id="prev-btn">
+                    <svg width="40" height="40" viewBox="0 0 40 40"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <g transform="rotate(180 20 20)">
+                            <!-- Внешняя V‑образная линия -->
+                            <polyline points="10,5 25,20 10,35"
+                                      fill="none"
+                                      stroke="black"
+                                      stroke-width="2"/>
+                            <!-- Внутренняя V‑образная линия -->
+                            <polyline points="14,8 27,20 14,32"
+                                      fill="none"
+                                      stroke="black"
+                                      stroke-width="2"/>
+                        </g>
+                    </svg>
+                </button>
+
+                <a th:href="@{/templates/photos.html}" class="photos-btn">Фотогалерея</a>
+
+                <button class="nav-btn next" id="next-btn">
+                    <svg width="40" height="40" viewBox="0 0 40 40"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <!-- Внешняя V‑образная линия -->
+                        <polyline points="10,5 25,20 10,35"
+                                  fill="none"
+                                  stroke="black"
+                                  stroke-width="2"/>
+                        <!-- Внутренняя V‑образная линия -->
+                        <polyline points="14,8 27,20 14,32"
+                                  fill="none"
+                                  stroke="black"
+                                  stroke-width="2"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Весь прежнем месте оставляем только управление и контент -->
+<!--            <div id="Start_Info" class="content-over-slider">-->
+
+
+                    <div class="timeline-container">
+                        <h1 class="block_name_Start_Info">История</h1>
+                        <!-- Навигация по годам -->
+                        <div class="timeline-nav">
+
+                            <div class="timeline-item active" data-target="item-1940">
+                                <span class="year">1940</span>
+                                <span>Открытие дороги</span>
+                            </div>
+                            <div class="timeline-item" data-target="item-1941">
+                                <span class="year">1941–1945</span>
+                                <span>Великая Отечественная война</span>
+                            </div>
+                            <div class="timeline-item" data-target="item-1947">
+                                <span class="year">1947–1949</span>
+                                <span>Восстановление и расширение</span>
+                            </div>
+                            <div class="timeline-item" data-target="item-1950">
+                                <span class="year">1950-е – 1961</span>
+                                <span>Активное развитие</span>
+                            </div>
+                            <div class="timeline-item" data-target="item-1970">
+                                <span class="year">1970-е</span>
+                                <span>Премия и сокращение длины</span>
+                            </div>
+                            <div class="timeline-item" data-target="item-1980">
+                                <span class="year">1980-е</span>
+                                <span>Новый подвижной состав</span>
+                            </div>
+                            <div class="timeline-item" data-target="item-1990">
+                                <span class="year">1990-е – 2000-е</span>
+                                <span>Трудные годы и возрождение</span>
+                            </div>
+                            <div class="timeline-item" data-target="item-today">
+                                <span class="year">Сегодня</span>
+                                <span>Современная ДЖД</span>
+                            </div>
+                        </div>
+
+                        <!-- Десктопные блоки контента -->
+                        <div class="timeline-content active" id="item-1940">
+                            <p>Ростовская детская железная дорога начала свою историю в <strong>1940 году</strong>, когда 4 августа, в День железнодорожника, был дан старт строительству. Уже 9 ноября того же года состоялось торжественное открытие дороги.</p>
+                            <p>Первый подвижной состав: паровоз <span class="highlight">ЮП-305</span>, мотовоз <span class="highlight">М-72</span> и пять мягких вагонов в составе «Малыш». Построено депо с мастерскими.</p>
+                        </div>
+                        <div class="timeline-content" id="item-1941">
+                            <p>ДЖД закрыли, подвижной состав эвакуировали в Тбилиси. В 1945 году принято решение о восстановлении несмотря на разрушения.</p>
+                        </div>
+                        <div class="timeline-content" id="item-1947">
+                            <p>1947 — малое кольцо (~2 км), 1948 — большое кольцо (3,15 км), общая длина 4,45 км. 1949 — новый паровоз <span class="highlight">КЧ4-101</span> («Шкода»).</p>
+                        </div>
+                        <div class="timeline-content" id="item-1950">
+                            <p>Новые вагоны, современная сигнализация и связь. В <strong>1961 году</strong> дороге присвоено имя Юрия Гагарина.</p>
+                        </div>
+                        <div class="timeline-content" id="item-1970">
+                            <p>Лауреат премии Ленинского комсомола. Из-за строительства Дворца культуры длина сократилась до 4,09 км.</p>
+                        </div>
+                        <div class="timeline-content" id="item-1980">
+                            <p>Тепловозы, новые вагоны. 1986 — открыт четырёхэтажный учебный корпус на ст. Солнечная.</p>
+                        </div>
+                        <div class="timeline-content" id="item-1990">
+                            <p>Часть инфраструктуры демонтировали, но дорога работала. В 2000-е отремонтирован паровоз <span class="highlight">Гр-185</span>, введены составы «Тихий Дон» и «Атаман Платов».</p>
+                        </div>
+                        <div class="timeline-content" id="item-today">
+                            <p>Сегодня — это полноценный учебный комплекс. Юные железнодорожники изучают профессии, а дорога сохраняет традиции и привлекает тысячи посетителей ежегодно.</p>
+                        </div>
+                    </div>
+
+                    <!-- Мобильный блок контента с анимацией -->
+                    <div class="timeline-content-mobile active" id="mobile-content">
+                        <p>Ростовская детская железная дорога начала свою историю в <strong>1940 году</strong>, когда 4 августа, в День железнодорожника, был дан старт строительству. Уже 9 ноября того же года состоялось торжественное открытие дороги.</p>
+                        <p>Первый подвижной состав: паровоз <span class="highlight">ЮП-305</span>, мотовоз <span class="highlight">М-72</span> и пять мягких вагонов в составе «Малыш». Построено депо с мастерскими.</p>
+                    </div>
+
+
+            <script th:src="@{/js/slider.js}"></script>
+            <script th:src="@{/js/history.js}"></script>
+<!--            </div>-->
+        </section>
+
+        <div id="How_to_find_us">
+            <h1 class="name_how_to_find_us">Как добраться</h1>
+            <div class="how_to_drive">
+
+                <div class="on_the_car">
+                    <h3>ОБЩЕСТВЕННЫМ ТРАНСПОРТОМ</h3>
+                    <ul class="list_how_to_find_us">
+                        <li>на общественном транспорте следуйте до остановки «20-я линия»;</li>
+                        <li>пройдите пешком 300 метров и справа вы увидите здание Ростовской ДЖД;</li>
+                        <li>касса находится на перроне станции «Солнечная».</li>
+                    </ul>
+                </div>
+
+                <div class="on_the_bas">
+                    <h3>НА АВТОМОБИЛЕ</h3>
+                    <ul class="list_how_to_find_us">
+                        <li>г. Ростов-на-Дону, проспект Шолохова д. 29;</li>
+                        <li>парковка находится на территории РДЖД;</li>
+                        <li>касса находится на перроне станции «Солнечная».</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="img_shema">
+            <h1 class="shema_name">Схема</h1>
+            <img alt="" src="images/схема.png">
+
+        </div>
+
+
+        <div class="block_values">
+            <h1 class="name_block_values">Ценности юных железнодорожников</h1>
+
+            <div class="image-box active">
+                <img src="images/photo_2.jpg" alt="Взаимопомощь">
+                <div class="image-content">
+                    <h3 class="image-header">Взаимопомощь и взаимоуважение</h3>
+                    <p>Основа безопасности и слаженной работы коллектива. Это понимание, что успех зависит от каждого, а
+                        уважение к коллегам, пассажирам и старшим наставникам создает доверительную и профессиональную
+                        атмосферу, где все готовы прийти на выручку.</p>
+                    <div class="button-slider-block_values">
+                        <div class="button-slider-block_values_pref" style="-moz-user-select: none; ">назад</div>
+                        <div class="button-slider-block_values_next" style="-moz-user-select: none; ">вперёд</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- СЛАЙД 2 -->
+            <div class="image-box">
+                <img src="images/photo_1.jpg" alt="Добро">
+                <div class="image-content">
+                    <h3 class="image-header">Добро и поддержка</h3>
+                    <p>Бескорыстно помогать тем, кто в этом нуждается, создавая вокруг себя позитивную и комфортную
+                        среду. Это вера в то, что даже небольшой добрый поступок делает мир лучше, а поддержка товарища
+                        помогает преодолеть любые трудности.</p>
+                    <div class="button-slider-block_values">
+                        <div class="button-slider-block_values_pref" style="-moz-user-select: none; ">назад</div>
+                        <div class="button-slider-block_values_next" style="-moz-user-select: none; ">вперёд</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- СЛАЙД 3 -->
+            <div class="image-box">
+                <img src="images/photo_3.jpg" alt="Волонтёрство">
+                <div class="image-content">
+                    <h3 class="image-header">Волонтёрство</h3>
+                    <p>Добровольная и активная гражданская позиция, выражающаяся в реальных делах на благо общества. Это
+                        стремление безвозмездно делиться своим временем, энергией и знаниями, чтобы помочь людям, городу
+                        или природе.</p>
+                    <div class="button-slider-block_values">
+                        <div class="button-slider-block_values_pref" style="-moz-user-select: none; ">назад</div>
+                        <div class="button-slider-block_values_next" style="-moz-user-select: none; ">вперёд</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- СЛАЙД 4 -->
+            <div class="image-box">
+                <img src="images/photo_4.jpg" alt="Созидательный труд">
+                <div class="image-content">
+                    <h3 class="image-header">Созидательный труд</h3>
+                    <p>Осознанный и творческий подход к любой работе, будь то управление макетом или уборка территории.
+                        Это стремление сделать всё качественно, с душой, видя в труде возможность создать что-то
+                        ценное.</p>
+                    <div class="button-slider-block_values">
+                        <div class="button-slider-block_values_pref" style="-moz-user-select: none; ">назад</div>
+                        <div class="button-slider-block_values_next" style="-moz-user-select: none; ">вперёд</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- СЛАЙД 5 -->
+            <div class="image-box">
+                <img src="images/photo_2.jpg" alt="Стремление к мечте">
+                <div class="image-content">
+                    <h3 class="image-header">Стремление к мечте</h3>
+                    <p>Умение ставить высокие цели и неустанно двигаться к их достижению, превращая детское увлечение
+                        железной дорогой в реальную жизненную перспективу.</p>
+                    <div class="button-slider-block_values">
+                        <div class="button-slider-block_values_pref" style="-moz-user-select: none; ">назад</div>
+                        <div class="button-slider-block_values_next" style="-moz-user-select: none; ">вперёд</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- СЛАЙД 6 -->
+            <div class="image-box">
+                <img src="images/photo_5.jpg" alt="Путь к профессии">
+                <div class="image-content">
+                    <h3 class="image-header">Путь к профессии</h3>
+                    <p>Целенаправленное освоение знаний и навыков — первый осознанный шаг от игры к настоящему делу и
+                        возможность примерить на себя роль профессионала.</p>
+                    <div class="button-slider-block_values">
+                        <div class="button-slider-block_values_pref" style="-moz-user-select: none; ">назад</div>
+                        <div class="button-slider-block_values_next" style="-moz-user-select: none; ">вперёд</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- СЛАЙД 7 -->
+            <div class="image-box">
+                <img src="images/photo_1.jpg" alt="Забота о природе">
+                <div class="image-content">
+                    <h3 class="image-header">Забота о природе</h3>
+                    <p>Ответственное отношение к окружающей среде и реальные действия — от поддержания чистоты до
+                        участия в экологических акциях.</p>
+                    <div class="button-slider-block_values">
+                        <div class="button-slider-block_values_pref" style="-moz-user-select: none; ">назад</div>
+                        <div class="button-slider-block_values_next" style="-moz-user-select: none; ">вперёд</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- СЛАЙД 8 -->
+            <div class="image-box">
+                <img src="images/photo_4.jpg" alt="Любовь к стране">
+                <div class="image-content">
+                    <h3 class="image-header">Любовь к стране</h3>
+                    <p>Глубокое чувство патриотизма, выраженное в поступках: уважение к истории, гордость за достижения
+                        России и её железнодорожные традиции.</p>
+                    <div class="button-slider-block_values">
+                        <div class="button-slider-block_values_pref" style="-moz-user-select: none; ">назад</div>
+                        <div class="button-slider-block_values_next" style="-moz-user-select: none; ">вперёд</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- СЛАЙД 9 -->
+            <div class="image-box">
+                <img src="images/photo_2.jpg" alt="Историческая память">
+                <div class="image-content">
+                    <h3 class="image-header">Историческая память</h3>
+                    <p>Связующая нить между поколениями, уважение к прошлому и понимание, что настоящее построено на
+                        подвигах и труде предшественников.</p>
+                    <div class="button-slider-block_values">
+                        <div class="button-slider-block_values_pref" style="-moz-user-select: none; ">назад</div>
+                        <div class="button-slider-block_values_next" style="-moz-user-select: none; ">вперёд</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+</div>
+
+
+<footer th:insert="~{fragment :: footer}"></footer>
+
+
+
+<script>
+    const slides = document.querySelectorAll('.image-box');
+    let current = 0;
+
+    function showSlide(n) {
+        slides[current].classList.remove('active');
+        current = (n + slides.length) % slides.length;
+        slides[current].classList.add('active');
+    }
+
+    // Делегирование кликов по кнопкам
+    document.querySelector('.block_values').addEventListener('click', function (e) {
+        if (e.target.classList.contains('button-slider-block_values_next')) {
+            showSlide(current + 1);
+        }
+        if (e.target.classList.contains('button-slider-block_values_pref')) {
+            showSlide(current - 1);
+        }
+    });
+
+    // Первый слайд активный (на всякий случай)
+    slides[0].classList.add('active');
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const moreBtn = document.querySelector('.btn_block_old');
+        const lessBtn = document.querySelector('.btn_block_new');
+        const newBlock = document.querySelector('.block_new');
+
+        moreBtn.addEventListener('click', () => {
+            newBlock.style.display = 'block';
+            setTimeout(() => newBlock.style.opacity = '1', 50);
+            moreBtn.style.display = 'none';
+        });
+
+        lessBtn.addEventListener('click', () => {
+            newBlock.style.opacity = '0';
+            setTimeout(() => {
+                newBlock.style.display = 'none';
+                moreBtn.style.display = 'inline-block';
+            }, 700);
+        });
+    });
+</script>
+
+
+</body>
+
+</html>

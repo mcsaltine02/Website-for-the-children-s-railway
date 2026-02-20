@@ -18,22 +18,7 @@
 <body>
 
 
-<header class="header" style="">
-    <div class="logo">
-        <img alt="Логотип" th:src="@{/images/логотипБезСердца.png}">
-    </div>
-    <button class="header__burger-btn" id="burger">
-        <span></span><span></span><span></span>
-    </button>
-    <nav class="menu" id="menu">
-        <ul class="menu_list">
-            <li class="menu_item"><a class="menu_link" href="index.html" id="about_us">О нас</a></li>
-            <li class="menu_item"><a class="menu_link" href="passengers.html" id="passengers">Пассажирам</a></li>
-            <li class="menu_item"><a class="menu_link" href="#" id="students">Учащимся</a></li>
-            <li class="menu_item"><a class="menu_link" href="informationSecurity.html">Инф. безоп.</a></li>
-        </ul>
-    </nav>
-</header>
+<header th:insert="~{fragment :: header}"></header>
 
 
 <div class="container">
@@ -107,31 +92,7 @@
 </div>
 
 
-<footer>
-    <div class="container_footer">
-        <div class="contacts">
-            <p class="important">Контакты</p>
-            <a href="tel:+78632512704">+7 (863) 251-27-04</a>
-            <p>mail@gmail.com</p>
-            <p>г. Ростов-на-Дону<br>проспект Шолохова, 29</p>
-        </div>
-        <div class="Operating_Mode">
-            <p class="important">Режим работы</p>
-            <p>Вт, Ср,Чт, Вс<br>10:00–12:00<br>14:00–16:00</p>
-            <p>Пт, Сб, Пн<br>Выходной</p>
-        </div>
-        <div class="Quick_Links">
-            <p class="important">Быстрые ссылки</p>
-            <p>Расписания движения</p>
-            <p>Учебные программы</p>
-            <p>Фотогалерея</p>
-        </div>
-        <div class="We_are_social">
-            <p class="important">Мы в соцсетях</p>
-            <p><a href="https://vk.com/dskzd" target="_blank">ВКонтанте</a></p>
-        </div>
-    </div>
-</footer>
+<footer th:insert="~{fragment :: footer}"></footer>
 
 <script>
     const dayFilter = document.getElementById('dayFilter');

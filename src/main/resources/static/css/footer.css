@@ -1,7 +1,9 @@
 footer {
-    background-color: var(--darck_blue);
     margin-top: 50px;
-    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 footer div .important {
@@ -13,24 +15,35 @@ footer div .important {
 
 footer div a,
 footer div p {
-    color: white;
+    color: var(--text-gray);
     text-decoration: none;
     margin-top: 5px;
 }
-
-footer div {
+footer div a:hover,
+footer div p:hover {
+    color: white;
+}
+.footer_object{
+    background-color: var(--darck_blue);
+    width: fit-content;
+    padding: 15px;
+    margin: 20px;
+    border-radius: 10px;
+}
+footer div{
     display: flex;
     flex-direction: column;
     margin: 0px auto;
 }
 
-.container_footer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 900px;
-}
+
+/*.container_footer {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    flex-wrap: wrap;*/
+/*    justify-content: center;*/
+/*    max-width: 900px;*/
+/*}*/
 
 /*@media (max-width:880px) {*/
 /*    footer div{*/

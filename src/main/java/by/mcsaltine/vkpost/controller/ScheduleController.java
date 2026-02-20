@@ -27,7 +27,7 @@ public class ScheduleController {
         loadFromFileIfExists();
     }
 
-    @GetMapping("/students.html")
+    @GetMapping("/students")
     public String students(Model model) {
         model.addAttribute("lessons", cachedLessons); // ← мгновенно из памяти
         model.addAttribute("days", List.of("Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"));
@@ -44,7 +44,7 @@ public class ScheduleController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "Ошибка: " + e.getMessage());
         }
-        return "redirect:/students.html";
+        return "redirect:/students";
     }
 
     // Один раз парсим файл — и всё
