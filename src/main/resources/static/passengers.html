@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Document</title>
+    <link href="css/root.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
+    <link href="css/shema.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/passengers.css">
+
+    <script defer src="js/main.js"></script>
+
+</head>
+
+<body>
+
+
+<header class="header" style="">
+    <div class="logo">
+        <img alt="Логотип" src="images/логотипБезСердца.png">
+    </div>
+    <button class="header__burger-btn" id="burger">
+        <span></span><span></span><span></span>
+    </button>
+    <nav class="menu" id="menu">
+        <ul class="menu_list">
+            <li class="menu_item"><a class="menu_link" href="index.html" id="about_us">О нас</a></li>
+            <li class="menu_item"><a class="menu_link" href="passengers.html" id="passengers">Пассажирам</a></li>
+            <li class="menu_item"><a class="menu_link" href="/students.html">Учащимся</a></li>
+            <li class="menu_item"><a class="menu_link" href="informationSecurity.html">Инф. безоп.</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<div style="margin-top: 50px;" class="body-wraper">
+
+    <main >
+        <table class="prices">
+            <tr>
+                <td colspan="2">
+                    <h1 class="prices_name">Цены</h1>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3>Взрослый</h3>
+                </td>
+                <td>
+                    <h3>Детский</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>270₽</td>
+                <td>220₽</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="price_free">
+                    <h3>Дети до 5 лет, дети-инвалиды при предоставлении справки МСЭ - бесплатно</h3>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Исходная таблица для экранов > 590px -->
+        <table class="timetable">
+            <tr>
+                <td colspan="4">
+                    <h1 class="timetable_name">Расписание движения поезда</h1>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3>Отправление</h3>
+                </td>
+                <td>
+                    <h3>Прибытие</h3>
+                </td>
+                <td>
+                    <h3>Отправление</h3>
+                </td>
+                <td>
+                    <h3>Прибытие</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>10:00</td>
+                <td>10:22</td>
+                <td>14:00</td>
+                <td>14:22</td>
+            </tr>
+            <tr>
+                <td>10:15</td>
+                <td>10:37</td>
+                <td>14:15</td>
+                <td>14:37</td>
+            </tr>
+            <tr>
+                <td>10:30</td>
+                <td>10:52</td>
+                <td>14:30</td>
+                <td>14:52</td>
+            </tr>
+            <tr>
+                <td>10:45</td>
+                <td>11:07</td>
+                <td>14:45</td>
+                <td>15:07</td>
+            </tr>
+            <tr>
+                <td>11:00</td>
+                <td>11:22</td>
+                <td>15:00</td>
+                <td>15:22</td>
+            </tr>
+            <tr>
+                <td>11:15</td>
+                <td>11:37</td>
+                <td>15:15</td>
+                <td>15:37</td>
+            </tr>
+            <tr>
+                <td>11:30</td>
+                <td>11:52</td>
+                <td>15:30</td>
+                <td>15:52</td>
+            </tr>
+            <tr>
+                <td>11:45</td>
+                <td>12:07</td>
+                <td>15:45</td>
+                <td>16:07</td>
+            </tr>
+            <tr>
+                <td>12:00</td>
+                <td>12:22</td>
+                <td>16:00</td>
+                <td>16:22</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <h3>ПЕРЕРЫВ с 12:00 до 14:00</h3>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Альтернативная таблица для экранов <= 590px -->
+        <table class="iksweb" style="display: none;">
+            <tr>
+                <td colspan="2"><h1>Расписание движения поезда</h1></td>
+            </tr>
+            <tr>
+                <td>
+                    <h3>Отправление</h3>
+                </td>
+                <td>
+                    <h3>Прибытие</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>10:00</td>
+                <td>10:22</td>
+            </tr>
+            <tr>
+                <td>10:15</td>
+                <td>10:37</td>
+            </tr>
+            <tr>
+                <td>10:30</td>
+                <td>10:52</td>
+            </tr>
+            <tr>
+                <td>10:45</td>
+                <td>11:07</td>
+            </tr>
+            <tr>
+                <td>11:00</td>
+                <td>11:22</td>
+            </tr>
+            <tr>
+                <td>11:15</td>
+                <td>11:37</td>
+            </tr>
+            <tr>
+                <td>11:30</td>
+                <td>11:52</td>
+            </tr>
+            <tr>
+                <td>11:45</td>
+                <td>12:07</td>
+            </tr>
+            <tr>
+                <td>12:00</td>
+                <td>12:22</td>
+            </tr>
+            <tr>
+                <td colspan="2"><h3>ПЕРЕРЫВ до 14:00</h3></td>
+            </tr>
+            <tr>
+                <td>14:00</td>
+                <td>14:22</td>
+            </tr>
+            <tr>
+                <td>14:15</td>
+                <td>14:37</td>
+            </tr>
+            <tr>
+                <td>14:30</td>
+                <td>14:52</td>
+            </tr>
+            <tr>
+                <td>14:45</td>
+                <td>15:07</td>
+            </tr>
+            <tr>
+                <td>15:00</td>
+                <td>15:22</td>
+            </tr>
+            <tr>
+                <td>15:15</td>
+                <td>15:37</td>
+            </tr>
+            <tr>
+                <td>15:30</td>
+                <td>15:52</td>
+            </tr>
+            <tr>
+                <td>15:45</td>
+                <td>16:07</td>
+            </tr>
+            <tr>
+                <td>16:00</td>
+                <td>16:22</td>
+            </tr>
+        </table>
+
+        <div class="img_shema">
+            <h1 class="shema_name">Схема</h1>
+            <img src="images/схема.png" alt="">
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+<footer>
+    <div class="container_footer">
+        <div class="contacts">
+            <p class="important">Контакты</p>
+            <a href="tel:+78632512704">+7 (863) 251-27-04</a>
+            <p>mail@gmail.com</p>
+            <p>г. Ростов-на-Дону<br>проспект Шолохова, 29</p>
+        </div>
+        <div class="Operating_Mode">
+            <p class="important">Режим работы</p>
+            <p>Вт, Ср,Чт, Вс<br>10:00–12:00<br>14:00–16:00</p>
+            <p>Пт, Сб, Пн<br>Выходной</p>
+        </div>
+        <div class="Quick_Links">
+            <p class="important">Быстрые ссылки</p>
+            <p>Расписания движения</p>
+            <p>Учебные программы</p>
+            <p>Фотогалерея</p>
+        </div>
+        <div class="We_are_social">
+            <p class="important">Мы в соцсетях</p>
+            <p><a href="https://vk.com/dskzd" target="_blank">ВКонтанте</a></p>
+        </div>
+    </div>
+</footer>
+
+
+
+</body>
+
+</html>

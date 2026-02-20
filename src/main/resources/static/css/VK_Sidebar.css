@@ -1,0 +1,220 @@
+.decorate_bottom_sidebar{
+
+}
+
+.vk-wraper{
+    position: sticky;
+    top: 100px;
+    height: calc(100vh - 166px);
+    width: 381px;
+    /* border: 20px solid; */
+    border-bottom: 14px solid var(--darck_blue);
+    border-radius: 10px;
+    margin-left: 10px;
+}
+.sidebar {
+    /* overflow: hidden; */
+    width: 355px;
+    position: sticky;
+    top: 100px;
+}
+
+.post {
+    border: 2px solid black;
+    background-color: white;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.post-text {
+    margin-bottom: 10px;
+    /*white-space: pre-wrap;*/
+}
+
+.post-meta {
+    /* margin-bottom: 10px; */
+    color: white;
+    text-align: center;
+    margin-bottom: 2px;
+    margin-top: 10px;
+}
+
+.post-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+
+.name_sidebar_VK {
+    position: sticky;
+    top: -72px;
+    background-color: var(--darck_blue);
+    width: 352px;
+    margin-top: -72px;
+    margin-left: -9px;
+    padding-bottom: 3px;
+    /* padding-top: 3px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    z-index: 900;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 12px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--back);
+    background: var(--white_blue);
+    border-radius: 40px;
+
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: var(--white_blue);
+    background: var(--back);
+    border-radius: 6px;
+    border:4px solid var(--darck_blue)
+}
+
+.name_sidebar_VK image {
+    width: 50px;
+}
+/* === ВК СТИЛЬ — МАКС 3 ФОТО === */
+.post-imag {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    margin: 10px 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.post-imag-item {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.post-imag-item:hover {
+    filter: brightness(0.95);
+    transform: scale(1.02);
+}
+
+/* 1 фото */
+.post-imag img:only-child,
+.post-imag .post-imag-item:only-child {
+    /* height: 400px; */
+    max-height: 70vh;
+}
+
+/* 2 фото */
+.post-imag img:nth-child(-n+2):not(:only-child),
+.post-imag .post-imag-item:nth-child(-n+2):not(:only-child) {
+    flex: 1 1 calc(50% - 1px);
+    height: 250px;
+}
+
+/* 3 фото */
+.post-imag:has(img:nth-child(3)):not(:has(img:nth-child(4))),
+.post-imag:has(.post-imag-item:nth-child(3)):not(:has(.post-imag-item:nth-child(4))) {
+    flex-direction: row;
+}
+.post-imag:has(img:nth-child(3)):not(:has(img:nth-child(4))) img:first-child,
+.post-imag:has(.post-imag-item:nth-child(3)):not(:has(.post-imag-item:nth-child(4))) .post-imag-item:first-child {
+    flex: 1 1 49%;
+    height: 350px;
+}
+.post-imag:has(img:nth-child(3)):not(:has(img:nth-child(4))) img:nth-child(2),
+.post-imag:has(img:nth-child(3)):not(:has(img:nth-child(4))) img:nth-child(3),
+.post-imag:has(.post-imag-item:nth-child(3)):not(:has(.post-imag-item:nth-child(4))) .post-imag-item:nth-child(2),
+.post-imag:has(.post-imag-item:nth-child(3)):not(:has(.post-imag-item:nth-child(4))) .post-imag-item:nth-child(3) {
+    flex: 1 1 calc(50% - 1px);
+    height: 173px;
+}
+
+/* +? */
+.vk-plus {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    color: white;
+    font: bold 2.5rem/1.2 'Helvetica', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.blurred {
+    position: relative;
+    overflow: hidden;
+}
+
+/* === ГЛОБАЛЬНАЯ МОДАЛКА === */
+.vk-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.vk-modal.active {
+    display: flex;
+    opacity: 1;
+}
+.vk-modal img {
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+}
+.vk-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2.5rem;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.vk-modal-close:hover { color: var(--red); transform: scale(1.2); }
+.vk-modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.2);
+    color: white;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: 0.3s;
+    z-index: 10;
+}
+.vk-modal-nav:hover {
+    background: var(--white_blue);
+    /* transform: translateY(-50%) scale(1.1); */
+}
+.vk-modal-prev { left: 20px; }
+.vk-modal-next { right: 20px; }

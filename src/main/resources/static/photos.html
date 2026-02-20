@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Все фотографии</title>
+    <link href="css/root.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
+    <link href="css/photos.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+<header class="header" style="">
+    <div class="logo">
+        <img alt="Логотип" src="images/логотипБезСердца.png">
+    </div>
+    <button class="header__burger-btn" id="burger">
+        <span></span><span></span><span></span>
+    </button>
+    <nav class="menu" id="menu">
+        <ul class="menu_list">
+            <li class="menu_item"><a class="menu_link" href="index.html" id="about_us">О нас</a></li>
+            <li class="menu_item"><a class="menu_link" href="passengers.html">Пассажирам</a></li>
+            <li class="menu_item"><a class="menu_link" href="../templates/students.html">Учащимся</a></li>
+            <li class="menu_item"><a class="menu_link" href="informationSecurity.html">Инф. безоп.</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div style="margin-top: 50px;">
+
+
+
+<div class="fixed-top fixed-filter">
+    <h2 style="color: var(--red)">Фильтр</h2>
+    <div>
+        <button class="filter-btn active" data-folder="all"><p>Все фотографии</p></button>
+        <button class="filter-btn" data-folder="Новые фото"><p>Новые фотографии</p></button>
+        <button class="filter-btn" data-folder="Старые фото"><p>Старые фотографии</p></button>
+    </div>
+</div>
+
+<div class="content">
+    <h1 style="padding-bottom: 30px;">Фотогалерея</h1>
+    <div class="gallery" id="gallery">
+        <div style="width:100%; text-align:center; padding:40px; color:#666;">
+            Загрузка фотографий...
+        </div>
+    </div>
+
+</div>
+
+<div class="fixed-top fixed-back">
+    <a href="javascript:void(0)" class="back-btn" onclick="goBack()">
+        <h3>Назад</h3>
+    </a>
+</div>
+
+
+<div class="modal" id="modal">
+    <span class="modal-close" id="modal-close">×</span>
+    <div class="modal-nav modal-prev" id="modal-prev" style="user-select: none;">🡄</div>
+    <div class="modal-nav modal-next" id="modal-next" style="user-select: none;">🡆</div>
+    <img id="modal-image" src="" alt="">
+</div>
+
+</div>
+
+<footer>
+    <div class="container_footer">
+        <div class="contacts">
+            <p class="important">Контакты</p>
+            <a href="tel:+78632512704">+7 (863) 251-27-04</a>
+            <p>mail@gmail.com</p>
+            <p>г. Ростов-на-Дону<br>проспект Шолохова, 29</p>
+        </div>
+        <div class="Operating_Mode">
+            <p class="important">Режим работы</p>
+            <p>Вт, Ср,Чт, Вс<br>10:00–12:00<br>14:00–16:00</p>
+            <p>Пт, Сб, Пн<br>Выходной</p>
+        </div>
+        <div class="Quick_Links">
+            <p class="important">Быстрые ссылки</p>
+            <p>Расписания движения</p>
+            <p>Учебные программы</p>
+            <p>Фотогалерея</p>
+        </div>
+        <div class="We_are_social">
+            <p class="important">Мы в соцсетях</p>
+            <p><a href="https://vk.com/dskzd" target="_blank">ВКонтанте</a></p>
+            <p><a href="https://t.me/rdzhd" target="_blank">Телеграм</a></p>
+        </div>
+    </div>
+</footer>
+<script>
+    function goBack() {
+        if (window.history.length > 1) {
+            window.history.back();
+        } else {
+            window.location.href = '/';
+        }
+    }
+</script>
+
+<script defer src="js/main.js"></script>
+<script>
+    let allPhotos = [];
+    let filteredPhotos = [];
+    let currentModalIndex = 0;
+
+    const gallery = document.getElementById('gallery');
+    const filters = document.querySelectorAll('.filter-btn');
+    const modal = document.getElementById('modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalClose = document.getElementById('modal-close');
+    const modalPrev = document.getElementById('modal-prev');
+    const modalNext = document.getElementById('modal-next');
+
+    async function loadPhotos() {
+        try {
+            const res = await fetch('/api/images');
+            if (!res.ok) throw new Error();
+            allPhotos = await res.json();
+            filteredPhotos = allPhotos;
+            renderPhotos();
+        } catch (err) {
+            gallery.innerHTML = '<div style="color:red; text-align:center;">Ошибка загрузки</div>';
+        }
+    }
+
+    function renderPhotos() {
+        if (filteredPhotos.length === 0) {
+            gallery.innerHTML = '<div style="color:#999; text-align:center; width:100%;">Нет фото</div>';
+            return;
+        }
+
+        gallery.innerHTML = filteredPhotos.map((photo, i) => `
+        <div class="photo-card" data-index="${i}">
+          <img src="${photo.path}?v=${Date.now()}" alt="${photo.filename}" loading="lazy">
+        </div>
+      `).join('');
+
+        document.querySelectorAll('.photo-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const index = parseInt(card.dataset.index);
+                openModal(index);
+            });
+        });
+    }
+
+    filters.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filters.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const folder = btn.dataset.folder;
+            filteredPhotos = folder === 'all' ? allPhotos : allPhotos.filter(p => p.folder === folder);
+            renderPhotos();
+        });
+    });
+
+    // --- МОДАЛКА ---
+    function openModal(index) {
+        currentModalIndex = index;
+        modalImage.src = filteredPhotos[index].path + '?v=' + Date.now();
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    function showPrev() {
+        currentModalIndex = (currentModalIndex - 1 + filteredPhotos.length) % filteredPhotos.length;
+        modalImage.src = filteredPhotos[currentModalIndex].path + '?v=' + Date.now();
+    }
+    function showNext() {
+        currentModalIndex = (currentModalIndex + 1) % filteredPhotos.length;
+        modalImage.src = filteredPhotos[currentModalIndex].path + '?v=' + Date.now();
+    }
+
+    modalClose.onclick = closeModal;
+    modalPrev.onclick = showPrev;
+    modalNext.onclick = showNext;
+    modal.onclick = (e) => { if (e.target === modal) closeModal(); };
+
+    document.addEventListener('keydown', e => {
+        if (!modal.classList.contains('active')) return;
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'ArrowRight') showNext();
+    });
+
+    loadPhotos();
+</script>
+
+</body>
+</html>
