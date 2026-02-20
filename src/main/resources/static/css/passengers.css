@@ -109,7 +109,7 @@ table.iksweb {
     margin-top: 70px;
     display: none;
 }
-
+.dot-iksweb{display: none;}
 
 
 
@@ -121,4 +121,7 @@ table.iksweb {
     table.iksweb {
         display: table !important;
     }
+    .dot-iksweb{display: block;}
+    .dot-timetable{display: none;}
 }
+

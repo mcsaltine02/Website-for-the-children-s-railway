@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title></title>
+    <link th:href="@{css/root.css}" rel="stylesheet">
+    <link th:href="@{css/header.css}" rel="stylesheet">
+    <link th:href="@{css/dot-scroll.css}" rel="stylesheet">
+    <link th:href="@{css/main_info_about_organization/basicInformation.css}" rel="stylesheet">
+    <link th:href="@{css/footer.css}" rel="stylesheet">
+
+
+    <script defer th:src="@{js/main.js}"></script>
+
+
+</head>
+
+<body>
+
+<header th:insert="~{fragment :: header}"></header>
+
+<div class="scroll-progress">
+  <div class="progress-dots">
+    <span class="dot" data-target="#mainSection"></span>
+    <span class="dot" data-target="#operatingMode"></span>
+    <span class="dot" data-target="#contactInformation"></span>
+  </div>
+</div>
+<script src="js/dot-scroll.js"></script>
+
+<main>
+    <h1>ОСНОВНЫЕ СВЕДЕНИЯ</h1>
+    <div class="section" id="mainSection">
+        <p><strong>Ростовская детская железная дорога</strong> – структурное подразделение Северо-Кавказской железной
+            дороги
+            –
+            филиала открытого акционерного общества «Российские железные дороги»</p>
+
+
+        <p><strong>Полное наименование образовательной организации:</strong><br>
+            Ростовская детская железная дорога – структурное подразделение Северо-Кавказской железной дороги – филиала
+            открытого
+            акционерного общества «Российские железные дороги»</p>
+
+        <p><strong>Сокращенное наименование образовательной организации:</strong><br>
+            РДЖД</p>
+
+        <p><strong>Дата регистрации (создания) образовательной организации:</strong><br>
+            1940 год</p>
+
+        <p><strong>Учредитель образовательной организации:</strong><br>
+            Открытое акционерное общество «Российские железные дороги» (ОАО «РЖД»)<br>
+            107174, г. Москва, вн.тер.г. муниципальный округ Басманный, ул. Новая Басманная, д. 2/1, стр. 1</p>
+
+        <p><strong>Образовательная организация представительств и филиалов (в том числе, находящихся за пределами
+            Российской
+            Федерации) не имеет.</strong></p>
+
+        <p><strong>Адрес места нахождения филиала лицензиата:</strong><br>
+            344019, г. Ростов-на-Дону, пл. Театральная, д.4</p>
+
+        <p><strong>Место нахождения образовательной организации:</strong><br>
+            344029, Ростовская обл., г. Ростов-на-Дону, Первомайский р-н, просп. Шолохова, д. 29<br>
+            этаж 2, помещения 31И, 36-37;<br>
+            этаж 3, помещения 2, 3, 50, 53,54;<br>
+            этаж 4, помещения 41, 43, 44</p>
+
+        <p><strong>Выписка из реестра лицензий на осуществление образовательной деятельности:</strong><br>
+            <a href="https://disk.yandex.ru/i/XGt-tDntzWdGCA"
+               target="_blank">https://disk.yandex.ru/i/XGt-tDntzWdGCA</a>
+        </p>
+    </div>
+
+    <h1>Режим и график работы образовательной организации</h1>
+    <div class="section" id="operatingMode">
+      <p><strong>Для сотрудников:</strong><br>
+        Пятидневная рабочая неделя с двумя выходными днями (пятница и суббота)<br>
+        с 09:00 до 17:00 часов</p>
+
+      <p><strong>Для посетителей (движение поездов):</strong><br>
+        с 01 июня по 31 августа<br>
+        вторник, среда, четверг, воскресенье с 10:00 до 16:00 часов<br>
+        (перерыв с 12:00 до 14:00 часов)</p>
+    </div>
+
+    <h1>Контактная информация</h1>
+    <div class="section" id="contactInformation">
+      <p><strong>Контактные телефоны:</strong><br>
+        +7 (863) 259-41-91 – начальник детской железной дороги<br>
+        +7 (863) 251-27-04 – заместитель начальника детской железной дороги</p>
+
+      <p><strong>Адрес электронной почты:</strong><br>
+        <a href="mailto:dzd61@yandex.ru">dzd61@yandex.ru</a></p>
+
+      <p><strong>Адрес официального сайта:</strong><br>
+        (не указан)</p>
+
+      <p><strong>Места осуществления образовательной деятельности:</strong><br>
+        344029, Ростовская обл., г. Ростов-на-Дону, Первомайский р-н, просп. Шолохова, д. 29</p>
+    </div>
+</main>
+
+<footer th:insert="~{fragment :: footer}"></footer>
+
+</body>
+
+</html>

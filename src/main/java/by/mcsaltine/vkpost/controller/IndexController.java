@@ -23,6 +23,14 @@ public class IndexController {
     public String test() {
         return "informationSecurity";
     }
+    @GetMapping("/basicInformation")
+    public String basicInformation() {
+        return "main_info_about_organization/basicInformation";
+    }
+    @GetMapping("/logisticalSupport")
+    public String logisticalSupport() {
+        return "main_info_about_organization/logisticalSupport";
+    }
 
 
 }

@@ -2,11 +2,11 @@
 .container {max-width: 1400px;margin: 0 auto;margin-top: 60px;padding: 16px;}
 
 
-.upload-section {/* background: white; */padding: 20px;/* border-radius: 12px; *//* box-shadow: 0 6px 20px rgba(0,0,0,0.08); */margin-bottom: 20px;text-align: center;}
+.upload-section {padding: 20px; margin-bottom: 20px;text-align: center;}
 .upload-section input[type="file"] { margin: 10px 0; }
 .upload-section button { padding: 12px 28px; background: #1e40af; color: white; border: none; border-radius: 8px; cursor: pointer; }
 .upload-section button:hover { background: #1e3a8a; }
-.success {color: #166534;/* background: #dcfce7; */padding: 10px;border-radius: 8px;margin-top: 10px;}
+.success {color: #166534;padding: 10px;border-radius: 8px;margin-top: 10px;}
 .error { color: #991b1b; background: #fee2e2; padding: 10px; border-radius: 8px; margin-top: 10px; }
 
 /* === Фильтры === */
@@ -23,9 +23,7 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 1px;
-    /* background: #cbd5e1; */
     border-radius: 12px;
-    /* overflow: hidden; */
 }
 
 /* Заголовок таблицы (только на десктопе) */
@@ -43,7 +41,7 @@
 
 /* Строки таблицы */
 .lesson-row {
-    display: none; /* скрываем на мобильных */
+    display: none;
     background: white;
 }
 @media (min-width: 769px) {
@@ -162,4 +160,7 @@
     border-radius: 16px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.08);
 }
+
+
+
 

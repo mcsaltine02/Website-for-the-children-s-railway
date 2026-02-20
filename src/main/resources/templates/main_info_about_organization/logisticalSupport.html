@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title></title>
+  <link th:href="@{css/root.css}" rel="stylesheet">
+  <link th:href="@{css/header.css}" rel="stylesheet">
+  <link th:href="@{css/dot-scroll.css}" rel="stylesheet">
+  <link th:href="@{css/main_info_about_organization/logisticalSupport.css}" rel="stylesheet">
+  <link th:href="@{css/footer.css}" rel="stylesheet">
+
+
+  <script defer th:src="@{js/main.js}"></script>
+
+
+</head>
+
+<body>
+
+<header th:insert="~{fragment :: header}"></header>
+
+<!--<div class="scroll-progress">-->
+<!--  <div class="progress-dots">-->
+<!--    <span class="dot" data-target="#mainSection"></span>-->
+<!--    <span class="dot" data-target="#operatingMode"></span>-->
+<!--    <span class="dot" data-target="#contactInformation"></span>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<script src="js/dot-scroll.js"></script>-->
+
+
+<main>
+
+
+  <div class="block" id="waitingRoom">
+    <div class="content-text">
+      <h1>Зал ожидания</h1>
+      <p><span class="color_blue">Электронное информационное табло</span></p>
+      <p><span class="color_blue">Карта железных дорог России</span> с нанесёнными местами расположения детских железных дорог сети</p>
+      <p><span class="color_blue">Действующий макет железной дороги</span> в масштабе G (1:32)
+        По макету курсируют два состава: грузовой и пассажирский</p>
+      <p><span class="color_blue">Мозаичное панно</span>, выполненное по эскизу выпускника Ростовской детской железной дороги</p>
+    </div>
+    <div class="content-img">
+      <img src="images/logisticalSupport/logisticalSupport1.png" alt="фото1" class="img img1"/>
+      <img src="images/logisticalSupport/logisticalSupport2.png" alt="фото2" class="img img2"/>
+    </div>
+  </div>
+
+  <div class="block" id="modelHall">
+    <div class="content-text">
+      <h1>Макетный зал</h1>
+      <p><span class="color_blue">Действующий макет-тренажер железной дороги</span><br>
+        является единственным на сети детских железных дорог<br>
+        предназначен для демонстрации инфраструктуры железной дороги, моделирования и отработки различных поездных задач</p>
+      <p><span class="color_blue">Макет-тренажер оснащен цифровым управлением</span><br>
+        выполнен в масштабе HO (1:87)<br>
+        >20 м – протяженность главного пути<br>
+        >50 м – общая длина путей</p>
+    </div>
+    <div class="content-img">
+      <img src="images/logisticalSupport/modelHall1.png" alt="макетный зал общий вид" class="img img1"/>
+      <img src="images/logisticalSupport/modelHall2.png" alt="макет с цифровым управлением" class="img img2"/>
+    </div>
+  </div>
+
+  <div class="block" id="modelHall2">
+    <div class="content-text">
+      <p><span class="color_blue">На макете-тренажере расположены:</span></p>
+      <p>• пассажирская и сортировочная железнодорожные станции<br>
+        • локомотивное депо<br>
+        • речной порт с инфраструктурой<br>
+        • искусственные сооружения</p>
+      <p><span class="color_blue">Пульт макета-тренажера</span><br>
+        является полноценным аналогом рабочего места поездного диспетчера.<br>
+        На установленные демонстрационные мониторы выводится схема макета-тренажера с реальной поездной обстановкой и позволяет демонстрировать работу железной дороги в режиме «день-ночь»</p>
+    </div>
+    <div class="content-img">
+      <img src="images/logisticalSupport/modelHall3.png" alt="макетный зал общий вид" class="img img3"/>
+      <img src="images/logisticalSupport/modelHall4.png" alt="пульт и мониторы макета" class="img img4"/>
+    </div>
+  </div>
+
+  <div class="block" id="trainerLaboratory">
+    <div class="content-text">
+      <h1>Кабинет «Тренажерная лаборатория»</h1>
+      <p><span class="color_blue">Тренажеры для отработки навыков работы</span></p>
+      <p>• дежурного по железнодорожной станции<br>
+        • осмотрщика вагонов<br>
+        • машиниста тепловоза<br>
+        • помощника машиниста тепловоза</p>
+      <p><span class="color_blue">Дополнительно планируется установить:</span></p>
+      <p>• «Тренaжерный комплекс тепловоза ТУ10»<br>
+        • тренажер «Пульт ДСП»<br>
+        • тренажер «Пульт ДНЦ»<br>
+        • оборудование для VR-зоны</p>
+    </div>
+    <div class="content-img">
+      <img src="images/logisticalSupport/trainerLab1.png" alt="общий вид тренажерной лаборатории" class="img img1"/>
+      <img src="images/logisticalSupport/trainerLab2.png" alt="тренажер тележки тепловоза" class="img img2"/>
+      <img src="images/logisticalSupport/trainerLab3.png" alt="модель участка пути с тепловозом" class="img img3"/>
+    </div>
+  </div>
+
+  <div class="block" id="modelingCabinet">
+    <div class="content-text">
+      <h1>Кабинет «Макетирование и моделирование»</h1>
+      <p>Проводятся занятия учебных групп «Юный моделист»</p>
+      <p><span class="color_blue">Оснащён</span><br>
+        3D-принтерами и 3D-сканером</p>
+      <p>В процессе обучения ребята создают модели и макеты подвижного состава и инфраструктуры железной дороги<br>
+        Практические занятия проводятся в кабинете «Hi-TECH студия»</p>
+      <p>Ростовская детская железная дорога неоднократно становилась призёром и победителем в различных выставках и конкурсах технического творчества:</p>
+      <p>• бронзовая медаль «НТТМ-80» на ВДНХ<br>
+        • «Арт-Состав»<br>
+        • «Дорога в будущее»<br>
+        • «Железнодорожная модель»</p>
+    </div>
+    <div class="content-img">
+      <img src="images/logisticalSupport/modeling1.png" alt="макет с краном и вагонами" class="img img1"/>
+      <img src="images/logisticalSupport/modeling2.png" alt="столы и макеты в кабинете" class="img img2"/>
+    </div>
+  </div>
+
+  <div class="block" id="itCabinet">
+    <div class="content-text">
+      <h1>Кабинет «IT-технологии»</h1>
+      <p><span class="color_blue">Предназначен</span> для тестирования по железнодорожным специализациям, проведения деловых игр и введения в курс IT-технологий</p>
+    </div>
+    <div class="content-img">
+      <img src="images/logisticalSupport/itCabinet1.png" alt="кабинет IT-технологий с круглыми столами и компьютерами" class="img img1"/>
+    </div>
+  </div>
+
+  <div class="block" id="mediaLibraryCabinet">
+    <div class="content-text">
+      <h1>Кабинет «Медиа-библиотека»</h1>
+      <p><span class="color_blue">Ростовская детская железная дорога</span> является пилотной на сети детских железных дорог по внедрению кабинета «Медиа-библиотека»</p>
+      <p>подключение к базе электронных библиотек России, в том числе к Президентской библиотеке им. Б.Н. Ельцина</p>
+    </div>
+    <div class="content-img">
+      <img src="images/logisticalSupport/mediaLibrary1.png" alt="медиа-библиотека с большим интерактивным экраном и рабочими местами" class="img img1"/>
+    </div>
+  </div>
+
+  <div class="block" id="transportLogisticsCabinet">
+    <div class="content-text">
+      <h1>Кабинет «Транспортная логистика»</h1>
+      <p>является единственным на сети детских железных дорог</p>
+      <p><span class="color_blue">Предназначен для обучения</span></p>
+      <p>• основам транспортной логистики</p>
+      <p><span class="color_blue">Кабинет оснащён</span></p>
+      <p>• макетом, демонстрирующим совместную работу железной дороги и порта<br>
+        • стендом «Припортовые станции Северо-Кавказской железной дороги и морские порты Азово-Черноморского бассейна»<br>
+        • стендом «Взаимодействие портов и Северо-Кавказской железной дороги»<br>
+        • картой «Морские порты Азово-Черноморского бассейна»</p>
+    </div>
+    <div class="content-img">
+      <img src="images/logisticalSupport/logistics1.png" alt="карта припортовых станций и морских портов" class="img img1"/>
+      <img src="images/logisticalSupport/logistics2.png" alt="макет взаимодействия железной дороги и порта" class="img img2"/>
+    </div>
+  </div>
+
+  <div class="block" id="trainMovementCabinet">
+    <div class="content-text">
+      <h1>Кабинет «Организация движения поездов»</h1>
+      <p><span class="color_blue">Предназначен для ознакомления с профессиями</span></p>
+      <p>• дежурный по железнодорожной станции<br>
+        • оператор при дежурном по железнодорожной станции<br>
+        • поездной диспетчер</p>
+      <p><span class="color_blue">Кабинет оснащён электрифицированными стендами</span></p>
+      <p>• «Звуковые сигналы»<br>
+        • «Ручные сигналы»<br>
+        • «Светофоры»</p>
+    </div>
+    <div class="content-img">
+      <img src="images/logisticalSupport/movement1.png" alt="общий вид кабинета с партами и доской" class="img img1"/>
+      <img src="images/logisticalSupport/movement2.png" alt="класс с партами и плакатами на стене" class="img img2"/>
+      <img src="images/logisticalSupport/movement3.png" alt="электрифицированные стенды со светофорами и сигналами" class="img img3"/>
+    </div>
+  </div>
+
+  <div class="block" id="automationCabinet">
+    <div class="content-text">
+      <h1>Кабинет «Автоматика и телемеханика»</h1>
+      <p><span class="color_blue">Предназначен для ознакомления с профессиями</span></p>
+      <p>• электромонтёр СЦБ<br>
+        • электромеханик СЦБ</p>
+      <p>В кабинете установлен тренажёр с QR-кодом, позволяющий ознакомиться с принципом работы электропривода стрелочного перевода как в штатном режиме, так и при отказах в работе</p>
+      <p><span class="color_blue">Кабинет оснащён стендами</span></p>
+      <p>• «Схема управления переездом»<br>
+        • «Схема включения выходного светофора с увязкой с перегонным», на котором чётко показан принцип централизации, сигнализации и блокировки при движении поездов<br>
+        • «Схема работы простейших рельсовых цепей»</p>
+    </div>
+    <div class="content-img">
+      <img src="images/logisticalSupport/automation1.png" alt="тренажер электропривода стрелочного перевода" class="img img1"/>
+      <img src="images/logisticalSupport/automation2.png" alt="стенд с QR-кодом и экраном тренажера" class="img img2"/>
+      <img src="images/logisticalSupport/automation3.png" alt="кабинет с партами и стендами схем" class="img img3"/>
+    </div>
+  </div>
+
+  <div class="block" id="trackMaintenanceCabinet">
+    <div class="content-text">
+      <h1>Кабинет «Путевое хозяйство»</h1>
+      <p><span class="color_blue">Предназначен для ознакомления с профессиями</span></p>
+      <p>• монтёр пути<br>
+        • контролёр состояния железнодорожного пути</p>
+      <p><span class="color_blue">Кабинет оснащён</span></p>
+      <p>• макетом «Верхнее строение пути»<br>
+        • макетом «Одиночный стрелочный перевод»<br>
+        • стендом «Сигнальные знаки»<br>
+        • стендом «Неисправности стрелочного перевода»</p>
+    </div>
+    <div class="content-img">
+      <img src="images/logisticalSupport/track1.png" alt="макет балластной призмы с путевым инструментом и моделью поезда" class="img img1"/>
+      <img src="images/logisticalSupport/track2.png" alt="общий вид кабинета с партами, экраном и стендами" class="img img2"/>
+    </div>
+  </div>
+
+  <div class="block" id="locomotiveAndWagonCabinet">
+    <div class="content-text">
+      <h1>Кабинеты «Локомотивное хозяйство» «Вагонное хозяйство»</h1>
+      <p><span class="color_blue">Предназначены для ознакомления с профессиями</span></p>
+      <p>• машинист тепловоза<br>
+        • помощник машиниста тепловоза<br>
+        • осмотрщик вагонов<br>
+        • проводник пассажирского вагона<br>
+        • начальник поезда</p>
+      <p><span class="color_blue">Кабинеты оснащены</span></p>
+      <p>• макетом тележки локомотива<br>
+        • интерактивной панелью с возможностью демонстрации обучающих программ</p>
+    </div>
+    <div class="content-img">
+      <img src="images/logisticalSupport/locomotiveWagon1.png" alt="общий вид кабинета с партами, экраном и часами" class="img img1"/>
+      <img src="images/logisticalSupport/locomotiveWagon2.png" alt="макет тележки локомотива крупным планом" class="img img2"/>
+    </div>
+  </div>
+
+  <div class="block" id="laborProtectionCabinet">
+    <div class="content-text">
+      <h1>Кабинет «Охрана труда»</h1>
+      <p><span class="color_blue">Предназначен для обучения</span></p>
+      <p>• культуре безопасности на железнодорожной инфраструктуре<br>
+        • пожарной безопасности<br>
+        • охране труда</p>
+      <p><span class="color_blue">Кабинет оснащён</span></p>
+      <p>• интерактивной панелью для демонстрации учебных фильмов по вопросам безопасного нахождения на объектах железнодорожного транспорта, пожарной безопасности и правилам оказания первой медицинской помощи</p>
+    </div>
+    <div class="content-img">
+      <img src="images/logisticalSupport/laborProtection1.png" alt="общий вид кабинета охраны труда с партами и экраном" class="img img1"/>
+      <img src="images/logisticalSupport/laborProtection2.png" alt="интерактивная панель с касками и экраном безопасности" class="img img2"/>
+    </div>
+  </div>
+
+  <div class="block" id="appliedArtsStudio">
+    <div class="content-text">
+      <h1>Кабинет «Студия прикладного искусства»</h1>
+      <p><span class="color_blue">Медиа-пространство</span> для проведения занятий, тренингов, обучающих семинаров</p>
+    </div>
+    <div class="content-img">
+      <img src="images/logisticalSupport/appliedArts1.png" alt="студия прикладного искусства с пуфами, проектором и досками" class="img img1"/>
+    </div>
+  </div>
+
+  <div class="block" id="conferenceHall">
+    <div class="content-text">
+      <h1>Конференц-зал</h1>
+      <p>Конференц-зал на 35 посадочных мест</p>
+      <p><span class="color_blue">Оснащён</span> интерактивным оборудованием</p>
+      <p><span class="color_blue">Предназначен</span> для проведения онлайн-конференций и телемостов с воспитанниками детских железных дорог сети</p>
+    </div>
+    <div class="content-img">
+      <img src="images/logisticalSupport/conference1.png" alt="конференц-зал на 35 мест с экраном и трибуной" class="img img1"/>
+    </div>
+  </div>
+
+</main>
+
+<footer th:insert="~{fragment :: footer}"></footer>
+
+</body>
+
+</html>

@@ -102,7 +102,7 @@ header a{
 
     .menu_link {
         color: white;
-        font-size: 21px;
+        /* font-size: 21px; */
         display: block;
         padding: 10px 0px;
     }

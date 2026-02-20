@@ -182,12 +182,13 @@ function displayPosts(posts) {
         ` : '';
 
         return `
-            <div class="post-meta">
-                <p>Дата: ${new Date(post.date * 1000).toLocaleString('ru-RU')}</p>
-            </div>
+          
             <div class="post">
                 ${repostHtml || textHtml}
                 ${copyHistory.length === 0 ? (photosBlock || attachmentsHtml) : ''}
+                <div class="post-meta">
+                <p>Дата: ${new Date(post.date * 1000).toLocaleString('ru-RU')}</p>
+                </div>
             </div>`;
     });
 

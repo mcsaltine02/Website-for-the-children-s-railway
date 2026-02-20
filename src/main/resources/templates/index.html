@@ -7,6 +7,7 @@
     <title>О нас</title>
     <link th:href="@{css/root.css}" rel="stylesheet">
     <link th:href="@{css/header.css}" rel="stylesheet">
+    <link th:href="@{css/dot-scroll.css}" rel="stylesheet">
     <link th:href="@{css/About_Us.css}" rel="stylesheet">
     <link th:href="@{css/VK_Sidebar.css}" rel="stylesheet">
     <link th:href="@{css/shema.css}" rel="stylesheet">
@@ -22,15 +23,23 @@
 <body>
 
 
-
-
 <header th:insert="~{fragment :: header}"></header>
+
+<div class="scroll-progress">
+    <div class="progress-dots">
+        <span class="dot" data-target="#combo_vk_how_to_become"></span>
+        <span class="dot" data-target="#history"></span>
+        <span class="dot" data-target="#How_to_find_us"></span>
+        <span class="dot" data-target="#img_shema"></span>
+        <span class="dot" data-target="#block_values"></span>
+    </div>
+</div>
+<script src="js/dot-scroll.js"></script>
 
 <div style="margin-top: 93px; grid-template-columns: 381px 1fr 326px;">
 
 
-    <div class="combo_vk_how_to_become">
-
+    <div class="combo_vk_how_to_become section" id="combo_vk_how_to_become">
 
 
         <!--        <div class="vk-wraper">-->
@@ -41,7 +50,8 @@
                     <h3 style="color: #1976d2;font-size: 23px;">Наше ВК сообщество</h3>
                 </a>
                 <button id="refresh-btn" style="margin: 10px; background: none;border: none;">
-                    <svg fill="#000000" width="20px" height="20px" viewBox="0 0 24 24" id="update-alt" data-name="Flat Line"
+                    <svg fill="#000000" width="20px" height="20px" viewBox="0 0 24 24" id="update-alt"
+                         data-name="Flat Line"
                          xmlns="http://www.w3.org/2000/svg" class="icon flat-line">
                         <path id="primary" d="M5.07,8A8,8,0,0,1,20,12"
                               style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
@@ -70,7 +80,7 @@
                 <a href="https://team.rzd.ru/juniors/railways/122/application" target="_blank">
                     <b>Подать заявку</b>
                 </a>
-                 можно на Карьерном портале ОАО «РЖД» по ссылке
+                можно на Карьерном портале ОАО «РЖД» по ссылке
                 Детская железная дорога – это отличная возможность получить реальные
                 профессиональные навыки, попробовать себя в той или иной железнодорожной профессии.
                 Здесь вы получите достойную практическую подготовку, а в будущем станете успешными специалистами.
@@ -90,7 +100,7 @@
 
     <main>
 
-        <section class="history-section">
+        <section class="history-section section" id="history">
 
             <!-- ФОНОВЫЙ СЛАЙДЕР — ЭТО НОВЫЙ БЛОК! -->
             <div class="slider-background" id="slider-background">
@@ -135,90 +145,106 @@
                 </button>
             </div>
 
-            <!-- Весь прежнем месте оставляем только управление и контент -->
-<!--            <div id="Start_Info" class="content-over-slider">-->
 
+            <div class="timeline-container">
+                <h1 class="block_name_Start_Info">История</h1>
+                <!-- Навигация по годам -->
+                <div class="timeline-nav">
 
-                    <div class="timeline-container">
-                        <h1 class="block_name_Start_Info">История</h1>
-                        <!-- Навигация по годам -->
-                        <div class="timeline-nav">
-
-                            <div class="timeline-item active" data-target="item-1940">
-                                <span class="year">1940</span>
-                                <span>Открытие дороги</span>
-                            </div>
-                            <div class="timeline-item" data-target="item-1941">
-                                <span class="year">1941–1945</span>
-                                <span>Великая Отечественная война</span>
-                            </div>
-                            <div class="timeline-item" data-target="item-1947">
-                                <span class="year">1947–1949</span>
-                                <span>Восстановление и расширение</span>
-                            </div>
-                            <div class="timeline-item" data-target="item-1950">
-                                <span class="year">1950-е – 1961</span>
-                                <span>Активное развитие</span>
-                            </div>
-                            <div class="timeline-item" data-target="item-1970">
-                                <span class="year">1970-е</span>
-                                <span>Премия и сокращение длины</span>
-                            </div>
-                            <div class="timeline-item" data-target="item-1980">
-                                <span class="year">1980-е</span>
-                                <span>Новый подвижной состав</span>
-                            </div>
-                            <div class="timeline-item" data-target="item-1990">
-                                <span class="year">1990-е – 2000-е</span>
-                                <span>Трудные годы и возрождение</span>
-                            </div>
-                            <div class="timeline-item" data-target="item-today">
-                                <span class="year">Сегодня</span>
-                                <span>Современная ДЖД</span>
-                            </div>
-                        </div>
-
-                        <!-- Десктопные блоки контента -->
-                        <div class="timeline-content active" id="item-1940">
-                            <p>Ростовская детская железная дорога начала свою историю в <strong>1940 году</strong>, когда 4 августа, в День железнодорожника, был дан старт строительству. Уже 9 ноября того же года состоялось торжественное открытие дороги.</p>
-                            <p>Первый подвижной состав: паровоз <span class="highlight">ЮП-305</span>, мотовоз <span class="highlight">М-72</span> и пять мягких вагонов в составе «Малыш». Построено депо с мастерскими.</p>
-                        </div>
-                        <div class="timeline-content" id="item-1941">
-                            <p>ДЖД закрыли, подвижной состав эвакуировали в Тбилиси. В 1945 году принято решение о восстановлении несмотря на разрушения.</p>
-                        </div>
-                        <div class="timeline-content" id="item-1947">
-                            <p>1947 — малое кольцо (~2 км), 1948 — большое кольцо (3,15 км), общая длина 4,45 км. 1949 — новый паровоз <span class="highlight">КЧ4-101</span> («Шкода»).</p>
-                        </div>
-                        <div class="timeline-content" id="item-1950">
-                            <p>Новые вагоны, современная сигнализация и связь. В <strong>1961 году</strong> дороге присвоено имя Юрия Гагарина.</p>
-                        </div>
-                        <div class="timeline-content" id="item-1970">
-                            <p>Лауреат премии Ленинского комсомола. Из-за строительства Дворца культуры длина сократилась до 4,09 км.</p>
-                        </div>
-                        <div class="timeline-content" id="item-1980">
-                            <p>Тепловозы, новые вагоны. 1986 — открыт четырёхэтажный учебный корпус на ст. Солнечная.</p>
-                        </div>
-                        <div class="timeline-content" id="item-1990">
-                            <p>Часть инфраструктуры демонтировали, но дорога работала. В 2000-е отремонтирован паровоз <span class="highlight">Гр-185</span>, введены составы «Тихий Дон» и «Атаман Платов».</p>
-                        </div>
-                        <div class="timeline-content" id="item-today">
-                            <p>Сегодня — это полноценный учебный комплекс. Юные железнодорожники изучают профессии, а дорога сохраняет традиции и привлекает тысячи посетителей ежегодно.</p>
-                        </div>
+                    <div class="timeline-item active" data-target="item-1940">
+                        <span class="year">1940</span>
+                        <span>Открытие дороги</span>
                     </div>
-
-                    <!-- Мобильный блок контента с анимацией -->
-                    <div class="timeline-content-mobile active" id="mobile-content">
-                        <p>Ростовская детская железная дорога начала свою историю в <strong>1940 году</strong>, когда 4 августа, в День железнодорожника, был дан старт строительству. Уже 9 ноября того же года состоялось торжественное открытие дороги.</p>
-                        <p>Первый подвижной состав: паровоз <span class="highlight">ЮП-305</span>, мотовоз <span class="highlight">М-72</span> и пять мягких вагонов в составе «Малыш». Построено депо с мастерскими.</p>
+                    <div class="timeline-item" data-target="item-1941">
+                        <span class="year">1941–1945</span>
+                        <span>Великая Отечественная война</span>
                     </div>
+                    <div class="timeline-item" data-target="item-1947">
+                        <span class="year">1947–1949</span>
+                        <span>Восстановление и расширение</span>
+                    </div>
+                    <div class="timeline-item" data-target="item-1950">
+                        <span class="year">1950-е – 1961</span>
+                        <span>Активное развитие</span>
+                    </div>
+                    <div class="timeline-item" data-target="item-1970">
+                        <span class="year">1970-е</span>
+                        <span>Премия и сокращение длины</span>
+                    </div>
+                    <div class="timeline-item" data-target="item-1980">
+                        <span class="year">1980-е</span>
+                        <span>Новый подвижной состав</span>
+                    </div>
+                    <div class="timeline-item" data-target="item-1990">
+                        <span class="year">1990-е – 2000-е</span>
+                        <span>Трудные годы и возрождение</span>
+                    </div>
+                    <div class="timeline-item" data-target="item-today">
+                        <span class="year">Сегодня</span>
+                        <span>Современная ДЖД</span>
+                    </div>
+                </div>
 
 
-            <script th:src="@{/js/slider.js}"></script>
-            <script th:src="@{/js/history.js}"></script>
-<!--            </div>-->
+                <!-- Десктопные блоки контента -->
+                <div class="timeline-content active" id="item-1940">
+                    <p>Ростовская детская железная дорога начала свою историю в <strong>1940 году</strong>, когда 4
+                        августа, в День железнодорожника, был дан старт строительству. Уже 9 ноября того же года
+                        состоялось торжественное открытие дороги.</p>
+                    <p>Первый подвижной состав: паровоз ЮП-305, мотовоз М-72 и пять мягких вагонов в составе «Малыш».
+                        Построено депо с мастерскими.</p>
+                </div>
+
+                <div class="timeline-content" id="item-1941">
+                    <p>ДЖД закрыли, подвижной состав эвакуировали в Тбилиси. В 1945 году принято решение о
+                        восстановлении несмотря на разрушения.</p>
+                </div>
+
+                <div class="timeline-content" id="item-1947">
+                    <p>1947 — малое кольцо (~2 км), 1948 — большое кольцо (3,15 км), общая длина 4,45 км. 1949 — новый
+                        паровоз КЧ4-101 («Шкода»).</p>
+                </div>
+
+                <div class="timeline-content" id="item-1950">
+                    <p>Новые вагоны, современная сигнализация и связь. В <strong>1961 году</strong> дороге присвоено имя
+                        Юрия Гагарина.</p>
+                </div>
+
+                <div class="timeline-content" id="item-1970">
+                    <p>Лауреат премии Ленинского комсомола. Из-за строительства Дворца культуры длина сократилась до
+                        4,09 км.</p>
+                </div>
+
+                <div class="timeline-content" id="item-1980">
+                    <p>Тепловозы, новые вагоны. 1986 — открыт четырёхэтажный учебный корпус на ст. Солнечная.</p>
+                </div>
+
+                <div class="timeline-content" id="item-1990">
+                    <p>Часть инфраструктуры демонтировали, но дорога работала. В 2000-е отремонтирован паровоз Гр-185,
+                        введены составы «Тихий Дон» и «Атаман Платов».</p>
+                </div>
+
+                <div class="timeline-content" id="item-today">
+                    <p>Сегодня — это полноценный учебный комплекс. Юные железнодорожники изучают профессии, а дорога
+                        сохраняет традиции и привлекает тысячи посетителей ежегодно.</p>
+                </div>
+
+                <!-- Мобильный блок контента -->
+                <div class="timeline-content-mobile active" id="mobile-content">
+                    <p>Ростовская детская железная дорога начала свою историю в <strong>1940 году</strong>, когда 4
+                        августа, в День железнодорожника, был дан старт строительству. Уже 9 ноября того же года
+                        состоялось торжественное открытие дороги.</p>
+                    <p>Первый подвижной состав: паровоз ЮП-305, мотовоз М-72 и пять мягких вагонов в составе «Малыш».
+                        Построено депо с мастерскими.</p>
+                </div>
+
+
+                <script th:src="@{/js/slider.js}"></script>
+                <script th:src="@{/js/history.js}"></script>
+
         </section>
 
-        <div id="How_to_find_us">
+        <div id="How_to_find_us" class="section">
             <h1 class="name_how_to_find_us">Как добраться</h1>
             <div class="how_to_drive">
 
@@ -243,14 +269,13 @@
             </div>
         </div>
 
-        <div class="img_shema">
+        <div class="img_shema section" id="img_shema">
             <h1 class="shema_name">Схема</h1>
             <img alt="" src="images/схема.png">
 
         </div>
 
-
-        <div class="block_values">
+        <div class="block_values section" id="block_values">
             <h1 class="name_block_values">Ценности юных железнодорожников</h1>
 
             <div class="image-box active">
@@ -392,7 +417,6 @@
 <footer th:insert="~{fragment :: footer}"></footer>
 
 
-
 <script>
     const slides = document.querySelectorAll('.image-box');
     let current = 0;
@@ -437,7 +461,6 @@
         });
     });
 </script>
-
 
 </body>
 

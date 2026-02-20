@@ -11,6 +11,7 @@
     <link th:href="@{/css/shema.css}" rel="stylesheet">
     <link th:href="@{/css/footer.css}" rel="stylesheet">
     <link th:href="@{/css/passengers.css}" rel="stylesheet">
+    <link th:href="@{css/dot-scroll.css}" rel="stylesheet">
 
     <script th:src="@{/js/main.js}" defer></script>
 
@@ -21,11 +22,20 @@
 
 <header th:insert="~{fragment :: header}"></header>
 
+<div class="scroll-progress">
+    <div class="progress-dots">
+        <span class="dot" data-target="#prices"></span>
+        <span class="dot dot-timetable" data-target="#timetable"></span>
+        <span class="dot dot-iksweb" data-target="#iksweb"></span>
+        <span class="dot" data-target="#img_shema"></span>
+    </div>
+</div>
+<script src="js/dot-scroll.js"></script>
 
 <div style="margin-top: 50px;" class="body-wraper">
 
     <main >
-        <table class="prices">
+        <table class="prices section" id="prices">
             <tr>
                 <td colspan="2">
                     <h1 class="prices_name">Цены</h1>
@@ -51,7 +61,7 @@
         </table>
 
         <!-- Исходная таблица для экранов > 590px -->
-        <table class="timetable">
+        <table class="timetable section" id="timetable">
             <tr>
                 <td colspan="4">
                     <h1 class="timetable_name">Расписание движения поезда</h1>
@@ -133,7 +143,7 @@
         </table>
 
         <!-- Альтернативная таблица для экранов <= 590px -->
-        <table class="iksweb" style="display: none;">
+        <table class="iksweb section" id="iksweb" style="display: none;">
             <tr>
                 <td colspan="2"><h1>Расписание движения поезда</h1></td>
             </tr>
@@ -222,10 +232,9 @@
             </tr>
         </table>
 
-        <div class="img_shema">
+        <div class="img_shema section" id="img_shema">
             <h1 class="shema_name">Схема</h1>
             <img src="/images/схема.png" alt="">
-
         </div>
 
 
@@ -238,7 +247,7 @@
 <footer th:insert="~{fragment :: footer}"></footer>
 
 
-
+<script src="js/dot-scroll.js"></script>
 </body>
 
 </html>

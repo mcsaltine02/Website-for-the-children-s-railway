@@ -161,7 +161,7 @@ main a:hover,
     /* margin-top: 27px; */
     /* border: 1px solid black; */
     /* border-radius: 10px; */
-    z-index: 999;
+    z-index: 998;
     background: linear-gradient(135deg,
     transparent 30px,
     var(--darck_blue) 30px);
@@ -438,6 +438,7 @@ main a:hover,
     flex-wrap: wrap;
     justify-content: space-around;
     height: calc(100vh - 93px - 37px);
+    align-items: center;
 }
 
 
@@ -459,7 +460,7 @@ main a:hover,
 .timeline-container {
     min-height: 790px;
     height: calc(100vh - 61px);
-    max-height: 1080px;
+    max-height: 980px;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -537,12 +538,7 @@ main a:hover,
 .timeline-content-mobile p {
     margin-bottom: 18px;
 }
-.highlight {
-    background: #ffeb3b;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-weight: bold;
-}
+
 
 @media (max-width: 768px) {
     .timeline-container {
@@ -593,6 +589,9 @@ main a:hover,
         bottom: 96%;
         border-radius: 0px 0px 0px 10px;
     }
+
+}@media (max-width: 540px) {
+    .scroll-progress{display: none}!important;
 }
 @media (max-width: 540px) {
     .slider-foreground {
