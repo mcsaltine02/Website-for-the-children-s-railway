@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title></title>
+    <link th:href="@{css/root.css}" rel="stylesheet">
+    <link th:href="@{css/header.css}" rel="stylesheet">
+<!--    <link th:href="@{css/dot-scroll.css}" rel="stylesheet">-->
+    <link th:href="@{css/main_info_about_organization/teachers/allTeachers.css}" rel="stylesheet">
+    <link th:href="@{css/footer.css}" rel="stylesheet">
+
+
+    <script defer th:src="@{js/main.js}"></script>
+
+
+</head>
+
+<body>
+
+<header th:insert="~{fragment :: header}"></header>
+
+<!--<div class="scroll-progress">-->
+<!--    <div class="progress-dots">-->
+<!--        <span class="dot" data-target="#mainSection"></span>-->
+<!--        <span class="dot" data-target="#operatingMode"></span>-->
+<!--        <span class="dot" data-target="#contactInformation"></span>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<script src="js/dot-scroll.js"></script>-->
+
+<main>
+    <div class="teacher-block">
+        <img src="images/photo_1.jpg" alt="" class="teacher-photo">
+        <span class="fio">Фамилия Имя Отчество</span>
+        <span class="post-teacher">Профессия</span>
+    </div>
+    <div class="add-teacher-block" onclick="location.href='addTeacher.html'">
+        <span class="plus1"></span>
+        <span class="plus2"></span>
+    </div>
+</main>
+
+<footer th:insert="~{fragment :: footer}"></footer>
+
+</body>
+
+</html>

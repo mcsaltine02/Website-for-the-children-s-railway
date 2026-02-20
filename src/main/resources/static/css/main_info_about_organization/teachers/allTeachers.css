@@ -1,0 +1,64 @@
+main{
+    margin: 20px;
+    padding-top: 90px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.teacher-block{
+    position: relative;
+    max-width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 350px;
+    margin: 30px;
+}
+.add-teacher-block{
+    position: relative;
+    width: 300px;
+    height: 350px;
+    border-radius: 10px;
+    border: 5px dashed var(--text-gray);
+    margin: 30px;
+    cursor: pointer;
+}
+.plus1{
+    position: absolute;
+    width: 40px;
+    height: 5px;
+    background-color: var(--text-gray);
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+}
+.plus2{
+    position: absolute;
+    width: 40px;
+    height: 5px;
+    background-color: var(--text-gray);
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) rotate(90deg);
+    border-radius: 10px;
+}
+.teacher-photo{height: 100%;min-height: 350px;width: 300px;object-fit: cover;}
+.post-teacher{
+    position: absolute;
+    left: 0;
+    background-color: var(--back);
+    padding: 10px;
+    width: 140px;
+    height: 13px;
+    overflow: hidden;
+    border-radius: 0 0 10px 0;
+}
+.fio{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: var(--back);
+    padding: 10px;
+    border-radius: 10px 0 0 0px;
+}

@@ -31,6 +31,10 @@ public class IndexController {
     public String logisticalSupport() {
         return "main_info_about_organization/logisticalSupport";
     }
+    @GetMapping("/allTeachers")
+    public String allTeachers() {
+        return "main_info_about_organization/teachers/allTeachers";
+    }
 
 
 }
