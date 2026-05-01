@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class PdfController {
@@ -65,7 +66,7 @@ public class PdfController {
                     })
                     .filter(Objects::nonNull)
                     .sorted()
-                    .toList();
+                    .collect(Collectors.toList());
 
             cat.files = files;
         }

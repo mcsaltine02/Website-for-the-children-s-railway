@@ -4,7 +4,7 @@ import by.mcsaltine.vkpost.controller.employees.payload.UpdateTeacherDTO;
 import by.mcsaltine.vkpost.model.Employee;
 import by.mcsaltine.vkpost.repository.*;
 import by.mcsaltine.vkpost.service.EmployeeService;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;

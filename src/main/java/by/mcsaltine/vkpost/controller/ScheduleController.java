@@ -3,7 +3,7 @@ package by.mcsaltine.vkpost.controller;
 
 import by.mcsaltine.vkpost.model.ScheduleLesson;
 import by.mcsaltine.vkpost.parser.RdjdScheduleParser;
-import jakarta.annotation.PostConstruct;
+import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

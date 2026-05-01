@@ -4,7 +4,7 @@ import by.mcsaltine.vkpost.controller.employees.payload.CreateTeacherDTO;
 import by.mcsaltine.vkpost.controller.employees.payload.UpdateTeacherDTO;
 import by.mcsaltine.vkpost.model.*;
 import by.mcsaltine.vkpost.repository.*;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -143,25 +144,25 @@ public class EmployeeService {
         if (emp.getEducationLinks() != null && !emp.getEducationLinks().isEmpty()) {
             dto.setNewEducationLevels(new ArrayList<>(emp.getEducationLinks().stream()
                     .map(l -> l.getEducationLevel().getEducation())
-                    .toList()));
+                    .collect(Collectors.toList())));
         }
 
         if (emp.getProfessionalDevelopments() != null && !emp.getProfessionalDevelopments().isEmpty()) {
             dto.setProfessionalDevelopments(new ArrayList<>(emp.getProfessionalDevelopments().stream()
                     .map(ProfessionalDevelopment::getQualifications)
-                    .toList()));
+                    .collect(Collectors.toList())));
         }
 
         if (emp.getProfessionalRetraining() != null && !emp.getProfessionalRetraining().isEmpty()) {
             dto.setProfessionalRetraining(new ArrayList<>(emp.getProfessionalRetraining().stream()
                     .map(ProfessionalRetraining::getQualifications)
-                    .toList()));
+                    .collect(Collectors.toList())));
         }
 
         if (emp.getTaughtPrograms() != null && !emp.getTaughtPrograms().isEmpty()) {
             dto.setTaughtProgramIds(new ArrayList<>(emp.getTaughtPrograms().stream()
                     .map(pe -> pe.getTaughtProgram().getTpId())
-                    .toList()));
+                    .collect(Collectors.toList())));
         }
 
 

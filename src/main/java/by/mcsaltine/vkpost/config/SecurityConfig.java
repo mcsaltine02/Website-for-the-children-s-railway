@@ -19,6 +19,7 @@ public class SecurityConfig {
 
     @Value("${app.admin.username}")
     private String adminUsername;
+
     @Value("${app.admin.password}")
     private String adminPassword;
 
@@ -31,13 +32,16 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/teachers/create",
-                                "/teachers/{teacherId:\\d+}/edit",
-                                "/teachers/{teacherId:\\d+}/delete"
-                        ).hasRole("ADMIN")
-                        .requestMatchers("/food-services/**").permitAll()
-                        .requestMatchers("/main-info-about-organization/food").permitAll()
+                        // Админские действия с учителями
+                        .antMatchers("/teachers/create").hasRole("ADMIN")
+                        .antMatchers("/teachers/{teacherId:\\d+}/edit").hasRole("ADMIN")
+                        .antMatchers("/teachers/{teacherId:\\d+}/delete").hasRole("ADMIN")
+
+                        // Открытые пути
+                        .antMatchers("/food-services/**").permitAll()
+                        .antMatchers("/main-info-about-organization/food").permitAll()
+
+                        // Всё остальное доступно всем
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form
@@ -60,6 +64,7 @@ public class SecurityConfig {
                 .password(adminPassword)
                 .roles("ADMIN")
                 .build();
+
         return new InMemoryUserDetailsManager(admin);
     }
 }
