@@ -25,3 +25,39 @@ document.body.addEventListener('click', event => {
     // Действие при клике
     document.querySelector(".header").classList.remove("open")
 });
+
+let lastScrollTop = 0;
+const header = document.querySelector('.header');
+const link_become_railway = document.querySelector('.link_becom_railway');
+let isThrottled = false;
+const throttleDelay = 100;
+
+
+function onScroll() {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    if (currentScroll > lastScrollTop) {
+        // Скролл вниз — скрываем header
+        header.style.transform = 'translateY(-100%)';
+        if(link_become_railway){
+            link_become_railway.style.transform = 'translateY(-150%)';
+        }
+    } else {
+        // Скролл вверх — показываем header
+        header.style.transform = 'translateY(0)';
+        if(link_become_railway){
+            link_become_railway.style.transform = 'translateY(0)';
+        }
+
+    }
+    lastScrollTop = Math.max(0, currentScroll);
+}
+
+window.addEventListener('scroll', () => {
+    if (!isThrottled) {
+        onScroll();
+        isThrottled = true;
+        setTimeout(() => {
+            isThrottled = false;
+        }, throttleDelay);
+    }
+});

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Образование</title>
+    <link th:href="@{/css/root.css}" rel="stylesheet">
+    <link th:href="@{/css/header.css}" rel="stylesheet">
+    <link th:href="@{/css/main_info_about_organization/education.css}" rel="stylesheet">
+    <link th:href="@{/css/footer.css}" rel="stylesheet">
+
+    <script defer th:src="@{/js/main.js}"></script>
+
+</head>
+
+<body>
+
+<header th:insert="~{fragment :: header}"></header>
+
+<main>
+
+    <div>
+        <h1>
+            Ниже расположены ссылки перейдя по которым вы можете посмотреть информацию о каждом интересующих вас предмете
+        </h1>
+
+        <span class="taught-programs-list">
+            <a href="https://disk.yandex.ru/d/DPEYBBmSPE58Kg">Вагоны и вагонное хозяйство</a>
+            <a href="https://disk.yandex.ru/d/NvL64BaHgrGHZg">Локомотивы и локомотивное хозяйство</a>
+            <a href="https://disk.yandex.ru/d/5jahQpZaL7mhRA">Пассажирские перевозки и сервис на транспорте</a>
+            <a href="https://disk.yandex.ru/d/vep0pLd9Hhk4MA">Введение в железнодорожную отрасль</a>
+            <a href="https://disk.yandex.ru/d/-CWzBVnMt3TCWg">Общий курс железных дорог</a>
+            <a href="https://disk.yandex.ru/d/gI0dAefOPxBslA">Основы проектной деятельности</a>
+            <a href="https://disk.yandex.ru/d/ps9hDDkaIihhow">Организация перевозок и управление на транспорте</a>
+            <a href="https://disk.yandex.ru/d/kX6kg2NfmaKplA">Путь и путевое хозяйство</a>
+        </span>
+
+
+
+        <p>
+            Лицензия на образовательную деятельность и иные документы по обучению можете глянуть на странице
+            Информационной безопасности раздела:
+            <a th:href="@{/informationSecurity#section-4}" class="local-name">Локальные акты</a>
+        </p>
+    </div>
+
+</main>
+
+<footer th:insert="~{fragment :: footer}"></footer>
+
+</body>
+
+</html>

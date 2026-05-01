@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование сотрудника</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .dynamic-row { margin-bottom: 12px; }
+        .section-title {
+            margin-top: 35px;
+            font-weight: bold;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="mb-4">Редактирование сотрудника</h2>
+
+    <form th:action="@{/teachers/{teacherId}/edit(teacherId=${updateTeacher.eId})}"
+          th:object="${updateTeacher}"
+          method="post"
+          enctype="multipart/form-data">
+
+        <!-- Скрытое поле с ID сотрудника -->
+        <input type="hidden" th:field="*{eId}" />
+
+
+        <!-- Новое фото -->
+        <div>
+            <p>Фотография учителя</p>
+            <input type="file" name="newPhoto" accept="image/jpeg,image/png,image/jpg" class="form-control">
+        </div><br>
+
+        <!-- Основная информация -->
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">Имя *</label>
+                <input type="text" class="form-control" th:field="*{firstName}" required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Фамилия *</label>
+                <input type="text" class="form-control" th:field="*{lastName}" required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Отчество</label>
+                <input type="text" class="form-control" th:field="*{middleName}">
+            </div>
+        </div>
+
+        <div class="row g-3 mt-3">
+            <div class="col-md-6">
+                <label class="form-label">Общий стаж работы (лет)</label>
+                <input type="number" class="form-control" th:field="*{workExperience}" min="0">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Стаж в образовательном учреждении (лет)</label>
+                <input type="number" class="form-control" th:field="*{workExperienceInEducationalInstitution}" min="0">
+            </div>
+        </div>
+
+        <!-- ManyToOne -->
+        <div class="mt-4">
+            <label class="form-label">Учёная степень</label>
+            <div class="input-group">
+                <select class="form-select" th:field="*{academicDegreeId}">
+                    <option value="">— Выберите существующую —</option>
+                    <option th:each="deg : ${academicDegrees}"
+                            th:value="${deg.adId}"
+                            th:text="${deg.academic}"></option>
+                </select>
+                <input type="text" class="form-control" th:field="*{newAcademicDegree}"
+                       placeholder="Или введите новую">
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <label class="form-label">Должность</label>
+            <div class="input-group">
+                <select class="form-select" th:field="*{postId}">
+                    <option value="">— Выберите существующую —</option>
+                    <option th:each="p : ${posts}"
+                            th:value="${p.pId}"
+                            th:text="${p.post}"></option>
+                </select>
+                <input type="text" class="form-control" th:field="*{newPost}"
+                       placeholder="Или введите новую">
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <label class="form-label">Условие привлечения</label>
+            <div class="input-group">
+                <select class="form-select" th:field="*{attractionConditionId}">
+                    <option value="">— Выберите существующее —</option>
+                    <option th:each="cond : ${attractionConditions}"
+                            th:value="${cond.acId}"
+                            th:text="${cond.condition}"></option>
+                </select>
+                <input type="text" class="form-control" th:field="*{newAttractionCondition}"
+                       placeholder="Или введите новое">
+            </div>
+        </div>
+
+        <!-- Уровни образования (динамические) -->
+        <div class="section-title">Уровни образования</div>
+        <div id="educationLevelsContainer">
+            <div th:each="level, iter : ${updateTeacher.newEducationLevels}" class="input-group dynamic-row">
+                <input type="text" class="form-control"
+                       th:field="*{newEducationLevels[__${iter.index}__]}"
+                       th:value="${level}">
+                <button type="button" class="btn btn-danger remove-row">Удалить</button>
+            </div>
+
+            <!-- Если список пустой — показываем одну пустую строку -->
+            <div th:if="${updateTeacher.newEducationLevels.isEmpty()}" class="input-group dynamic-row">
+                <input type="text" class="form-control" name="newEducationLevels[0]"
+                       placeholder="Введите уровень образования">
+                <button type="button" class="btn btn-danger remove-row">Удалить</button>
+            </div>
+        </div>
+        <button type="button" id="addEducationLevel" class="btn btn-success mt-2">+ Добавить уровень образования</button>
+
+
+        <!-- Повышение квалификации -->
+        <div class="section-title mt-4">Повышение квалификации</div>
+        <div id="profDevContainer">
+            <div th:each="dev, iter : ${updateTeacher.professionalDevelopments}" class="input-group dynamic-row">
+                <input type="text" class="form-control"
+                       th:field="*{professionalDevelopments[__${iter.index}__]}"
+                       th:value="${dev}">
+                <button type="button" class="btn btn-danger remove-row">Удалить</button>
+            </div>
+
+            <div th:if="${updateTeacher.professionalDevelopments.isEmpty()}" class="input-group dynamic-row">
+                <input type="text" class="form-control" name="professionalDevelopments[0]"
+                       placeholder="Название курса / мероприятия">
+                <button type="button" class="btn btn-danger remove-row">Удалить</button>
+            </div>
+        </div>
+        <button type="button" id="addProfDev" class="btn btn-success mt-2">+ Добавить повышение квалификации</button>
+
+
+        <!-- Профессиональная переподготовка -->
+        <div class="section-title mt-4">Профессиональная переподготовка</div>
+        <div id="profRetrainContainer">
+            <div th:each="retrain, iter : ${updateTeacher.professionalRetraining}" class="input-group dynamic-row">
+                <input type="text" class="form-control"
+                       th:field="*{professionalRetraining[__${iter.index}__]}"
+                       th:value="${retrain}">
+                <button type="button" class="btn btn-danger remove-row">Удалить</button>
+            </div>
+
+            <div th:if="${updateTeacher.professionalRetraining.isEmpty()}" class="input-group dynamic-row">
+                <input type="text" class="form-control" name="professionalRetraining[0]"
+                       placeholder="Название программы переподготовки">
+                <button type="button" class="btn btn-danger remove-row">Удалить</button>
+            </div>
+        </div>
+        <button type="button" id="addProfRetrain" class="btn btn-success mt-2">+ Добавить переподготовку</button>
+        <!-- Преподаваемые программы -->
+        <div class="section-title mt-4">Преподаваемые программы</div>
+
+        <div class="mb-3">
+            <p class="text-muted mb-2">Выберите существующие программы:</p>
+            <div th:each="prog : ${taughtPrograms}">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox"
+                           th:field="*{taughtProgramIds}"
+                           th:value="${prog.tpId}">
+                    <label class="form-check-label" th:text="${prog.qualifications}"></label>
+                </div>
+            </div>
+        </div>
+
+        <div id="newTaughtProgramsContainer">
+            <div class="input-group dynamic-row">
+                <input type="text" class="form-control" name="newTaughtPrograms[0]"
+                       placeholder="Введите новую преподаваемую программу">
+                <button type="button" class="btn btn-danger remove-row">Удалить</button>
+            </div>
+        </div>
+        <button type="button" id="addTaughtProgram" class="btn btn-success mt-2">+ Добавить новую программу</button>
+
+        <div class="mt-5">
+            <button type="submit" class="btn btn-primary btn-lg">Сохранить изменения</button>
+            <a th:href="@{/teachers}" class="btn btn-secondary btn-lg ms-3">Отмена</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function() {
+        let educationIndex = 1;
+        let profDevIndex = 1;
+        let profRetrainIndex = 1;
+        let taughtProgramIndex = 1;
+
+        $('#addEducationLevel').click(function() {
+            let html = `<div class="input-group dynamic-row">
+            <input type="text" class="form-control" name="newEducationLevels[${educationIndex}]" placeholder="Введите уровень образования">
+            <button type="button" class="btn btn-danger remove-row">Удалить</button>
+        </div>`;
+            $('#educationLevelsContainer').append(html);
+            educationIndex++;
+        });
+
+        $('#addProfDev').click(function() {
+            let html = `<div class="input-group dynamic-row">
+            <input type="text" class="form-control" name="professionalDevelopments[${profDevIndex}]" placeholder="Название курса...">
+            <button type="button" class="btn btn-danger remove-row">Удалить</button>
+        </div>`;
+            $('#profDevContainer').append(html);
+            profDevIndex++;
+        });
+
+        $('#addProfRetrain').click(function() {
+            let html = `<div class="input-group dynamic-row">
+            <input type="text" class="form-control" name="professionalRetraining[${profRetrainIndex}]" placeholder="Название программы...">
+            <button type="button" class="btn btn-danger remove-row">Удалить</button>
+        </div>`;
+            $('#profRetrainContainer').append(html);
+            profRetrainIndex++;
+        });
+
+        $('#addTaughtProgram').click(function() {
+            let html = `<div class="input-group dynamic-row">
+            <input type="text" class="form-control" name="newTaughtPrograms[${taughtProgramIndex}]" placeholder="Новая программа...">
+            <button type="button" class="btn btn-danger remove-row">Удалить</button>
+        </div>`;
+            $('#newTaughtProgramsContainer').append(html);
+            taughtProgramIndex++;
+        });
+
+        $(document).on('click', '.remove-row', function() {
+            $(this).closest('.dynamic-row').remove();
+        });
+    });
+
+    //Предпросмотр фотографии
+    document.querySelector('input[type="file"]').addEventListener('change', function(e) {
+        const preview = document.getElementById('photoPreview');
+        const file = e.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+
+</body>
+</html>

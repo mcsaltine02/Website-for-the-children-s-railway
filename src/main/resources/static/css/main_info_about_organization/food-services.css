@@ -1,0 +1,23 @@
+main{
+    margin-top: 200px;
+    flex: 1;
+    text-align: center;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+
+.place-text-phone-number{
+    margin-top: 50px;
+    color: var(--darck_blue);
+}
+.download{
+    color: var(--red);
+}

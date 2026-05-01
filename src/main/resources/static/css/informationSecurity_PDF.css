@@ -13,12 +13,12 @@ h1 {}
     flex-wrap: wrap;
 }
 .section {
-    background: var(--gray_blue);
+    /* background: var(--gray_blue); */
     border-radius: 10px;
     padding: 10px;
     margin: 40px;
     margin-right: 80px;
-    border: 1px solid;
+    /* border: 1px solid; */
 }
 
 .section h1 {
@@ -30,10 +30,17 @@ h1 {}
 }
 h4{
     position: absolute;
-    bottom: 5px;
-    backdrop-filter: blur(10px);
+    bottom: 0px;
+    background-color: var(--back);
+    padding: 6px;
+    border: 1px solid;
+    border-radius: 10px 10px 0 0;
+    /* border-radius: 10px; */
+    /* backdrop-filter: blur(10px); */
     z-index: 100;
     /* padding: 5px; */
+    /* max-width: 172px; */
+    overflow: hidden;
 }
 
 .extra-content {}
@@ -44,22 +51,26 @@ h4{
 
 .no-files {}
 
-.pdf-block-wrapper {display: flex;flex-direction: column-reverse;margin: 20px;overflow: hidden;}
+.pdf-block-wrapper {/* display: flex; */margin: 20px;width: auto;/* width: 322px; *//* overflow: hidden; */}
 
 .open-link {}
 
 .pdf-block {
-    width: min-content;
-    height: min-content;
+    /* width: min-content; */
+    display: flex;
+    /* height: min-content; */
     position: relative;
     z-index: 10;
-    overflow: hidden;
-    border-radius: 10px;
+    /* overflow: hidden; */
+    /* border-radius: 10px; */
+    align-items: center;
+    flex-direction: column;
 }
 
 .pdf-block h3 {}
 
-.pdf-block canvas {}
+.pdf-block canvas {
+}
 
 .pdf-block .error {}
 

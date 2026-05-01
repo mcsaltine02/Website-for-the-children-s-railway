@@ -52,7 +52,7 @@
                          style="cursor: pointer;">
 
                         <canvas th:id="'canvas-' + ${stat.index} + '-' + ${iter.index}"></canvas>
-                        <h4 th:text="${file}">Название.pdf</h4>
+                        <h4 th:text="${file}" class="name">Название.pdf</h4>
 
                         <!-- Иконка скачивания -->
                         <a th:href="@{'/pdfs/' + ${cat.folder} + '/' + ${file}}"
@@ -89,7 +89,11 @@
         cat.files.forEach((filename, fileIndex) => {
             const canvasId = `canvas-${catIndex}-${fileIndex}`;
             const canvas = document.getElementById(canvasId);
-            const errorMsg = document.getElementById(`error-${catIndex}-${fileIndex}`);
+
+            // Находим соответствующий h4 с классом "name"
+            // Предполагаю, что он находится рядом с canvas (в одном контейнере)
+            const container = canvas ? canvas.closest('.pdf-item, .file-item, div') : null; // подбери селектор своего контейнера
+            const h4Element = container ? container.querySelector('h4.name') : document.querySelectorAll('h4.name')[fileIndex]; // запасной вариант
 
             if (!canvas) return;
 
@@ -101,15 +105,25 @@
                 .then(pdfDoc => pdfDoc.getPage(1))
                 .then(page => {
                     const scale = 0.3;
-                    const viewport = page.getViewport({scale});
+                    const viewport = page.getViewport({ scale });
+
+                    // === Устанавливаем размеры canvas ===
                     canvas.width = viewport.width;
                     canvas.height = viewport.height;
+
+                    // === Вот здесь ставим max-width для h4.name ===
+                    if (h4Element) {
+                        h4Element.style.maxWidth = viewport.width + 'px';
+                        console.log(`Для ${filename} установлен max-width: ${viewport.width}px`);
+                    }
+
                     const ctx = canvas.getContext("2d");
-                    return page.render({canvasContext: ctx, viewport}).promise;
+                    return page.render({ canvasContext: ctx, viewport }).promise;
                 })
                 .then(() => console.log(`Отрендерен: ${cat.name} / ${filename}`))
                 .catch(err => {
                     console.error(`Ошибка: ${filename}`, err);
+                    const errorMsg = document.getElementById(`error-${catIndex}-${fileIndex}`);
                     if (errorMsg) {
                         errorMsg.textContent = `Не удалось загрузить ${filename}`;
                         errorMsg.style.display = "block";
@@ -136,5 +150,6 @@
         });
     });
 </script>
+
 </body>
 </html>

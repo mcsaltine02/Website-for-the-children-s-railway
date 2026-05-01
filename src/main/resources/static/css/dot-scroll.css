@@ -3,7 +3,7 @@
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
-    z-index: 1000;
+    z-index: 998;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,6 +22,9 @@
     flex-direction: column;
     gap: 32px;
     pointer-events: auto;
+    background-color: var(--back);
+    padding: 6px;
+    border-radius: 10px;
 }
 
 .dot {

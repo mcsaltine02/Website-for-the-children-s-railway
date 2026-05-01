@@ -1,4 +1,20 @@
 main{
+    margin-top: 100px;
+    flex: 1;
+    /*text-align: center;*/
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+
+main{
     margin: 20px;
     padding-top: 90px;
     display: flex;
@@ -7,12 +23,20 @@ main{
     justify-content: center;
 }
 .teacher-block{
+    border: 1px solid var(--darck_blue);
     position: relative;
     max-width: 300px;
     border-radius: 10px;
     overflow: hidden;
     height: 350px;
     margin: 30px;
+    box-shadow: 0px 4px 5px 2px rgba(166, 175, 182, 0.6);
+}
+.teacher-block:hover{
+    .fio{
+        border-top: 3px solid var(--darck_blue);
+        border-left: 3px solid var(--darck_blue);
+    }
 }
 .add-teacher-block{
     position: relative;
@@ -56,7 +80,10 @@ main{
 }
 .fio{
     position: absolute;
-    right: 0;
+    color: var(--blue);
+    border-top: 1px solid var(--darck_blue);
+    border-left: 1px solid var(--darck_blue);
+    right: 0px;
     bottom: 0;
     background-color: var(--back);
     padding: 10px;

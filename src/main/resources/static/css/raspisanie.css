@@ -1,5 +1,5 @@
 
-.container {max-width: 1400px;margin: 0 auto;margin-top: 60px;padding: 16px;}
+.container {max-width: 1400px;margin: 0 auto;margin-top: 100px;padding: 16px;}
 
 
 .upload-section {padding: 20px; margin-bottom: 20px;text-align: center;}
@@ -11,14 +11,18 @@
 
 /* === Фильтры === */
 .filters {
-    display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 100px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .filters select, .filters input {
     padding: 12px 14px; border: 2px solid #cbd5e1; border-radius: 10px; font-size: 1em; min-width: 180px;
 }
 .filters input { flex: 1; max-width: 360px; }
 
-/* === ДЕСКТОПНАЯ ТАБЛИЦА (только > 768px) === */
+
 #scheduleContainer {
     display: grid;
     grid-template-columns: 1fr;
@@ -44,6 +48,16 @@
     display: none;
     background: white;
 }
+.card-day-desc{
+    color: var(--red)
+}
+.card-group-desc{
+    color: var(--darck_blue);
+    font-weight: 500;
+}
+.card-teacher-desc {
+    color: var(--blue);
+}
 @media (min-width: 769px) {
     .lesson-row {
         display: grid;
@@ -57,7 +71,7 @@
     .group { font-weight: 600; color: #1e40af; }
 }
 
-/* === КАРТОЧКИ ДЛЯ МОБИЛЬНЫХ (≤ 768px) === */
+
 .lesson-card {
     display: block;
     background: white;
@@ -67,7 +81,7 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     border-left: 5px solid var(--darck_blue);
 }
-/* === ДЕСКТОПНАЯ ТАБЛИЦА — ИСПРАВЛЕНО! === */
+
 @media (min-width: 769px) {
     #scheduleContainer {
         background: white;
@@ -115,7 +129,7 @@
         display: none !important;
     }
 }
-/* === АДАПТИВНОСТЬ: показываем только нужное === */
+
 @media (min-width: 769px) {
     .lesson-card { display: none !important; }
     .lesson-row, .table-header { display: grid; }
@@ -150,7 +164,10 @@
     font-size: 0.95em;
 }
 
-/* === Пустое состояние === */
+.card-teacher{
+    color:  var(--blue);
+}
+
 .empty {
     text-align: center;
     padding: 60px 20px;

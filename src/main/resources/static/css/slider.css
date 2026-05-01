@@ -1,20 +1,17 @@
 .photos-btn, .nav-btn{
-    /* font-size: 15px; */
-    /* position: absolute; */
-    color: black;
+    color: var(--blue);
     background-color: var(--back);
     border: none;
     cursor: pointer;
     z-index: 998;
-    /* padding: 12px 24px; */
 }
 
-.photos-btn {/* padding-top: 1px; */margin: 10px;/* top: -10px; */}
+.photos-btn {margin: 10px;}
 .photos-btn:hover, .nav-btn:hover {
     background: var(--white_blue);
 }
 
-#prev-btn {border-radius: 10px 0px 0px 10px;/* left: 15px; */}
+#prev-btn {border-radius: 10px 0px 0px 10px;}
 #next-btn {border-radius: 0px 10px 10px 0px;right: 15px;}
 
 .slider-container {
@@ -64,17 +61,6 @@
     transform: translateX(50px);
 }
 
-.nav-btn {
-    /*position: absolute;*/
-    /*color: black;*/
-    /*background-color: var(--back);*/
-    /*border: none;*/
-    /*cursor: pointer;*/
-    /*z-index: 10;*/
-    /* padding-top: 12px; */
-}
-
-.nav-btn:hover {
-    /*background: var(--white_blue);*/
-}
+.nav-btn {}
+.nav-btn:hover {}
 

@@ -14,15 +14,15 @@ main p, main h3{
     max-width: 800px;
     margin: 0 auto;
     padding-top: 30px;
-    color: var(--text-gray);
+    color: var(--darck_blue);
     margin: 0px 10px;
 }
 a{
     color: var(--text-gray);
 }
 strong{
-    font-size: 19px;
-    color: var(--green);
+    font-size: 17px;
+    color: var(--blue);
 }
 
 @media(max-width: 850px){
@@ -30,7 +30,6 @@ strong{
 }
 
 .section {
-    background-color: var(--darck_blue);
     max-width: 800px;
     width: 100%;
     border-radius: 10px;

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Вход в админку</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <style>
+    body { background-color: #f8f9fa; }
+    .login-container { max-width: 400px; margin: 100px auto; }
+  </style>
+</head>
+<body>
+<div class="container login-container">
+  <div class="card shadow">
+    <div class="card-body p-5">
+      <h3 class="text-center mb-4">Вход в админку</h3>
+
+      <div th:if="${param.error}" class="alert alert-danger text-center">
+        Неверный логин или пароль
+      </div>
+
+      <form th:action="@{/login}" method="post">
+        <div class="mb-3">
+          <label class="form-label">Логин</label>
+          <input type="text" name="username" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Пароль</label>
+          <input type="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 py-2">Войти</button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

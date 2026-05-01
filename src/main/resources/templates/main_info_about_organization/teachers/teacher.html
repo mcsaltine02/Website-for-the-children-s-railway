@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>[[${employee.getLastName()} + ' ' + ${employee.firstName} + ' ' + ${employee.getMiddleName()}]]</title>
+    <link th:href="@{/css/root.css}" rel="stylesheet">
+    <link th:href="@{/css/header.css}" rel="stylesheet">
+    <link th:href="@{/css/main_info_about_organization/teachers/teacher.css}" rel="stylesheet">
+    <link th:href="@{/css/footer.css}" rel="stylesheet">
+
+    <script defer th:src="@{/js/main.js}"></script>
+</head>
+
+
+<body>
+<header th:insert="~{fragment :: header}"></header>
+
+<main class="teacher-card">
+    <a data-th-href="@{/teachers}" class="btn-back">Вернуться назад</a><br>
+
+    <div class="management" sec:authorize="hasRole('ADMIN')">
+        <a data-th-href="@{{id}/edit(id=(${employee.getEId()}))}">Изменить</a>
+        <form th:action="@{/teachers/{id}/delete(id=${employee.eId})}" method="post" onsubmit="return confirm('Вы действительно хотите удалить этого сотрудника?')">
+            <button type="submit" class="btn btn-danger">Удалить сотрудника</button>
+        </form>
+    </div>
+
+    <div class="teacher-photo-fio">
+        <div th:if="${employee.photo}" >
+            <img th:src="@{/teachers/{id}/photo(id=${employee.getEId()})}" alt="Фотография педагога" class="teacher-photo">
+        </div>
+        <h1 data-th-text=
+                    "${employee.getLastName()} + ' ' + ${employee.firstName} + ' ' + ${employee.getMiddleName()}">
+            ФИО
+        </h1>
+
+    </div>
+
+    <div class="teacher-main-info">
+
+        <span data-th-if="${employee.post}">
+            <p class="name">Должность:</p>
+            <p data-th-text="${employee.getPost().post}"></p>
+        </span>
+
+        <span data-th-if="${employee.workExperience}">
+            <p class="name">Общий стаж работы в профессиональной сфере:</p>
+            <p data-th-text="${employee.workExperience} + ' ' + лет"></p>
+        </span>
+
+        <span data-th-if="${employee.workExperienceInEducationalInstitution}">
+            <p class="name">Стаж работы в образовательном учреждении:</p>
+            <p data-th-text="${employee.workExperienceInEducationalInstitution} + ' ' + лет"></p>
+        </span>
+
+        <span data-th-if="!${employee.getTaughtPrograms.isEmpty()}">
+            <p class="name"> Преподаваемая программа:</p>
+            <ol data-th-each="e : ${employee.getTaughtPrograms()}" class="taughtPrograms">
+                <li data-th-text="${e.taughtProgram.qualifications}"></li>
+            </ol>
+        </span>
+
+    </div>
+
+    <div class="teacher-learning-info">
+
+        <span data-th-if="${employee.getAttractionCondition()}">
+            <p class="name">Условия привлечения: </p>
+            <p data-th-text="${employee.getAttractionCondition().condition}"></p>
+        </span>
+
+        <span data-th-if="${employee.getEducationLinks()}"
+              data-th-each="e : ${employee.getEducationLinks()}">
+            <p class="name">Уровень образования:</p>
+            <p data-th-text="${e.educationLevel.education}"></p>
+        </span>
+
+        <span data-th-if="${employee.academicDegree}">
+            <p class="name">Ученая степень:</p>
+            <p data-th-text="${employee.academicDegree.academic}"></p>
+        </span>
+
+        <span data-th-if="${e.qualifications}"
+              data-th-each="e : ${employee.getProfessionalDevelopments()}">
+            <p class="name">Сведения о повышении квалификации
+            <br>(за последние 3 года):</p>
+            <p data-th-text="${e.qualifications}"></p>
+        </span>
+
+        <span data-th-if="${e.qualifications}"
+              data-th-each="e : ${employee.getProfessionalRetraining()}">
+            <p class="name">Сведения о профессиональной переподготовке:</p>
+            <p data-th-text="${e.qualifications}"></p>
+        </span>
+    </div>
+
+</main>
+
+
+<footer th:insert="~{fragment :: footer}"></footer>
+</body>
+</html>

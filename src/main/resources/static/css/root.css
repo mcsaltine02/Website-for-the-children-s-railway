@@ -23,13 +23,37 @@ p, a, label, li, td{
     font-size: 18px;
     text-decoration: none;
 }
-h1{
-    font-size: 33px;
+a{
     color: var(--darck_blue);
+}
+h1{
+    font-size: 31px;
+    color: var(--darck_blue);
+}
+@media (max-width: 1000px) {
+    p, a, label, li, td{
+        text-decoration: none;
+    }
+    h1{
+        font-size: 29px;
+        color: var(--darck_blue);
+    }
 }
 
 
 
 ::-webkit-scrollbar {
     width: 0;
+}
+
+button{
+    padding: 4px;
+    background-color: var(--back);
+    border: none;
+    color: var(--darck_blue);
+    font-size: 18px;
+}
+button:hover {
+    font-weight: bold;
+    text-decoration: underline;
 }
