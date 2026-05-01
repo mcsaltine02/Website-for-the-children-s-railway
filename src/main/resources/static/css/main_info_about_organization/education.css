@@ -1,0 +1,40 @@
+main{
+    margin-top: 100px;
+    flex: 1;
+    /*text-align: center;*/
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+
+main div{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
+    padding-top: 50px;
+}
+
+.taught-programs-list{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.taught-programs-list a{
+    color: var(--blue);
+    margin: 5px;
+}
+p a{
+    color: var(--blue);
+    font-weight: bold;
+    text-decoration: underline;
+    margin-left: 3px;
+}
+

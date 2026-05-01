@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Сотрудники компании</title>
+    <link th:href="@{css/root.css}" rel="stylesheet">
+    <link th:href="@{css/header.css}" rel="stylesheet">
+    <link th:href="@{/css/main_info_about_organization/teachers/allTeachers.css}" rel="stylesheet">
+    <link th:href="@{css/footer.css}" rel="stylesheet">
+
+
+    <script defer th:src="@{js/main.js}"></script>
+
+
+</head>
+
+<body>
+
+<header th:insert="~{fragment :: header}"></header>
+
+<main>
+    <a data-th-each="e : ${employee}" data-th-href="@{teachers/{teacherId}(teacherId = ${e.getEId()})}">
+    <div class="teacher-block" >
+        <span th:if="${e.photo != null or e.photo != ' '}" >
+            <img th:src="@{/teachers/{id}/photo(id=${e.getEId()})}" alt="Фотография педагога" class="teacher-photo">
+        </span>
+        <span th:if="${e.photo ==  null or e.photo == '' or e.photo == ' '}" >
+            <img th:src="@{/employees/photo/no-photo.png}" alt="Фотография отсутствует" class="teacher-photo">
+        </span>
+
+        <span data-th-text="${e.getLastName()} + ' ' + ${e.firstName} + ' ' + ${e.getMiddleName()}"
+              class="fio"> Фамилия Имя Отчество
+        </span>
+    </div>
+    </a>
+
+    <div class="add-teacher-block" onclick="location.href='/teachers/create'" sec:authorize="hasRole('ADMIN')">
+        <span class="plus1"></span>
+        <span class="plus2"></span>
+    </div>
+</main>
+<footer th:insert="~{fragment :: footer}"></footer>
+
+</body>
+
+</html>

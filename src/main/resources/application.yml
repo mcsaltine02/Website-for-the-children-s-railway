@@ -2,3 +2,4 @@ spring:
   web:
     resources:
       static-locations: classpath:/static/,classpath:/NewPhoto/,classpath:/OldPhoto/
+

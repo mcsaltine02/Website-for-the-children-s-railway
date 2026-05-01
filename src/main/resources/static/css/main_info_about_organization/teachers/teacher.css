@@ -1,0 +1,56 @@
+.name{
+    font-weight: bold;
+    padding-top: 50px;
+    color: var(--blue);
+}
+main{}
+header{
+    margin-bottom: 100px;
+}
+.teacher-photo{
+    max-width: 570px;
+    border-radius: 10px;
+}
+.teacher-card {
+    display: grid;
+    grid-template-columns: 570px 1fr;
+    gap: 30px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 12px;
+}
+
+.teacher-photo-fio {
+    grid-column: 1;
+}
+
+.teacher-main-info {
+    grid-column: 2;
+}
+
+.teacher-learning-info {
+    grid-column: 1 / -1;
+}
+
+.taughtPrograms{
+    margin-left: 33px;
+    list-style-type: disc;
+}
+.btn-back{
+    color: var(--darck_blue);
+    font-size: 22px;
+}
+
+@media (max-width: 1140px) {
+    .teacher-card {
+        display: block;
+    }
+}
+
+@media (max-width:570px) {
+    .teacher-photo{
+        width: -webkit-fill-available;
+        box-shadow: 0px 4px 5px 2px rgba(166, 175, 182, 0.6);
+    }
+}

@@ -2,6 +2,11 @@
 package by.mcsaltine.vkpost.parser;
 
 import by.mcsaltine.vkpost.model.ScheduleLesson;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+import lombok.experimental.Accessors;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -103,5 +108,10 @@ public class RdjdScheduleParser {
         return cell != null ? cell.toString() : null;
     }
 
-    private record CabinetInfo(String cabinet, String teacher, int columnIndex) {}
+    @Getter
+    @Accessors(fluent = true)
+    @AllArgsConstructor
+    @EqualsAndHashCode
+    @ToString
+    private static class CabinetInfo{String cabinet; String teacher; int columnIndex;}
 }

@@ -52,13 +52,7 @@ footer{
 
 .back-btn {
     display: inline-block;
-    padding: 10px 20px;
-    background: white;
-    color: black;
-    border: 2px solid black;
-    border-radius: 10px;
-    /* font-weight: 500; */
-
+    color: var(--blue);
 }
 .back-btn:hover {
     background: var(--white_blue);

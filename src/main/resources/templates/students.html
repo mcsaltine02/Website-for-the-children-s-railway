@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -24,12 +24,11 @@
 <div class="container">
 
     <header>
-        <h1 style="text-align: center">Ростовская детская железная дорога</h1>
-        <p style="text-align: center">Расписание теоретических занятий на 2025–2026 учебный год</p>
+        <p style="text-align: center">Расписание теоретических занятий</p>
     </header>
 
 
-    <div>
+    <div sec:authorize="hasRole('ADMIN')">
         <form th:action="@{/raspisanie/upload}" method="post" enctype="multipart/form-data" style="
             text-align: center; margin: 63px;">
             <input type="file" name="file" accept=".xlsx" required>
@@ -69,24 +68,24 @@
                 <div class="card-time" th:text="${lesson.time()}"></div>
                 <div class="card-group" th:text="${lesson.group()}"></div>
                 <div class="card-info">
-                    <span th:text="${lesson.cabinet()}"></span> •
-                    <span th:text="${lesson.teacher()}"></span>
+                    <span th:text="${lesson.cabinet()}" class="card-cabinet"></span> •
+                    <span th:text="${lesson.teacher()}" class="card-teacher"></span>
                 </div>
             </div>
 
             <!-- Десктопная строка -->
             <div class="lesson-row" th:data-day="${lesson.day()}">
-                <div class="cell" th:text="${lesson.day()}"></div>
-                <div class="cell" th:text="${lesson.time()}"></div>
-                <div class="cell" th:text="${lesson.cabinet()}"></div>
-                <div class="cell" th:text="${lesson.teacher()}"></div>
-                <div class="cell group" th:text="${lesson.group()}"></div>
+                <div class="cell card-day-desc" th:text="${lesson.day()}"></div>
+                <div class="cell card-time-desc" th:text="${lesson.time()}"></div>
+                <div class="cell card-cabinet-desc" th:text="${lesson.cabinet()}"></div>
+                <div class="cell card-teacher-desc" th:text="${lesson.teacher()}"></div>
+                <div class="cell card-group-desc" th:text="${lesson.group()}"></div>
             </div>
         </th:block>
     </div>
 
     <div th:if="${#lists.isEmpty(lessons)}">
-        Расписание не загружено.<br>Загрузите Excel-файл выше
+        Расписание временно не загружено.<br>
     </div>
 
 </div>

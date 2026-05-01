@@ -1,0 +1,36 @@
+main{
+    margin-top: 70px;
+    flex: 1;
+}
+main div p{
+    font-size: 20px;
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+
+main div{
+    max-width: 660px;
+    margin: 0 auto;
+    padding: 10px;
+    padding-top: 50px;
+}
+
+.start-name{
+    color: var(--text-gray);
+}
+.name{
+    color: var(--darck_blue);
+}
+
+.start-vacant-places{
+    color: var(--text-gray);
+}
+.vacant-place{font-weight: bold;color: black;}
+

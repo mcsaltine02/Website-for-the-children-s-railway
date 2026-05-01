@@ -1,12 +1,13 @@
 .img_shema {
     display: block;
     margin: 70px auto;
-    max-width: 900px;
+    max-width: 800px;
 }
 
 .img_shema img {
     border-radius: 10px;
     width: -webkit-fill-available;
+    box-shadow: -1px 2px 5px 2px rgba(166, 175, 182, 0.6);
 }
 
 .shema_name {

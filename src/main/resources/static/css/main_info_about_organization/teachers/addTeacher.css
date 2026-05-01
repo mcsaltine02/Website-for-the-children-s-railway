@@ -1,0 +1,21 @@
+.container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    padding-top: 100px;
+    margin: 10px;
+}
+
+.now-place{
+    margin-bottom: 30px;
+}
+
+.form-label, .section-title{
+    color: var(--darck_blue);
+}
+.name-container{
+    color: var(--darck_blue);
+    margin-bottom:  40px;
+}

@@ -1,0 +1,27 @@
+h1{
+    color: var(--blue);
+    font-size: 19px;
+}
+
+p{
+    color: var(--darck_blue);
+}
+
+main{
+    margin-top: 100px;
+}
+
+.start-info{
+    font-weight: 600;
+    text-align: justify;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 50px;
+}
+
+main div{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
+    padding-top: 50px;
+}
