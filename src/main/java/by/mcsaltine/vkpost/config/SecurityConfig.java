@@ -36,12 +36,6 @@ public class SecurityConfig {
                         .antMatchers("/teachers/create").hasRole("ADMIN")
                         .antMatchers("/teachers/{teacherId:\\d+}/edit").hasRole("ADMIN")
                         .antMatchers("/teachers/{teacherId:\\d+}/delete").hasRole("ADMIN")
-
-                        // Открытые пути
-                        .antMatchers("/food-services/**").permitAll()
-                        .antMatchers("/main-info-about-organization/food").permitAll()
-
-                        // Всё остальное доступно всем
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form
