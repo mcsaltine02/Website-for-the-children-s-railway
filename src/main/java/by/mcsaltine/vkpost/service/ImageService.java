@@ -16,7 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ImageService {
 
-    @Value("${app.image.bucket:src/main/resources/employees/photo}")
+    @Value("data/employees/photo")
     private String bucket;
 
     @SneakyThrows

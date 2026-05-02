@@ -24,7 +24,7 @@ public class ScheduleController {
 
     public ScheduleController() {
         // Более надёжный способ получения пути
-        this.filePath = Paths.get("excel", "schedule", "schedule.xlsx")
+        this.filePath = Paths.get("data","excel", "schedule", "schedule.xlsx")
                 .toAbsolutePath()
                 .normalize();
     }
@@ -90,7 +90,7 @@ public class ScheduleController {
             } else {
                 // Fallback на resources (если файл есть в jar)
                 try (var is = getClass().getClassLoader()
-                        .getResourceAsStream("excel/schedule/schedule.xlsx")) {
+                        .getResourceAsStream("data/excel/schedule/schedule.xlsx")) {
                     if (is != null) {
                         cachedLessons = RdjdScheduleParser.parse(is);
                         System.out.println("Расписание загружено из resources");
