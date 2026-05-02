@@ -9,20 +9,19 @@ public class IndexController {
 
     @GetMapping("/")
     public String index() {
-        System.out.println("=== Trying to render index.html ===");
-        System.out.println("=== Trying to render index.html ===");
-        System.out.println("=== Trying to render index.html ===");
-        System.out.println("=== Trying to render index.html ===");
-        System.out.println("=== Trying to render index.html ===");
-        System.out.println("=== Trying to render index.html ===");
-        System.out.println("=== Trying to render index.html ===");
+        System.out.println("=== Trying to render index2.html ===");
+        System.out.println("=== Trying to render index2.html ===");
+        System.out.println("=== Trying to render index2.html ===");
+        System.out.println("=== Trying to render index2.html ===");
+        System.out.println("=== Trying to render index2.html ===");
+        System.out.println("=== Trying to render index2.html ===");
+        System.out.println("=== Trying to render index2.html ===");
+        System.out.println("=== Trying to render index2.html ===");
+        System.out.println("=== Trying to render index2.html ===");
+        System.out.println("=== Trying to render index2.html ===");
+        System.out.println("=== Trying to render index2.html ===");
 
-        System.out.println("=== Trying to render index.html ===");
-        System.out.println("=== Trying to render index.html ===");
-        System.out.println("=== Trying to render index.html ===");
-        System.out.println("=== Trying to render index.html ===");
-
-        return "/index";
+        return "index";
     }
 
     @GetMapping("/passengers")
