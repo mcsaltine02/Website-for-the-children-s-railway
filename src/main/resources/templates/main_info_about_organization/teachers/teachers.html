@@ -31,8 +31,8 @@
         </span>
         <span th:if="${e.photo ==  null or e.photo == '' or e.photo == ' '}" >
             <img th:src="@{/employees/photo/no-photo.png}" alt="Фотография отсутствует" class="teacher-photo"
-                 loading="lazy"
-                 decoding="async">
+                     loading="lazy"
+                     decoding="async">
         </span>
 
         <span data-th-text="${e.getLastName()} + ' ' + ${e.firstName} + ' ' + ${e.getMiddleName()}"

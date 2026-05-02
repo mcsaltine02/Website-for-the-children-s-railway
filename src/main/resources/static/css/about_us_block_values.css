@@ -74,6 +74,8 @@
   .image-box.active {
     flex-direction: column;
     height: fit-content;
+    max-width: 350px;
+    margin: 0 auto;
   }
   .image-content{
     width: auto; !important;
