@@ -21,7 +21,7 @@ public class IndexController {
         System.out.println("=== Trying to render index2.html ===");
         System.out.println("=== Trying to render index2.html ===");
 
-        return "index";
+        return "index2";
     }
 
     @GetMapping("/passengers")
