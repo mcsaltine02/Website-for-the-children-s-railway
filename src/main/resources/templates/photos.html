@@ -38,12 +38,6 @@
 
 </div>
 
-<div class="fixed-top fixed-back">
-    <a data-th-href="@{/}" class="back-btn">
-        <h3>Назад</h3>
-    </a>
-</div>
-
 
 <div class="modal" id="modal">
     <span class="modal-close" id="modal-close">×</span>
@@ -68,7 +62,7 @@
     }
 </script>
 
-<script defer src="../static/js/main.js"></script>
+<script defer th:src="@{/js/main.js}"></script>
 <script>
     let allPhotos = [];
     let filteredPhotos = [];

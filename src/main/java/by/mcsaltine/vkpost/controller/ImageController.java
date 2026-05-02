@@ -1,8 +1,8 @@
 package by.mcsaltine.vkpost.controller;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,11 +10,9 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Configuration
 @RestController
 @CrossOrigin(origins = "*")
 public class ImageController implements WebMvcConfigurer {
@@ -27,6 +25,7 @@ public class ImageController implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/NewPhoto/**")
                 .addResourceLocations("classpath:/NewPhoto/");
+
         registry.addResourceHandler("/OldPhoto/**")
                 .addResourceLocations("classpath:/OldPhoto/");
     }
@@ -36,6 +35,7 @@ public class ImageController implements WebMvcConfigurer {
         List<Map<String, String>> images1 = loadImagesFromFolder("NewPhoto", "Новые фото");
         List<Map<String, String>> images2 = loadImagesFromFolder("OldPhoto", "Старые фото");
 
+        // Перемешивание (чередование)
         List<Map<String, String>> interleaved = new ArrayList<>();
         int max = Math.max(images1.size(), images2.size());
         for (int i = 0; i < max; i++) {
@@ -45,21 +45,26 @@ public class ImageController implements WebMvcConfigurer {
         return interleaved;
     }
 
-    private List<Map<String, String>> loadImagesFromFolder(String folder, String label) throws IOException {
-        Resource resource = new ClassPathResource(folder);
-        if (!resource.exists() || !resource.getFile().isDirectory()) {
-            return Collections.emptyList();
-        }
+    private List<Map<String, String>> loadImagesFromFolder(String folderName, String label) throws IOException {
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 
-        return Files.list(resource.getFile().toPath())
-                .filter(Files::isRegularFile)
-                .filter(p -> IMAGE_EXTENSIONS.stream().anyMatch(ext -> p.toString().toLowerCase().endsWith(ext)))
-                .sorted()
-                .map(p -> {
+        // Ищем все файлы в папке resources
+        Resource[] resources = resolver.getResources("classpath:/" + folderName + "/**/*.*");
+
+        return Arrays.stream(resources)
+                .filter(Resource::isReadable)
+                .filter(r -> {
+                    String filename = r.getFilename();
+                    return filename != null && IMAGE_EXTENSIONS.stream()
+                            .anyMatch(ext -> filename.toLowerCase().endsWith(ext));
+                })
+                .sorted(Comparator.comparing(Resource::getFilename))
+                .map(resource -> {
                     Map<String, String> map = new HashMap<>();
-                    map.put("path", "/" + folder + "/" + p.getFileName().toString());
+                    String filename = resource.getFilename();
+                    map.put("path", "/" + folderName + "/" + filename);
                     map.put("folder", label);
-                    map.put("filename", p.getFileName().toString());
+                    map.put("filename", filename);
                     return map;
                 })
                 .collect(Collectors.toList());
