@@ -21,7 +21,7 @@ import java.util.UUID;
 @RequestMapping("/main-info-about-organization/food")
 public class FoodServices {
 
-    @Value("${app.upload.food.dir:./uploads/food-services}")
+    @Value("${app.upload.food.dir:/data/uploads/food-services}")
     private String uploadDir;
 
     @Value("${app.number-phone}")
