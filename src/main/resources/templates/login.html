@@ -1,38 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Вход в админку</title>
-  <link rel="stylesheet" data-th-href="@{/css/bootstrap.min.css}">
-  <style>
-    body { background-color: #f8f9fa; }
-    .login-container { max-width: 400px; margin: 100px auto; }
-  </style>
+  <title>Основные сведения</title>
+  <link th:href="@{css/root.css}" rel="stylesheet">
+  <link th:href="@{css/header.css}" rel="stylesheet">
+  <link th:href="@{css/dot-scroll.css}" rel="stylesheet">
+  <link th:href="@{css/main_info_about_organization/basicInformation.css}" rel="stylesheet">
+  <link th:href="@{css/footer.css}" rel="stylesheet">
+
+
+  <script defer th:src="@{/js/main.js}"></script>
+
+
 </head>
+
 <body>
-<div class="container login-container">
-  <div class="card shadow">
-    <div class="card-body p-5">
-      <h3 class="text-center mb-4">Вход в админку</h3>
 
-      <div data-th-if="${param.error}" class="alert alert-danger text-center">
-        Неверный логин или пароль
+<header th:insert="~{fragment :: header}"></header>
+
+<main>
+  <div class="container login-container">
+    <div class="card shadow">
+      <div class="card-body p-5">
+        <h3 class="text-center mb-4">Вход в админку</h3>
+
+        <div data-th-if="${param.error}" class="alert alert-danger text-center">
+          Неверный логин или пароль
+        </div>
+
+        <form data-th-action="@{/login}" method="post">
+          <div class="mb-3">
+            <label class="form-label">Логин</label>
+            <input type="text" name="username" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Пароль</label>
+            <input type="password" name="password" class="form-control" required>
+          </div>
+          <button type="submit" class="btn btn-primary w-100 py-2">Войти</button>
+        </form>
       </div>
-
-      <form data-th-action="@{/login}" method="post">
-        <div class="mb-3">
-          <label class="form-label">Логин</label>
-          <input type="text" name="username" class="form-control" required>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Пароль</label>
-          <input type="password" name="password" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-primary w-100 py-2">Войти</button>
-      </form>
     </div>
   </div>
-</div>
+</main>
+
+<footer th:insert="~{fragment :: footer}"></footer>
+
 </body>
+
 </html>
