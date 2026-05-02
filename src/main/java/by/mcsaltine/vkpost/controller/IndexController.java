@@ -26,12 +26,12 @@ public class IndexController {
 
     @GetMapping("/passengers")
     public String passengers() {
-        return "/passengers";
+        return "passengers";
     }
 
     @GetMapping("/photos")
     public String photos() {
-        return "/photos";
+        return "photos";
     }
 
     @GetMapping("/basicInformation")
@@ -58,6 +58,7 @@ public class IndexController {
     public String managementBodies() {
         return "main_info_about_organization/management-bodies";
     }
+
     @GetMapping("/main-info-about-organization/education")
     public String education() {
         return "main_info_about_organization/education";
@@ -67,6 +68,6 @@ public class IndexController {
 
     @GetMapping("/login")
     public String login() {
-        return "/login";
+        return "login";
     }
 }
