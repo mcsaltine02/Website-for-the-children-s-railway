@@ -19,14 +19,10 @@ public class ScheduleController {
 
     private static List<ScheduleLesson> cachedLessons = new ArrayList<>();
 
-    // Правильный путь — относительно папки проекта
-    private final Path filePath;
+    private Path filePath = Paths.get("/data/excel/schedule/schedule.xlsx");
 
     public ScheduleController() {
-        // Более надёжный способ получения пути
-        this.filePath = Paths.get("data","excel", "schedule", "schedule.xlsx")
-                .toAbsolutePath()
-                .normalize();
+        this.filePath = Paths.get("/data/excel/schedule/schedule.xlsx");
     }
 
     @PostConstruct
@@ -53,13 +49,10 @@ public class ScheduleController {
         }
 
         try {
-            // Создаём папки, если их нет
             Files.createDirectories(filePath.getParent());
 
-            // Записываем файл (перезаписываем)
             Files.write(filePath, file.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 
-            // Обновляем кэш
             loadFromFileIfExists();
 
             redirectAttributes.addFlashAttribute("message", "Расписание успешно обновлено!");
@@ -85,14 +78,12 @@ public class ScheduleController {
             if (Files.exists(filePath)) {
                 try (var is = Files.newInputStream(filePath)) {
                     cachedLessons = RdjdScheduleParser.parse(is);
-                    System.out.println("Расписание загружено из файла: " + filePath);
                 }
             } else {
                 try (var is = getClass().getClassLoader()
-                        .getResourceAsStream("data/excel/schedule/schedule.xlsx")) {
+                        .getResourceAsStream("/data/excel/schedule/schedule.xlsx")) {
                     if (is != null) {
                         cachedLessons = RdjdScheduleParser.parse(is);
-                        System.out.println("Расписание загружено из resources");
                     } else {
                         cachedLessons = new ArrayList<>();
                     }
