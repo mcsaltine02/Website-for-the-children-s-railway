@@ -1,5 +1,21 @@
+main{
+    display: flex;
+    margin-top: 150px;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
 
-.container {max-width: 1400px;margin: 0 auto;margin-top: 100px;padding: 16px;}
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+.container {max-width: 1400px;margin: 0 auto;margin-top: 100px;padding: 16px;margin-bottom: 150px;}
 
 
 .upload-section {padding: 20px; margin-bottom: 20px;text-align: center;}

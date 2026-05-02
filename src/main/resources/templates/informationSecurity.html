@@ -35,13 +35,13 @@
     <div th:each="cat, stat : ${categories}" class="section" th:id="'section-' + ${stat.index + 1}">
         <h1 th:text="${cat.name}">Категория</h1>
 
-        <!-- Правильная вставка динамического фрагмента -->
+        <!-- Динамический фрагмент -->
         <div class="extra-content"
              th:insert="${cat.fragmentName} :: content"
              th:remove="tag">
         </div>
 
-        <!-- Остальные PDF-блоки -->
+        <!-- PDF блоки -->
         <div th:if="${!cat.files.isEmpty()}">
             <div class="pdf-container">
                 <div th:each="file, iter : ${cat.files}" class="pdf-block-wrapper">
@@ -49,9 +49,12 @@
                     <div class="pdf-block"
                          th:id="'block-' + ${stat.index} + '-' + ${iter.index}"
                          th:data-pdf-url="@{'/pdfs/' + ${cat.folder} + '/' + ${file}}"
+                         th:data-canvas-id="'canvas-' + ${stat.index} + '-' + ${iter.index}"
+                         th:data-error-id="'error-' + ${stat.index} + '-' + ${iter.index}"
                          style="cursor: pointer;">
 
                         <canvas th:id="'canvas-' + ${stat.index} + '-' + ${iter.index}"></canvas>
+
                         <h4 th:text="${file}" class="name">Название.pdf</h4>
 
                         <!-- Иконка скачивания -->
@@ -60,11 +63,9 @@
                            class="download-icon"
                            title="Скачать PDF"
                            onclick="event.stopPropagation();">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 15L12 3M12 15L8 11M12 15L16 11M19 21H5"
                                       stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <circle cx="12" cy="12" r="11" fill="#28a745" opacity="0"/>
                             </svg>
                         </a>
 
@@ -73,7 +74,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </main>
 
@@ -83,54 +83,102 @@
 <script th:inline="javascript">
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.worker.min.js';
 
-    const categories = /*[[${categories}]]*/ [];
+    // === Настройки ===
+    const MAX_CONCURRENT = 3;           // сколько PDF можно рендерить одновременно
+    const RENDER_QUEUE = [];
+    let activeRenders = 0;
 
-    categories.forEach((cat, catIndex) => {
-        cat.files.forEach((filename, fileIndex) => {
-            const canvasId = `canvas-${catIndex}-${fileIndex}`;
-            const canvas = document.getElementById(canvasId);
+    // Основная функция рендеринга
+    function renderPDF(canvasId, pdfUrl, errorId) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
 
-            // Находим соответствующий h4 с классом "name"
-            // Предполагаю, что он находится рядом с canvas (в одном контейнере)
-            const container = canvas ? canvas.closest('.pdf-item, .file-item, div') : null; // подбери селектор своего контейнера
-            const h4Element = container ? container.querySelector('h4.name') : document.querySelectorAll('h4.name')[fileIndex]; // запасной вариант
+        const task = {
+            canvasId,
+            pdfUrl,
+            errorId,
+            execute: () => performRender(canvasId, pdfUrl, errorId)
+        };
 
-            if (!canvas) return;
+        RENDER_QUEUE.push(task);
+        processQueue();
+    }
 
-            const pdfUrl = `/pdfs/${cat.folder}/${encodeURIComponent(filename)}`;
+    // Реальная функция рендеринга
+    async function performRender(canvasId, pdfUrl, errorId) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
 
+        try {
             const loadingTask = pdfjsLib.getDocument(pdfUrl);
+            const pdfDoc = await loadingTask.promise;
+            const page = await pdfDoc.getPage(1);
 
-            loadingTask.promise
-                .then(pdfDoc => pdfDoc.getPage(1))
-                .then(page => {
-                    const scale = 0.3;
-                    const viewport = page.getViewport({ scale });
+            const scale = 0.32;
+            const viewport = page.getViewport({ scale });
 
-                    // === Устанавливаем размеры canvas ===
-                    canvas.width = viewport.width;
-                    canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
 
-                    // === Вот здесь ставим max-width для h4.name ===
-                    if (h4Element) {
-                        h4Element.style.maxWidth = viewport.width + 'px';
-                        console.log(`Для ${filename} установлен max-width: ${viewport.width}px`);
+            const container = canvas.closest('.pdf-block');
+            const h4 = container ? container.querySelector('h4.name') : null;
+            if (h4) h4.style.maxWidth = viewport.width + 'px';
+
+            const ctx = canvas.getContext("2d", { alpha: false });
+            await page.render({ canvasContext: ctx, viewport }).promise;
+
+            console.log(`✓ Отрендерено: ${pdfUrl}`);
+        } catch (err) {
+            console.error(`Ошибка ${pdfUrl}:`, err);
+            const errorEl = document.getElementById(errorId);
+            if (errorEl) {
+                errorEl.textContent = "Не удалось загрузить";
+                errorEl.style.display = "block";
+            }
+        } finally {
+            activeRenders--;
+            processQueue(); // запускаем следующую задачу
+        }
+    }
+
+    // Обработка очереди
+    function processQueue() {
+        while (RENDER_QUEUE.length > 0 && activeRenders < MAX_CONCURRENT) {
+            const task = RENDER_QUEUE.shift();
+            activeRenders++;
+            task.execute();
+        }
+    }
+
+    // === Lazy Loading с очередью ===
+    function initLazyPDFLoading() {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const block = entry.target;
+
+                    const canvasId = block.dataset.canvasId;
+                    const pdfUrl = block.dataset.pdfUrl;
+                    const errorId = block.dataset.errorId;
+
+                    if (canvasId && pdfUrl) {
+                        renderPDF(canvasId, pdfUrl, errorId);
+                        obs.unobserve(block);
                     }
-
-                    const ctx = canvas.getContext("2d");
-                    return page.render({ canvasContext: ctx, viewport }).promise;
-                })
-                .then(() => console.log(`Отрендерен: ${cat.name} / ${filename}`))
-                .catch(err => {
-                    console.error(`Ошибка: ${filename}`, err);
-                    const errorMsg = document.getElementById(`error-${catIndex}-${fileIndex}`);
-                    if (errorMsg) {
-                        errorMsg.textContent = `Не удалось загрузить ${filename}`;
-                        errorMsg.style.display = "block";
-                    }
-                });
+                }
+            });
+        }, {
+            rootMargin: "400px 0px",
+            threshold: 0.1
         });
-    });
+
+        document.querySelectorAll('.pdf-block').forEach(block => {
+            observer.observe(block);
+        });
+    }
+
+    // Запуск
+    document.addEventListener('DOMContentLoaded', initLazyPDFLoading);
 </script>
 
 <!-- обработка клика по ПДФ для его открытия -->

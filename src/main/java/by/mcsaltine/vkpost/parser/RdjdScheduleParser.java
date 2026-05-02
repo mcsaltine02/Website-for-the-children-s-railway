@@ -1,4 +1,3 @@
-// src/main/java/by/mcsaltine/vkpost/parser/RdjdScheduleParser.java
 package by.mcsaltine.vkpost.parser;
 
 import by.mcsaltine.vkpost.model.ScheduleLesson;

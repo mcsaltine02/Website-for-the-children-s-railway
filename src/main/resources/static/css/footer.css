@@ -1,5 +1,5 @@
 footer {
-    /* margin-top: 50px; */
+    margin-top: 120px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -36,8 +36,14 @@ footer div{
     display: flex;
     flex-direction: column;
     margin: 0px auto;
+    align-items: stretch;
 }
-
+.footer-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
 
 /*.container_footer {*/
 /*    display: flex;*/

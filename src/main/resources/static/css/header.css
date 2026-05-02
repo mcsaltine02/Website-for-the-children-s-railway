@@ -99,6 +99,16 @@ header a, header p{
     position: absolute;
     top: 52px;
 }
+.curtain a {
+    pointer-events: none;           /* по умолчанию ссылки заблокированы */
+    opacity: 0.6;                   /* визуально показываем, что заблокированы (по желанию) */
+    transition: opacity 0.3s;
+}
+
+.curtain a.unlocked {
+    pointer-events: auto !important;
+    opacity: 1;
+}
 .menu_link:hover{
     text-decoration-line: underline;
 }

@@ -20,46 +20,27 @@
             <li class="menu_item"><a class="menu_link" th:href="@{/}" id="about_us">О нас</a></li>
             <li class="menu_item"><a class="menu_link" th:href="@{/passengers}" id="passengers">Пассажирам</a></li>
             <li class="menu_item"><a class="menu_link" th:href="@{/students}" id="students">Учащимся</a></li>
-            <li class="menu_item"><a class="menu_link" th:href="@{/informationSecurity}" id="informationSecurity">Инф. безоп.</a></li>
+            <li class="menu_item"><a class="menu_link" th:href="@{/informationSecurity}" id="informationSecurity">Инф.
+                безоп.</a></li>
             <li class="menu_item dropper">
-                <p class="menu_link " id="dropper">Сведения об образовательной организации</p>
+                <p class="menu_link dropper-link" id="dropper">
+                    Сведения об образовательной организации
+                    <span class="arrow">▼</span>
+                </p>
+
                 <span class="curtain">
-                     <a class="menu_link" th:href="@{/basicInformation}" id="basicInformation">Основные сведения</a>
-                     <a class="menu_link" th:href="@{/logisticalSupport}" id="logisticalSupport">Кабинеты</a>
-                     <a class="menu_link" th:href="@{/teachers}" id="teachers">Руководство</a>
-
-                    <a class="menu_link"
-                       th:href="@{/main-info-about-organization/vacant-places}"
-                       id="vacant-places">
-                        Вакантные места
-                    </a>
-
-<!--                    <a class="menu_link" th:href="@{/students}" id="test4">Документы</a>-->
-
+                    <a class="menu_link" th:href="@{/basicInformation}" id="basicInformation">Основные сведения</a>
+                    <a class="menu_link" th:href="@{/logisticalSupport}" id="logisticalSupport">Кабинеты</a>
+                    <a class="menu_link" th:href="@{/teachers}" id="teachers">Руководство</a>
+                    <a class="menu_link" th:href="@{/main-info-about-organization/vacant-places}"
+                       id="vacant-places">Вакантные места</a>
                     <a class="menu_link" th:href="@{/main-info-about-organization/education}" id="education">Образование</a>
-
-                     <a class="menu_link" th:href="@{/main-info-about-organization/available-environment}"
-                        id="available-environment">
-                         Доступная среда
-                     </a>
-
-                     <a class="menu_link" id="food"
-                        th:href="@{/main-info-about-organization/food}">
-                         Организация питания
-                     </a>
-
-                     <a class="menu_link"
-                        th:href="@{/main-info-about-organization/management-bodies}"
-                        id="management-bodies">
-                         Структура и органы управления ОО
-                     </a>
-
-                    <a class="menu_link" id="financial-activities"
-                       th:href="@{/main-info-about-organization/financial-activities}">
-                        Финансово-хозяйственная деятельность
-                    </a>
-
-                     <a class="menu_link" th:href="@{/photos}" id="">Фотогалерея</a>
+                    <a class="menu_link" th:href="@{/main-info-about-organization/available-environment}"
+                       id="available-environment">Доступная среда</a>
+                    <a class="menu_link" th:href="@{/main-info-about-organization/food}" id="food">Организация питания</a>
+                    <a class="menu_link" th:href="@{/main-info-about-organization/management-bodies}" id="management-bodies">Структура и органы управления ОО</a>
+                    <a class="menu_link" th:href="@{/main-info-about-organization/financial-activities}" id="financial-activities">Финансово-хозяйственная деятельность</a>
+                    <a class="menu_link" th:href="@{/photos}">Фотогалерея</a>
 
                     <a th:href="@{/pdfs/personalPolicy/2819_r_10_11_2023_policy.pdf}"
                        download="№2819_р от 10.11.2023 Об утверждении Политики обработки персональных данных в ОАО РЖД.pdf">
@@ -72,7 +53,7 @@
 </div>
 
 
-<footer th:fragment="footer">
+<div th:fragment="footer" class="footer-container">
     <div class="contacts footer_object">
         <p class="important">Контакты</p>
         <a href="tel:+78632512704">+7 (863) 251-27-04</a>
@@ -92,7 +73,7 @@
         <p><a href="https://vk.com/dskzd" target="_blank">ВКонтанте</a></p>
         <p><a href="https://max.ru/join/S3F9CaTqm5LYK7GPr6KdSv-IBOf-2x9h-xfCkCCOicY" target="_blank">Мах</a></p>
     </div>
-</footer>
+</div>
 
 
 </body>

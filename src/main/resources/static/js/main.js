@@ -30,7 +30,7 @@ let lastScrollTop = 0;
 const header = document.querySelector('.header');
 const link_become_railway = document.querySelector('.link_becom_railway');
 let isThrottled = false;
-const throttleDelay = 100;
+const throttleDelay = 10;
 
 
 function onScroll() {
@@ -61,3 +61,39 @@ window.addEventListener('scroll', () => {
         }, throttleDelay);
     }
 });
+
+
+
+// Решение проблемы с двойным киком по ссылке
+document.addEventListener('DOMContentLoaded', () => {
+    const curtain = document.querySelector('.curtain');
+    if (!curtain) return;
+
+    let timeoutId = null;
+
+    const dropperItem = document.querySelector('.menu_item.dropper');
+
+    dropperItem.addEventListener('mouseenter', () => {
+        // Сбрасываем предыдущий таймер
+        if (timeoutId) clearTimeout(timeoutId);
+
+        const links = curtain.querySelectorAll('a');
+        links.forEach(link => {
+            link.classList.remove('unlocked');
+        });
+
+        timeoutId = setTimeout(() => {
+            links.forEach(link => {
+                link.classList.add('unlocked');
+            });
+        }, 50);
+    });
+
+    dropperItem.addEventListener('mouseleave', () => {
+        if (timeoutId) clearTimeout(timeoutId);
+
+        const links = curtain.querySelectorAll('a');
+        links.forEach(link => link.classList.add('unlocked'));
+    });
+});
+

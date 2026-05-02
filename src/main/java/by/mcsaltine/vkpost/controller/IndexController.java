@@ -9,19 +9,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String index() {
-        System.out.println("=== Trying to render index2.html ===");
-        System.out.println("=== Trying to render index2.html ===");
-        System.out.println("=== Trying to render index2.html ===");
-        System.out.println("=== Trying to render index2.html ===");
-        System.out.println("=== Trying to render index2.html ===");
-        System.out.println("=== Trying to render index2.html ===");
-        System.out.println("=== Trying to render index2.html ===");
-        System.out.println("=== Trying to render index2.html ===");
-        System.out.println("=== Trying to render index2.html ===");
-        System.out.println("=== Trying to render index2.html ===");
-        System.out.println("=== Trying to render index2.html ===");
-
-        return "index2";
+        return "index";
     }
 
     @GetMapping("/passengers")
