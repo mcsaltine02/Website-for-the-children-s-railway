@@ -88,7 +88,6 @@ public class ScheduleController {
                     System.out.println("Расписание загружено из файла: " + filePath);
                 }
             } else {
-                // Fallback на resources (если файл есть в jar)
                 try (var is = getClass().getClassLoader()
                         .getResourceAsStream("data/excel/schedule/schedule.xlsx")) {
                     if (is != null) {
