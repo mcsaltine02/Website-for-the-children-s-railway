@@ -28,6 +28,7 @@ public class EmployeeService {
     private final AttractionConditionRepository attractionConditionRepository;
     private final EducationLevelRepository educationLevelRepository;
     private final TaughtProgramRepository taughtProgramRepository;
+    private final ProgramEmployeesRepository  programEmployeesRepository;
     private final ImageService imageService;
 
 
@@ -38,21 +39,24 @@ public class EmployeeService {
 
         employee.setFirstName(dto.getFirstName());
         employee.setLastName(dto.getLastName());
-        employee.setMiddleName(dto.getMiddleName());
+        employee.setMiddleName(dto.getMiddleName() != null ? dto.getMiddleName() : "");
         employee.setWorkExperience(dto.getWorkExperience());
         employee.setWorkExperienceInEducationalInstitution(dto.getWorkExperienceInEducationalInstitution());
-        if (!photo.isEmpty()) {
+
+        // Фото
+        if (photo != null && !photo.isEmpty()) {
             employee.setPhoto(photo.getOriginalFilename());
             imageService.upload(photo.getOriginalFilename(), photo.getInputStream());
-        }else{
+        } else {
             employee.setPhoto("no-photo.png");
         }
 
+        // ManyToOne справочники
         handleAcademicDegree(employee, dto.getAcademicDegreeId(), dto.getNewAcademicDegree());
         handlePost(employee, dto.getPostId(), dto.getNewPost());
         handleAttractionCondition(employee, dto.getAttractionConditionId(), dto.getNewAttractionCondition());
 
-        // Сохраняем сотрудника, чтобы получить ID
+        // Первый save
         Employee savedEmployee = employeeRepository.save(employee);
 
         // Добавляем связи
@@ -70,17 +74,21 @@ public class EmployeeService {
         Employee employee = findById(dto.getEId());
         MultipartFile photo = dto.getNewPhoto();
 
+        // Основные данные
         employee.setFirstName(dto.getFirstName());
         employee.setLastName(dto.getLastName());
-        employee.setMiddleName(dto.getMiddleName());
+        employee.setMiddleName(dto.getMiddleName() != null ? dto.getMiddleName() : "");
         employee.setWorkExperience(dto.getWorkExperience());
         employee.setWorkExperienceInEducationalInstitution(dto.getWorkExperienceInEducationalInstitution());
-        if (!photo.isEmpty()) {
+
+        // Фото
+        if (photo != null && !photo.isEmpty()) {
             imageService.delete(employee.getPhoto());
             employee.setPhoto(photo.getOriginalFilename());
             imageService.upload(photo.getOriginalFilename(), photo.getInputStream());
         }
 
+        // ManyToOne
         handleAcademicDegree(employee, dto.getAcademicDegreeId(), dto.getNewAcademicDegree());
         handlePost(employee, dto.getPostId(), dto.getNewPost());
         handleAttractionCondition(employee, dto.getAttractionConditionId(), dto.getNewAttractionCondition());
@@ -90,12 +98,13 @@ public class EmployeeService {
         employee.getProfessionalDevelopments().clear();
         employee.getProfessionalRetraining().clear();
         employee.getTaughtPrograms().clear();
+        programEmployeesRepository.deleteAllByEmployee(employee);
 
+        // Добавляем новые связи
         addEducationLevels(employee, dto.getNewEducationLevels());
         addProfessionalDevelopments(employee, dto.getProfessionalDevelopments());
         addProfessionalRetraining(employee, dto.getProfessionalRetraining());
         addTaughtPrograms(employee, dto.getTaughtProgramIds(), dto.getNewTaughtPrograms());
-
 
         return employeeRepository.save(employee);
     }
@@ -172,7 +181,7 @@ public class EmployeeService {
     // ====================== ManyToOne ======================
     private void handleAcademicDegree(Employee emp, Integer id, String newName) {
         if (id != null && id > 0) {
-            academicDegreeRepository.findById(Long.valueOf(id)).ifPresent(emp::setAcademicDegree);
+            academicDegreeRepository.findById(id).ifPresent(emp::setAcademicDegree);  // Integer
         } else if (StringUtils.hasText(newName)) {
             AcademicDegree degree = new AcademicDegree();
             degree.setAcademic(newName.trim());
@@ -183,7 +192,7 @@ public class EmployeeService {
 
     private void handlePost(Employee emp, Integer id, String newName) {
         if (id != null && id > 0) {
-            postRepository.findById(Long.valueOf(id)).ifPresent(emp::setPost);
+            postRepository.findById(id).ifPresent(emp::setPost);
         } else if (StringUtils.hasText(newName)) {
             Post post = new Post();
             post.setPost(newName.trim());
@@ -194,7 +203,7 @@ public class EmployeeService {
 
     private void handleAttractionCondition(Employee emp, Integer id, String newName) {
         if (id != null && id > 0) {
-            attractionConditionRepository.findById(Long.valueOf(id)).ifPresent(emp::setAttractionCondition);
+            attractionConditionRepository.findById(id).ifPresent(emp::setAttractionCondition);
         } else if (StringUtils.hasText(newName)) {
             AttractionCondition condition = new AttractionCondition();
             condition.setCondition(newName.trim());
@@ -245,19 +254,25 @@ public class EmployeeService {
     }
 
     private void addTaughtPrograms(Employee emp, List<Integer> existingIds, List<String> newNames) {
+
         if (existingIds != null) {
             for (Integer id : existingIds) {
-                if (id != null && id > 0) {
-                    taughtProgramRepository.findById(Long.valueOf(id)).ifPresent(tp -> {
+                if (id == null || id <= 0) continue;
+
+                taughtProgramRepository.findById(id).ifPresent(tp -> {
+
                         ProgramEmployees pe = new ProgramEmployees();
                         pe.setEmployee(emp);
                         pe.setTaughtProgram(tp);
-                        emp.addTaughtProgram(pe);
-                    });
-                }
+
+                        programEmployeesRepository.save(pe);
+                        System.out.println("Сохранена связь с taughtProgram ID = " + id);
+
+                });
             }
         }
 
+        // Новые программы
         if (newNames != null) {
             for (String name : newNames) {
                 if (StringUtils.hasText(name)) {
@@ -268,7 +283,9 @@ public class EmployeeService {
                     ProgramEmployees pe = new ProgramEmployees();
                     pe.setEmployee(emp);
                     pe.setTaughtProgram(tp);
-                    emp.addTaughtProgram(pe);
+
+                    programEmployeesRepository.save(pe);
+                    System.out.println("Создана новая программа и связь: " + name);
                 }
             }
         }

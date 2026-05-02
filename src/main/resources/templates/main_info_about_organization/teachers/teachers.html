@@ -21,6 +21,8 @@
 <header th:insert="~{fragment :: header}"></header>
 
 <main>
+
+
     <a data-th-each="e : ${employee}" data-th-href="@{teachers/{teacherId}(teacherId = ${e.getEId()})}">
     <div class="teacher-block" >
         <span th:if="${e.photo != null or e.photo != ' '}" >
@@ -45,7 +47,29 @@
         <span class="plus1"></span>
         <span class="plus2"></span>
     </div>
+
 </main>
+
+
+<form th:action="@{/teachers/createNoSuchPhoto}"
+      method="post" enctype="multipart/form-data"
+      sec:authorize="hasRole('ADMIN')"
+      class="form-none-photo">
+
+    <div class="now-place">
+        <label class="form-label">Если вы хотите изменить фотографию по умолчанию, то можете загрузить её сюда</label>
+        <input type="file"
+               name="photo"
+               accept="image/jpeg,image/png,image/jpg,image/webp"
+               class="form-control ">
+    </div>
+
+    <div class="mt-5" >
+        <button type="submit" class="btn btn-primary btn-lg">Сохранить картинку</button>
+    </div>
+
+</form>
+
 <footer th:insert="~{fragment :: footer}"></footer>
 
 </body>

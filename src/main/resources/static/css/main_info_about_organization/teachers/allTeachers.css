@@ -89,3 +89,9 @@ main{
     padding: 10px;
     border-radius: 10px 0 0 0px;
 }
+
+.form-none-photo{
+    margin: 0 auto;
+    color: var(--text-gray);
+    text-align: center;
+}

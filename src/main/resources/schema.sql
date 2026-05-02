@@ -14,35 +14,35 @@ DROP TABLE IF EXISTS post CASCADE;
 DROP TABLE IF EXISTS attraction_condition CASCADE;
 
 -- Учёная степень
-CREATE TABLE academic_degree
+CREATE TABLE if not exists  academic_degree
 (
     ad_id    BIGSERIAL PRIMARY KEY,
     academic TEXT
 );
 
 -- Должность
-CREATE TABLE post
+CREATE TABLE if not exists  post
 (
     p_id BIGSERIAL PRIMARY KEY,
     post TEXT
 );
 
 -- Условие привлечения
-CREATE TABLE attraction_condition
+CREATE TABLE if not exists  attraction_condition
 (
     ac_id     BIGSERIAL PRIMARY KEY,
     condition TEXT
 );
 
 -- Уровень образования
-CREATE TABLE education_level
+CREATE TABLE if not exists  education_level
 (
     el_id     BIGSERIAL PRIMARY KEY,
     education TEXT
 );
 
 -- Сотрудники
-CREATE TABLE employees
+CREATE TABLE if not exists  employees
 (
     e_id                                       BIGSERIAL PRIMARY KEY,
     first_name                                 VARCHAR(128),
@@ -57,7 +57,7 @@ CREATE TABLE employees
 );
 
 -- Связующая таблица: сотрудник — уровень образования
-CREATE TABLE employees_education_level
+CREATE TABLE if not exists employees_education_level
 (
     eel_id BIGSERIAL PRIMARY KEY,
     e_id   INTEGER REFERENCES employees(e_id) ON DELETE CASCADE,
@@ -66,7 +66,7 @@ CREATE TABLE employees_education_level
 );
 
 -- Повышение квалификации
-CREATE TABLE professional_development
+CREATE TABLE if not exists  professional_development
 (
     pd_id          BIGSERIAL PRIMARY KEY,
     e_id           INTEGER REFERENCES employees(e_id) ON DELETE CASCADE,
@@ -74,7 +74,7 @@ CREATE TABLE professional_development
 );
 
 -- Профессиональная переподготовка
-CREATE TABLE professional_retraining
+CREATE TABLE if not exists  professional_retraining
 (
     pr_id          BIGSERIAL PRIMARY KEY,
     e_id           INTEGER REFERENCES employees(e_id) ON DELETE CASCADE,
@@ -82,21 +82,22 @@ CREATE TABLE professional_retraining
 );
 
 -- Преподаваемая программа
-CREATE TABLE taught_program
+CREATE TABLE if not exists  taught_program
 (
     tp_id          BIGSERIAL PRIMARY KEY,
     qualifications TEXT,
-    taught_program INT DEFAULT 0
+    vacant_places INT DEFAULT 0
 );
 
 -- Связь "Сотрудник — Преподаваемая программа"
-CREATE TABLE program_employees
+CREATE TABLE if not exists  program_employees
 (
     pe_id BIGSERIAL PRIMARY KEY,
     e_id  INTEGER REFERENCES employees(e_id) ON DELETE CASCADE,
     tp_id INTEGER REFERENCES taught_program(tp_id) ON DELETE RESTRICT,
     CONSTRAINT unique_employee_program UNIQUE (e_id, tp_id)
 );
+
 
 -- Индексы
 CREATE INDEX IF NOT EXISTS idx_program_employees_eid ON program_employees(e_id);

@@ -24,6 +24,7 @@ public class ImageService {
         if (StringUtils.isEmpty(imageFilename)) {
             return;
         }
+        System.out.println(imageFilename);
 
         Path fullImagePath = Path.of(bucket, imageFilename);
 

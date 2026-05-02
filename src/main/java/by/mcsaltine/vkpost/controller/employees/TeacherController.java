@@ -5,6 +5,8 @@ import by.mcsaltine.vkpost.model.Employee;
 import by.mcsaltine.vkpost.repository.*;
 import by.mcsaltine.vkpost.service.EmployeeService;
 import javax.servlet.http.HttpServletResponse;
+
+import by.mcsaltine.vkpost.service.ImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpHeaders;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 
@@ -26,6 +30,7 @@ import java.util.NoSuchElementException;
 public class TeacherController {
 
     private final EmployeeService employeeService;
+    private final ImageService imageService;
     private final AcademicDegreeRepository academicDegreeRepository;
     private final PostRepository postRepository;
     private final AttractionConditionRepository attractionConditionRepository;
@@ -94,4 +99,6 @@ public class TeacherController {
                         .body(content))
                 .orElse(ResponseEntity.notFound().build());
     }
+
+
 }

@@ -3,9 +3,11 @@ package by.mcsaltine.vkpost.model;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -27,4 +29,19 @@ public class TaughtProgram {
 
     @OneToMany(mappedBy = "taughtProgram", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ProgramEmployees> employees = new HashSet<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TaughtProgram)) return false;
+        TaughtProgram that = (TaughtProgram) o;
+        return Objects.equals(tpId, that.tpId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tpId);
+    }
+
+
 }

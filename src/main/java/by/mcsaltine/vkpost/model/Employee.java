@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(exclude = {"educationLinks", "professionalDevelopments",
-        "professionalRetraining", "taughtPrograms"})
+        "professionalRetraining"})
 public class Employee {
 
     @Id
@@ -64,7 +64,7 @@ public class Employee {
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<ProfessionalRetraining> professionalRetraining = new HashSet<>();
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, orphanRemoval = false)
     private Set<ProgramEmployees> taughtPrograms = new HashSet<>();
 
     public void addProfessionalDevelopment(ProfessionalDevelopment pd) {
@@ -83,8 +83,22 @@ public class Employee {
     }
 
     public void addTaughtProgram(ProgramEmployees pe) {
+        if (this.taughtPrograms == null) {
+            this.taughtPrograms = new HashSet<>();
+        }
         this.taughtPrograms.add(pe);
-        pe.setEmployee(this);
+        if (pe.getEmployee() == null) {
+            pe.setEmployee(this);
+        }
     }
+
+    public void setTaughtPrograms(Set<ProgramEmployees> taughtPrograms) {
+        if (taughtPrograms != null) {
+            this.taughtPrograms = new HashSet<>(taughtPrograms);
+        } else {
+            this.taughtPrograms = new HashSet<>();
+        }
+    }
+
 }
 

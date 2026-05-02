@@ -37,4 +37,26 @@ public class CreateTeacherDTO {
     private List<String> newTaughtPrograms = new ArrayList<>();
 
     private MultipartFile newPhoto;
+
+    @Override
+    public String toString() {
+        return "CreateTeacherDTO{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", workExperience=" + workExperience +
+                ", workExperienceInEducationalInstitution=" + workExperienceInEducationalInstitution +
+                ", academicDegreeId=" + academicDegreeId +
+                ", newAcademicDegree='" + newAcademicDegree + '\'' +
+                ", postId=" + postId +
+                ", newPost='" + newPost + '\'' +
+                ", attractionConditionId=" + attractionConditionId +
+                ", newAttractionCondition='" + newAttractionCondition + '\'' +
+                ", newEducationLevels=" + newEducationLevels +
+                ", professionalDevelopments=" + professionalDevelopments +
+                ", professionalRetraining=" + professionalRetraining +
+                ", taughtProgramIds=" + taughtProgramIds +
+                ", newTaughtPrograms=" + newTaughtPrograms +
+                '}';
+    }
 }
