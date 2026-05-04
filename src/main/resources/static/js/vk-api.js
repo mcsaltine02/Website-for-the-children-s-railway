@@ -2,16 +2,16 @@ const CACHE_KEY = 'vk_posts_cache';
 const CACHE_TTL = 60 * 60 * 1000; // 10 минут
 
 // === КЭШИРОВАНИЕ ===
-function getCachedPosts() {
-    const cached = localStorage.getItem(CACHE_KEY);
-    if (!cached) return null;
-    const {data, timestamp} = JSON.parse(cached);
-    if (Date.now() - timestamp > CACHE_TTL) {
-        localStorage.removeItem(CACHE_KEY);
-        return null;
-    }
-    return data;
-}
+// function getCachedPosts() {
+//     const cached = localStorage.getItem(CACHE_KEY);
+//     if (!cached) return null;
+//     const {data, timestamp} = JSON.parse(cached);
+//     if (Date.now() - timestamp > CACHE_TTL) {
+//         localStorage.removeItem(CACHE_KEY);
+//         return null;
+//     }
+//     return data;
+// }
 
 function setCachedPosts(data) {
     const cacheObj = {data, timestamp: Date.now()};
@@ -28,12 +28,12 @@ async function fetchPosts(forceRefresh = false) {
         localStorage.removeItem(CACHE_KEY);
     }
 
-    const cached = getCachedPosts();
-    if (cached && !forceRefresh) {
-        loading.style.display = 'none';
-        displayPosts(cached.response.items);
-        return;
-    }
+    // const cached = getCachedPosts();
+    // if (cached && !forceRefresh) {
+    //     loading.style.display = 'none';
+    //     displayPosts(cached.response.items);
+    //     return;
+    // }
 
     try {
         loading.style.display = 'block';
@@ -342,14 +342,14 @@ function createVkModal() {
 // Кнопка обновления
 document.addEventListener('DOMContentLoaded', () => {
     const refreshBtn = document.getElementById('refresh-btn');
-    const svgIcon = refreshBtn.innerHTML; // Сохраните исходный SVG-код
+    const svgIcon = refreshBtn.innerHTML;
 
     if (refreshBtn) {
         refreshBtn.addEventListener('click', () => {
-            refreshBtn.innerHTML = '<span>Обновление...</span>'; // Замените содержимое на текст
+            refreshBtn.innerHTML = '<span>Обновление...</span>';
 
             fetchPosts(true).finally(() => {
-                refreshBtn.innerHTML = svgIcon; // Восстановите SVG после обновления
+                refreshBtn.innerHTML = svgIcon;
             });
         });
     }
