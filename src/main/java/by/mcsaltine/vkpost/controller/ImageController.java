@@ -16,57 +16,57 @@ import java.util.stream.Collectors;
 @RestController
 @CrossOrigin(origins = "*")
 public class ImageController implements WebMvcConfigurer {
-
-    private static final List<String> IMAGE_EXTENSIONS = Arrays.asList(
-            ".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp"
-    );
-
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/NewPhoto/**")
-                .addResourceLocations("classpath:/NewPhoto/");
-
-        registry.addResourceHandler("/OldPhoto/**")
-                .addResourceLocations("classpath:/OldPhoto/");
-    }
-
-    @GetMapping("/api/images")
-    public List<Map<String, String>> getImages() throws IOException {
-        List<Map<String, String>> images1 = loadImagesFromFolder("NewPhoto", "Новые фото");
-        List<Map<String, String>> images2 = loadImagesFromFolder("OldPhoto", "Старые фото");
-
-        // Перемешивание (чередование)
-        List<Map<String, String>> interleaved = new ArrayList<>();
-        int max = Math.max(images1.size(), images2.size());
-        for (int i = 0; i < max; i++) {
-            if (i < images1.size()) interleaved.add(images1.get(i));
-            if (i < images2.size()) interleaved.add(images2.get(i));
-        }
-        return interleaved;
-    }
-
-    private List<Map<String, String>> loadImagesFromFolder(String folderName, String label) throws IOException {
-        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-
-        // Ищем все файлы в папке resources
-        Resource[] resources = resolver.getResources("classpath:/" + folderName + "/**/*.*");
-
-        return Arrays.stream(resources)
-                .filter(Resource::isReadable)
-                .filter(r -> {
-                    String filename = r.getFilename();
-                    return filename != null && IMAGE_EXTENSIONS.stream()
-                            .anyMatch(ext -> filename.toLowerCase().endsWith(ext));
-                })
-                .sorted(Comparator.comparing(Resource::getFilename))
-                .map(resource -> {
-                    Map<String, String> map = new HashMap<>();
-                    String filename = resource.getFilename();
-                    map.put("path", "/" + folderName + "/" + filename);
-                    map.put("folder", label);
-                    map.put("filename", filename);
-                    return map;
-                })
-                .collect(Collectors.toList());
-    }
+//
+//    private static final List<String> IMAGE_EXTENSIONS = Arrays.asList(
+//            ".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp"
+//    );
+//
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/NewPhoto/**")
+//                .addResourceLocations("classpath:/NewPhoto/");
+//
+//        registry.addResourceHandler("/OldPhoto/**")
+//                .addResourceLocations("classpath:/OldPhoto/");
+//    }
+//
+//    @GetMapping("/api/images")
+//    public List<Map<String, String>> getImages() throws IOException {
+//        List<Map<String, String>> images1 = loadImagesFromFolder("NewPhoto", "Новые фото");
+//        List<Map<String, String>> images2 = loadImagesFromFolder("OldPhoto", "Старые фото");
+//
+//        // Перемешивание (чередование)
+//        List<Map<String, String>> interleaved = new ArrayList<>();
+//        int max = Math.max(images1.size(), images2.size());
+//        for (int i = 0; i < max; i++) {
+//            if (i < images1.size()) interleaved.add(images1.get(i));
+//            if (i < images2.size()) interleaved.add(images2.get(i));
+//        }
+//        return interleaved;
+//    }
+//
+//    private List<Map<String, String>> loadImagesFromFolder(String folderName, String label) throws IOException {
+//        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+//
+//        // Ищем все файлы в папке resources
+//        Resource[] resources = resolver.getResources("classpath:/" + folderName + "/**/*.*");
+//
+//        return Arrays.stream(resources)
+//                .filter(Resource::isReadable)
+//                .filter(r -> {
+//                    String filename = r.getFilename();
+//                    return filename != null && IMAGE_EXTENSIONS.stream()
+//                            .anyMatch(ext -> filename.toLowerCase().endsWith(ext));
+//                })
+//                .sorted(Comparator.comparing(Resource::getFilename))
+//                .map(resource -> {
+//                    Map<String, String> map = new HashMap<>();
+//                    String filename = resource.getFilename();
+//                    map.put("path", "/" + folderName + "/" + filename);
+//                    map.put("folder", label);
+//                    map.put("filename", filename);
+//                    return map;
+//                })
+//                .collect(Collectors.toList());
+//    }
 }

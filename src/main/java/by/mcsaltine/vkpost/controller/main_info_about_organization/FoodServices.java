@@ -27,7 +27,7 @@ public class FoodServices {
     @Value("${app.number-phone}")
     private String numberPhone;
 
-    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+    private  final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 
     @GetMapping
     public String foodServices(Model model) {
