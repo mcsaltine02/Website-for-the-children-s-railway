@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class PdfCategoriesService {
-    public static class Category {
+    public class Category {
         String name;
         String folder;
         String fragmentName;
