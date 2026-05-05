@@ -78,81 +78,133 @@
     const modalPrev = document.getElementById('modal-prev');
     const modalNext = document.getElementById('modal-next');
 
+    // Основная загрузка фотографий
     async function loadPhotos() {
         try {
-            const res = await fetch('/api/images');
-            if (!res.ok) throw new Error();
+            gallery.innerHTML = `
+                <div style="width:100%; text-align:center; padding:60px 20px; color:#666;">
+                    Загрузка фотографий...
+                </div>`;
+
+            const res = await fetch('/api/images', {
+                method: 'GET',
+                cache: 'force-cache',           // сильное кэширование браузером
+                headers: {
+                    'Cache-Control': 'max-age=7200'  // 2 часа
+                }
+            });
+
+            if (!res.ok) throw new Error('Ошибка сервера');
+
             allPhotos = await res.json();
             filteredPhotos = allPhotos;
+
             renderPhotos();
         } catch (err) {
-            gallery.innerHTML = '<div style="color:red; text-align:center;">Ошибка загрузки</div>';
+            console.error(err);
+            gallery.innerHTML = `
+                <div style="color:red; text-align:center; padding:40px;">
+                    Ошибка загрузки фотографий
+                </div>`;
         }
     }
 
+    // Рендер галереи
     function renderPhotos() {
         if (filteredPhotos.length === 0) {
-            gallery.innerHTML = '<div style="color:#999; text-align:center; width:100%;">Нет фото</div>';
+            gallery.innerHTML = `
+                <div style="color:#999; text-align:center; width:100%; padding:40px;">
+                    Нет фотографий
+                </div>`;
             return;
         }
 
-        gallery.innerHTML = filteredPhotos.map((photo, i) => `
-        <div class="photo-card" data-index="${i}">
-          <img src="${photo.path}?v=${Date.now()}" alt="${photo.filename}" loading="lazy">
-        </div>
-      `).join('');
+        const html = filteredPhotos.map((photo, i) => `
+            <div class="photo-card" data-index="${i}">
+                <img src="${photo.path}"
+                     alt="${photo.filename}"
+                     loading="lazy"
+                     decoding="async"
+                     width="300" height="300">
+            </div>
+        `).join('');
 
-        document.querySelectorAll('.photo-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const index = parseInt(card.dataset.index);
-                openModal(index);
-            });
-        });
+        gallery.innerHTML = html;
+
+        // Делегирование событий — более производительно
+        gallery.addEventListener('click', handlePhotoClick);
     }
 
+    function handlePhotoClick(e) {
+        const card = e.target.closest('.photo-card');
+        if (!card) return;
+
+        const index = parseInt(card.dataset.index);
+        if (!isNaN(index)) {
+            openModal(index);
+        }
+    }
+
+    // Фильтры
     filters.forEach(btn => {
         btn.addEventListener('click', () => {
             filters.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+
             const folder = btn.dataset.folder;
-            filteredPhotos = folder === 'all' ? allPhotos : allPhotos.filter(p => p.folder === folder);
+
+            filteredPhotos = folder === 'all'
+                ? allPhotos
+                : allPhotos.filter(p => p.folder === folder);
+
             renderPhotos();
         });
     });
 
-    // --- МОДАЛКА ---
+    // ==================== МОДАЛЬНОЕ ОКНО ====================
     function openModal(index) {
         currentModalIndex = index;
-        modalImage.src = filteredPhotos[index].path + '?v=' + Date.now();
+        modalImage.src = filteredPhotos[index].path;
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
+
     function closeModal() {
         modal.classList.remove('active');
         document.body.style.overflow = '';
-    }
-    function showPrev() {
-        currentModalIndex = (currentModalIndex - 1 + filteredPhotos.length) % filteredPhotos.length;
-        modalImage.src = filteredPhotos[currentModalIndex].path + '?v=' + Date.now();
-    }
-    function showNext() {
-        currentModalIndex = (currentModalIndex + 1) % filteredPhotos.length;
-        modalImage.src = filteredPhotos[currentModalIndex].path + '?v=' + Date.now();
+        // Очищаем src чтобы не висел последний запрос
+        setTimeout(() => modalImage.src = '', 300);
     }
 
+    function showPrev() {
+        currentModalIndex = (currentModalIndex - 1 + filteredPhotos.length) % filteredPhotos.length;
+        modalImage.src = filteredPhotos[currentModalIndex].path;
+    }
+
+    function showNext() {
+        currentModalIndex = (currentModalIndex + 1) % filteredPhotos.length;
+        modalImage.src = filteredPhotos[currentModalIndex].path;
+    }
+
+    // Обработчики модалки
     modalClose.onclick = closeModal;
     modalPrev.onclick = showPrev;
     modalNext.onclick = showNext;
-    modal.onclick = (e) => { if (e.target === modal) closeModal(); };
+
+    modal.onclick = (e) => {
+        if (e.target === modal) closeModal();
+    };
 
     document.addEventListener('keydown', e => {
         if (!modal.classList.contains('active')) return;
+
         if (e.key === 'Escape') closeModal();
         if (e.key === 'ArrowLeft') showPrev();
         if (e.key === 'ArrowRight') showNext();
     });
 
-    loadPhotos();
+    // Запуск при загрузке страницы
+    document.addEventListener('DOMContentLoaded', loadPhotos);
 </script>
 
 </body>

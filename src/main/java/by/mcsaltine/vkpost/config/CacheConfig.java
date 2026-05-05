@@ -18,9 +18,9 @@ public class CacheConfig {
         CaffeineCacheManager cacheManager = new CaffeineCacheManager();
 
         cacheManager.setCaffeine(Caffeine.newBuilder()
-                .maximumSize(500)                    // справочников мало
-                .expireAfterWrite(6, TimeUnit.MINUTES) // обновляем раз в 6 минут
-                .softValues());                      // позволяет GC собирать при нехватке памяти
+                .maximumSize(50)
+                .expireAfterWrite(6, TimeUnit.MINUTES)
+                .softValues());                      //  GC
 
         return cacheManager;
     }
