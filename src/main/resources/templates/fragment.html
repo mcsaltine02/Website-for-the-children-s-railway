@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="icon"
+          th:href="@{${@environment.getProperty('image.favicon')}}"
+          type="image/png">
 </head>
 <body>
 
@@ -15,13 +18,15 @@
     <button class="header__burger-btn" id="burger">
         <span></span><span></span><span></span>
     </button>
+
     <nav class="menu" id="menu">
         <ul class="menu_list">
             <li class="menu_item"><a class="menu_link" th:href="@{/}" id="about_us">О нас</a></li>
             <li class="menu_item"><a class="menu_link" th:href="@{/passengers}" id="passengers">Пассажирам</a></li>
-            <li class="menu_item"><a class="menu_link" th:href="@{/students}" id="students">Учащимся</a></li>
-            <li class="menu_item"><a class="menu_link" th:href="@{/informationSecurity}" id="informationSecurity">Инф.
-                безоп.</a></li>
+            <li class="menu_item"><a class="menu_link" th:href="@{/students}" id="students">Обучающимся</a></li>
+            <li class="menu_item">
+                <a class="menu_link" th:href="@{/informationSecurity}" id="informationSecurity">Инф. безоп.</a>
+            </li>
             <li class="menu_item dropper">
                 <p class="menu_link dropper-link" id="dropper">
                     Сведения об образовательной организации

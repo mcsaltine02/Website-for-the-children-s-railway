@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon"
+          th:href="@{${@environment.getProperty('image.favicon')}}"
+          type="image/png">
     <title>Все документы</title>
     <link th:href="@{css/root.css}" rel="stylesheet">
     <link th:href="@{css/dot-scroll.css}" rel="stylesheet">
@@ -25,9 +28,8 @@
             <div class="dot active" data-target="#section-1" title="Обучающимся"></div>
             <div class="dot" data-target="#section-2" title="Педагогам"></div>
             <div class="dot" data-target="#section-3" title="Родителям"></div>
-            <div class="dot" data-target="#section-4" title="Локальные акты"></div>
-            <div class="dot" data-target="#section-5" title="Нормативное регулирование"></div>
-            <div class="dot" data-target="#section-6" title="Детские безопасные сайты"></div>
+            <div class="dot" data-target="#section-4" title="Нормативное регулирование"></div>
+            <div class="dot" data-target="#section-5" title="Детские безопасные сайты"></div>
         </div>
     </div>
     <script src="js/dot-scroll.js"></script>
@@ -84,7 +86,7 @@
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.worker.min.js';
 
     // === Настройки ===
-    const MAX_CONCURRENT = 3;           // сколько PDF можно рендерить одновременно
+    const MAX_CONCURRENT = 1;           // сколько PDF можно рендерить одновременно
     const RENDER_QUEUE = [];
     let activeRenders = 0;
 

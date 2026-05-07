@@ -37,7 +37,7 @@ public class PdfCategoriesService {
                 new Category("Обучающимся", "Obuchayuschimsya", "obuchayuschimsya"),
                 new Category("Педагогам", "Pedagogam", "pedagogam"),
                 new Category("Родителям", "Roditelyam", "roditelyam"),
-                new Category("Локальные акты", "LokalnyeAkty", "lokalnye-akty"),
+//                new Category("Локальные акты", "LokalnyeAkty", "lokalnye-akty"),
                 new Category("Нормативное регулирование", "NormativnoeRegulirovanie", "normativnoe-regulirovanie"),
                 new Category("Детские безопасные сайты", "DetskieBezopasnyeSajty", "detskie-bezopasnye-sajty")
         );

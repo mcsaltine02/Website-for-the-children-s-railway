@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="icon"
+          th:href="@{${@environment.getProperty('image.favicon')}}"
+          type="image/png">
     <title>Образование</title>
     <link th:href="@{/css/root.css}" rel="stylesheet">
     <link th:href="@{/css/header.css}" rel="stylesheet">
@@ -39,16 +42,34 @@
 
 
         <p>
-            Лицензия на образовательную деятельность и иные документы по обучению можете глянуть на странице
-            Информационной безопасности раздела:
-            <a th:href="@{/informationSecurity#section-4}" class="local-name">Локальные акты</a>
+            Лицензия на образовательную деятельность и иные документы по обучению:
         </p>
     </div>
+
+    <div id="pdf-viewer"></div>
+    <script src="pdf.js"></script>
+
 
 </main>
 
 <footer th:insert="~{fragment :: footer}"></footer>
 
+
+
+<script>
+    PDFJS.getDocument('classpath:static/pdfs/LokalnyeAkty/Лицензия_на_образовательную_деятельность-РДЖД.pdf').then(function(pdf) {
+        pdf.getPage(1).then(function(page) {
+            var scale = 1;
+            var viewport = page.getViewport(scale);
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            document.getElementById('pdf-viewer').appendChild(canvas);
+            page.render({ canvasContext: ctx, viewport: viewport });
+        });
+    });
+</script>
 </body>
 
 </html>
