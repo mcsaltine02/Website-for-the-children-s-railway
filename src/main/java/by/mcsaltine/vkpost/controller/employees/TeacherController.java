@@ -46,7 +46,7 @@ public class TeacherController {
         return "main_info_about_organization/teachers/teacher";
     }
 
-    // ====================== РЕДАКТИРОВАНИЕ ======================
+
     @GetMapping("/edit")
     public String showEditForm(@PathVariable("teacherId") Integer teacherId, Model model) {
         Employee employee = employeeService.findById(teacherId);
@@ -89,7 +89,6 @@ public class TeacherController {
         return "redirect:/teachers";
     }
 
-    // ====================== ПРОСМОТР ФОТО ======================
     @GetMapping("/photo")
     public ResponseEntity<byte[]> getEmployeePhoto(@PathVariable Integer teacherId) {
         Employee employee = employeeService.findById(teacherId);
@@ -99,6 +98,5 @@ public class TeacherController {
                         .body(content))
                 .orElse(ResponseEntity.notFound().build());
     }
-
 
 }

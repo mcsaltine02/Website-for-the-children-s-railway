@@ -54,16 +54,12 @@ public class Employee {
     @JoinColumn(name = "ac_id")
     private AttractionCondition attractionCondition;
 
-    // Связи
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<EmployeesEducationLevel> educationLinks = new HashSet<>();
-
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<ProfessionalDevelopment> professionalDevelopments = new HashSet<>();
-
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<ProfessionalRetraining> professionalRetraining = new HashSet<>();
-
     @OneToMany(mappedBy = "employee", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, orphanRemoval = false)
     private Set<ProgramEmployees> taughtPrograms = new HashSet<>();
 
@@ -71,17 +67,14 @@ public class Employee {
         this.professionalDevelopments.add(pd);
         pd.setEmployee(this);
     }
-
     public void addProfessionalRetraining(ProfessionalRetraining pr) {
         this.professionalRetraining.add(pr);
         pr.setEmployee(this);
     }
-
     public void addEducationLink(EmployeesEducationLevel link) {
         this.educationLinks.add(link);
         link.setEmployee(this);
     }
-
     public void addTaughtProgram(ProgramEmployees pe) {
         if (this.taughtPrograms == null) {
             this.taughtPrograms = new HashSet<>();
@@ -91,7 +84,6 @@ public class Employee {
             pe.setEmployee(this);
         }
     }
-
     public void setTaughtPrograms(Set<ProgramEmployees> taughtPrograms) {
         if (taughtPrograms != null) {
             this.taughtPrograms = new HashSet<>(taughtPrograms);
@@ -99,6 +91,5 @@ public class Employee {
             this.taughtPrograms = new HashSet<>();
         }
     }
-
 }
 

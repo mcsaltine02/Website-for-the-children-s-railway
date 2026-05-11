@@ -12,6 +12,11 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/news")
+    public String news() {
+        return "news";
+    }
+
     @GetMapping("/passengers")
     public String passengers() {
         return "passengers";

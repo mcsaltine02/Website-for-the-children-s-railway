@@ -114,7 +114,7 @@ function displayPosts(posts) {
                 // Третье фото с оверлеем вместо blur
                 return `
                     <div class="post-imag-item overlay-plus" style="position:relative; overflow:hidden;">
-                        <img src="${url}" loading="lazy" decoding="async" style="width:100%; object-fit:cover;">
+                        <img src="${url}" loading="lazy" decoding="async" style="max-width:300px; object-fit:cover;">
                         <div class="vk-plus-overlay"></div>
                         <div class="vk-plus">+${hiddenCount}</div>
                     </div>`;
@@ -130,33 +130,51 @@ function displayPosts(posts) {
         const attachmentsHtml = allAtt.map(att => {
             if (att.type === 'photo') return '';
             if (att.type === 'video') {
-                hasVideo = true;
                 const video = att.video;
-                let mp4Url = '';
-                if (video.files) {
-                    const qualities = ['mp4_1080', 'mp4_720', 'mp4_480', 'mp4_360', 'mp4_240'];
-                    for (const q of qualities) {
-                        if (video.files[q]) {
-                            mp4Url = video.files[q];
-                            break;
-                        }
-                    }
-                }
+                return `<iframe
+                    src="https://vk.com/video_ext.php?oid=${video.owner_id}&id=${video.id}"
+                    max-width="300"
+                    allow="autoplay; encrypted-media; fullscreen; picture-in-picture;"
+                    frameBorder="0"
+                    allowFullScreen>
+//                 </iframe>
+                    <br>
+                    <a href="https://vk.com/video${video.owner_id}_${video.id}" target="_blank" class="post-video-link">
+                    Смотреть видео во ВКонтакте
+                    </a>`;}
+            return '';}
+        ).join('');
 
-                const preview = video.image?.sort((a, b) => b.width - a.width)[0]?.url || '';
-                if (mp4Url) {
-                    return `<video class="post-video" controls preload="metadata" poster="${preview}" style="width:100%; max-height:500px; border-radius:8px; background:#000; margin:10px 0;">
-                        <source src="${mp4Url}" type="video/mp4">
-                    </video>`;
-                }
-                const link = `https://vk.com/video${video.owner_id}_${video.id}`;
-                return `<div style="margin:10px 0;">
-                    ${preview ? `<img src="${preview}" class="post-image" style="max-height:400px; border-radius:8px;">` : ''}
-                    <br><a href="${link}" target="_blank" class="post-video-link">Смотреть видео во ВКонтакте</a>
-                </div>`;
-            }
-            return '';
-        }).join('');
+
+//                 hasVideo = true;
+//                 const video = att.video;
+//                 let mp4Url = '';
+//                 if (video.files) {
+//                     const qualities = ['mp4_1080', 'mp4_720', 'mp4_480', 'mp4_360', 'mp4_240'];
+//                     for (const q of qualities) {
+//                         if (video.files[q]) {
+//                             mp4Url = video.files[q];
+//                             break;
+//                         }
+//                     }
+//                 }
+//
+//                 const preview = video.image?.sort((a, b) => b.width - a.width)[0]?.url || '';
+//                 if (mp4Url) {
+//                     return `<video class="post-video" controls preload="metadata" poster="${preview}" style="max-width:300px; border-radius:8px; background:#000; margin:10px 0;">
+//                         <source src="${mp4Url}" type="video/mp4">
+//                     </video>`;
+//                 }
+//                 const link = `https://vk.com/video${video.owner_id}_${video.id}`;
+//                 return `<div style="margin:10px 0;">
+//                     ${preview ? `<img src="${preview}" class="post-image" style="max-width:300px; border-radius:8px;">` : ''}
+//                     <br><a href="${link}" target="_blank" class="post-video-link">Смотреть видео во ВКонтакте</a>
+// <!--                    <video src="https://vk.com/video-2608975_456239469" controls></video>-->
+//                 </div>`;
+//             }
+//             return '';
+//         }
+//             ).join('');
 
         let fullText = post.text || '';
         if (!fullText && repostText) fullText = repostText;

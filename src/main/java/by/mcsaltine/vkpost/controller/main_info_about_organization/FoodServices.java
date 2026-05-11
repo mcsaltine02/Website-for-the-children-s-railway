@@ -23,10 +23,8 @@ public class FoodServices {
 
     @Value("${app.upload.food.dir:/data/uploads/food-services}")
     private String uploadDir;
-
     @Value("${app.number-phone}")
     private String numberPhone;
-
     private  final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 
     @GetMapping
@@ -44,7 +42,6 @@ public class FoodServices {
             addCurrentFileToModel(model);
             return "main_info_about_organization/food-services";
         }
-
         if (!file.getOriginalFilename().toLowerCase().endsWith(".xlsx")) {
             model.addAttribute("error", "Разрешены только файлы .xlsx");
             addCurrentFileToModel(model);
@@ -64,7 +61,6 @@ public class FoodServices {
 
         String today = LocalDate.now().format(DATE_FORMAT);
         String newFilename = today + ".sm.xlsx";
-
         Path newFilePath = uploadPath.resolve(newFilename);
         file.transferTo(newFilePath);
         model.addAttribute("message", "Меню успешно обновлено на " + today);
@@ -75,7 +71,6 @@ public class FoodServices {
 
     private void addCurrentFileToModel(Model model) {
         Path uploadPath = Paths.get(uploadDir).toAbsolutePath().normalize();
-
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(uploadPath)) {
             for (Path file : stream) {
                 if (Files.isRegularFile(file)) {
@@ -88,7 +83,6 @@ public class FoodServices {
                 }
             }
         } catch (IOException e) {}
-
         model.addAttribute("filename", null);
     }
 }

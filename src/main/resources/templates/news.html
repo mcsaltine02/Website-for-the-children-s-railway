@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link rel="icon"
+        th:href="@{${@environment.getProperty('image.favicon')}}"
+        type="image/png">
+  <title>Новости</title>
+  <link th:href="@{css/root.css}" rel="stylesheet">
+  <link th:href="@{css/header.css}" rel="stylesheet">
+<!--  <link th:href="@{css/login.css}" rel="stylesheet">-->
+  <link th:href="@{css/VK_Sidebar.css}" rel="stylesheet">
+  <link th:href="@{css/footer.css}" rel="stylesheet">
+  <script defer th:src="@{/js/main.js}"></script>
+  <script defer th:src="@{/js/vk-api.js}"></script>
+</head>
+
+<body>
+
+<header th:insert="~{fragment :: header}"></header>
+
+<main>
+          <div class="sidebar">
+              <div class="name_sidebar_VK">
+                  <a href="https://vk.com/dskzd" target="_blank" style="display: contents;">
+                      <img th:src="@{images/icons8-vk-48.png}" style="width: 50px">
+                      <h3 style="color: #1976d2;font-size: 23px;">Наше ВК сообщество</h3>
+                  </a>
+                  <button id="refresh-btn" style="margin: 10px; background: none;border: none;">
+                      <svg fill="#000000" width="20px" height="20px" viewBox="0 0 24 24" id="update-alt"
+                           data-name="Flat Line"
+                           xmlns="http://www.w3.org/2000/svg" class="icon flat-line">
+                          <path id="primary" d="M5.07,8A8,8,0,0,1,20,12"
+                                style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
+                          <path id="primary-2" data-name="primary" d="M18.93,16A8,8,0,0,1,4,12"
+                                style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
+                          <polyline id="primary-3" data-name="primary" points="5 3 5 8 10 8"
+                                    style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline>
+                          <polyline id="primary-4" data-name="primary" points="19 21 19 16 14 16"
+                                    style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline>
+                      </svg>
+                  </button>
+              </div>
+              <div class="decorate_bottom_sidebar"></div>
+              <div class="bottom_decorate"></div>
+              <div id="loading" style="color: white"><p>Загрузка постов...</p></div>
+              <div id="posts" class="posts"><p></p></div>
+              <div id="error" style="display: none;"></div>
+
+              <div class="vk-scroll-dots" id="vk-scroll-dots"></div>
+          </div>
+</main>
+
+<footer th:insert="~{fragment :: footer}"></footer>
+
+</body>
+
+</html>
