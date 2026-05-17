@@ -8,14 +8,14 @@
         th:href="@{${@environment.getProperty('image.favicon')}}"
         type="image/png">
   <title></title>
-  <link th:href="@{css/root.css}" rel="stylesheet">
+<!--  <link th:href="@{css/root.css}" rel="stylesheet">-->
   <link th:href="@{css/header.css}" rel="stylesheet">
   <link th:href="@{css/dot-scroll.css}" rel="stylesheet">
   <link th:href="@{css/main_info_about_organization/logisticalSupport.css}" rel="stylesheet">
   <link th:href="@{css/footer.css}" rel="stylesheet">
 
 
-  <script defer th:src="@{/js/main.js}"></script>
+
 
 
 </head>
@@ -282,7 +282,7 @@
 </main>
 
 <footer th:insert="~{fragment :: footer}"></footer>
-
+<script defer th:src="@{/js/main.js}"></script>
 </body>
 
 </html>

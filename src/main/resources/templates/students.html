@@ -7,14 +7,13 @@
           th:href="@{${@environment.getProperty('image.favicon')}}"
           type="image/png">
     <title>Обучающимся</title>
-    <link rel="stylesheet" th:href="@{/css/root.css}">
+<!--    <link rel="stylesheet" th:href="@{/css/root.css}">-->
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="stylesheet" th:href="@{/css/students.css}">
-    <link rel="stylesheet" th:href="@{/css/raspisanie.css}">
     <link rel="stylesheet" th:href="@{/css/footer.css}">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <script defer th:src="@{js/main.js}"></script>
+
 
 </head>
 
@@ -120,7 +119,7 @@
     searchInput?.addEventListener('input', filter);
     filter(); // первый запуск
 </script>
-
+<script defer th:src="@{js/main.js}"></script>
 </body>
 
 </html>
