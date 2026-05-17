@@ -36,5 +36,5 @@ INSERT INTO taught_program (qualifications) VALUES
                                                 ('Локомотивы и локомотивное хозяйство (МТ)'),
                                                 ('Автоматика, телемеханика и связь');
 
-INSERT INTO train_information (price) VALUES (0)
+
 

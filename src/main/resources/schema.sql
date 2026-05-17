@@ -2,24 +2,16 @@
 -- Схема для H2 в режиме PostgreSQL
 -- =============================================
 
-DROP TABLE IF EXISTS program_employees CASCADE;
-DROP TABLE IF EXISTS taught_program CASCADE;
-DROP TABLE IF EXISTS professional_retraining CASCADE;
-DROP TABLE IF EXISTS professional_development CASCADE;
-DROP TABLE IF EXISTS employees_education_level CASCADE;
-DROP TABLE IF EXISTS education_level CASCADE;
-DROP TABLE IF EXISTS employees CASCADE;
-DROP TABLE IF EXISTS academic_degree CASCADE;
-DROP TABLE IF EXISTS post CASCADE;
-DROP TABLE IF EXISTS attraction_condition CASCADE;
-
-
-
-
-create table if not exists train_information(
-    ti_id BIGSERIAL primary key,
-    price int default 0
-);
+-- DROP TABLE IF EXISTS program_employees CASCADE;
+-- DROP TABLE IF EXISTS taught_program CASCADE;
+-- DROP TABLE IF EXISTS professional_retraining CASCADE;
+-- DROP TABLE IF EXISTS professional_development CASCADE;
+-- DROP TABLE IF EXISTS employees_education_level CASCADE;
+-- DROP TABLE IF EXISTS education_level CASCADE;
+-- DROP TABLE IF EXISTS employees CASCADE;
+-- DROP TABLE IF EXISTS academic_degree CASCADE;
+-- DROP TABLE IF EXISTS post CASCADE;
+-- DROP TABLE IF EXISTS attraction_condition CASCADE;
 
 -- Учёная степень
 CREATE TABLE if not exists  academic_degree
