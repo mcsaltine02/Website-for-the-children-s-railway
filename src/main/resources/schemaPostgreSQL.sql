@@ -1,6 +1,12 @@
         -- =============================================
         -- Структура БД с удалением самого значения education_level
-        -- =============================================
+        -- ==============
+        --
+
+        create table if not exists train_information(
+                                                        ti_id BIGSERIAL primary key,
+                                                        price int default 0
+        );
         -- Учёная степень
         CREATE TABLE IF NOT EXISTS academic_degree
         (
