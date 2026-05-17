@@ -11,6 +11,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>vk-api</name>
     <description>Spring Boot application for VK API integration</description>
+    <packaging>jar</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
