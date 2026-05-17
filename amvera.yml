@@ -5,12 +5,12 @@ meta:
     version: "11"
 build:
   image: null
-  args: clean package -DskipTests
+  args: spring-boot:repackage
   artifacts:
     target/*.jar: /
 run:
   image: null
   jarName: vk-api-0.0.1-SNAPSHOT.jar
   persistenceMount: /data
-  containerPort: "8081"
-  servicePort: "80"
+  containerPort: 8081
+  servicePort: 80
