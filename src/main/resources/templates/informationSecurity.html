@@ -7,8 +7,6 @@
           th:href="@{${@environment.getProperty('image.favicon')}}"
           type="image/png">
     <title>Все документы</title>
-<!--    <link th:href="@{css/root.css}" rel="stylesheet">-->
-    <link th:href="@{css/dot-scroll.css}" rel="stylesheet">
     <link th:href="@{css/header.css}" rel="stylesheet">
     <link th:href="@{css/footer.css}" rel="stylesheet">
     <link th:href="@{css/informationSecurity_PDF.css}" rel="stylesheet">
@@ -32,7 +30,7 @@
             <div class="dot" data-target="#section-5" title="Детские безопасные сайты"></div>
         </div>
     </div>
-    <script src="js/dot-scroll.js"></script>
+<!--    <script src="js/dot-scroll.js"></script>-->
 
     <div th:each="cat, stat : ${categories}" class="section" th:id="'section-' + ${stat.index + 1}">
         <h1 th:text="${cat.name}">Категория</h1>

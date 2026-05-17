@@ -8,21 +8,12 @@
           th:href="@{${@environment.getProperty('image.favicon')}}"
           type="image/png">
     <title>Ростовская детская железная дорога</title>
-
-
-
-
-
 </head>
 
-<!--<link th:href="@{css/root.css}" rel="stylesheet">-->
-<link th:href="@{css/header.css}" rel="stylesheet">
+<link th:href="@{css/root.css}" rel="stylesheet">
 <link th:href="@{css/About_Us.css}" rel="stylesheet">
-<link th:href="@{css/dot-scroll.css}" rel="stylesheet">
-<!--<link th:href="@{css/shema.css}" rel="stylesheet">-->
-<!--<link th:href="@{css/about_us_block_values.css}" rel="stylesheet">-->
-<link th:href="@{css/footer.css}" rel="stylesheet">
-<!--<link th:href="@{css/slider.css}" rel="stylesheet">-->
+<!--<link th:href="@{css/footer.css}" rel="stylesheet">-->
+
 
 <body>
 
@@ -40,7 +31,6 @@
         <span class="dot" data-target="#block_values"></span>
     </div>
 </div>
-<script src="js/dot-scroll.js"></script>
 
 <div style="margin-top: 153px; grid-template-columns: 381px 1fr 326px;">
 
@@ -203,8 +193,8 @@
                 </div>
 
 
-                <script th:src="@{/js/slider.js}"></script>
-                <script th:src="@{/js/history.js}"></script>
+<!--                <script th:src="@{/js/slider.js}"></script>-->
+
             </div>
 
         </section>
@@ -360,32 +350,8 @@
 
 <footer th:insert="~{fragment :: footer}"></footer>
 
-
-<script>
-    const slides = document.querySelectorAll('.image-box');
-    let current = 0;
-
-    function showSlide(n) {
-        slides[current].classList.remove('active');
-        current = (n + slides.length) % slides.length;
-        slides[current].classList.add('active');
-    }
-
-    // Делегирование кликов по кнопкам
-    document.querySelector('.block_values').addEventListener('click', function (e) {
-        if (e.target.classList.contains('button-slider-block_values_next')) {
-            showSlide(current + 1);
-        }
-        if (e.target.classList.contains('button-slider-block_values_pref')) {
-            showSlide(current - 1);
-        }
-    });
-
-    // Первый слайд активный (на всякий случай)
-    slides[0].classList.add('active');
-</script>
-
+<script th:src="@{/js/about_us.js}"></script>
+<script defer th:src="@{/js/main.js}"></script>
 
 </body>
-<script defer th:src="@{/js/main.js}"></script>
 </html>

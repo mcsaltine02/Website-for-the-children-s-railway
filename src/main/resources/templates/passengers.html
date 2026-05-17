@@ -9,12 +9,9 @@
           th:href="@{${@environment.getProperty('image.favicon')}}"
           type="image/png">
     <title>Document</title>
-<!--    <link th:href="@{/css/root.css}" rel="stylesheet">-->
     <link th:href="@{/css/header.css}" rel="stylesheet">
-<!--    <link th:href="@{/css/shema.css}" rel="stylesheet">-->
     <link th:href="@{/css/footer.css}" rel="stylesheet">
     <link th:href="@{/css/passengers.css}" rel="stylesheet">
-    <link th:href="@{css/dot-scroll.css}" rel="stylesheet">
 </head>
 
 <body>
@@ -246,8 +243,6 @@
 
 <footer th:insert="~{fragment :: footer}"></footer>
 
-
-<script src="js/dot-scroll.js"></script>
 <script th:src="@{/js/main.js}" defer></script>
 </body>
 

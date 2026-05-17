@@ -55,3 +55,28 @@ items.forEach(item => {
 
 // Инициализация
 activateItem(document.querySelector('.timeline-item.active'));
+
+
+// block_values
+
+const slides = document.querySelectorAll('.image-box');
+let current = 0;
+
+function showSlide(n) {
+    slides[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+}
+
+// Делегирование кликов по кнопкам
+document.querySelector('.block_values').addEventListener('click', function (e) {
+    if (e.target.classList.contains('button-slider-block_values_next')) {
+        showSlide(current + 1);
+    }
+    if (e.target.classList.contains('button-slider-block_values_pref')) {
+        showSlide(current - 1);
+    }
+});
+
+// Первый слайд активный (на всякий случай)
+slides[0].classList.add('active');
