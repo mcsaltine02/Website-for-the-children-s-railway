@@ -3,8 +3,8 @@ import { GlobalWorkerOptions, getDocument } from "https://cdnjs.cloudflare.com/a
 const canvas = document.getElementById("pdf-canvas");
 const errorMessage = document.getElementById("error-message");
 
-// Указываем путь к вашему PDF-файлу
-const pdfUrl = "https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf";  // <-- как указать этот путь
+
+const pdfUrl = "https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf";
 
 
 GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs";

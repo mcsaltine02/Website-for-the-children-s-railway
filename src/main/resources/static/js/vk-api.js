@@ -145,37 +145,6 @@ function displayPosts(posts) {
             return '';}
         ).join('');
 
-
-//                 hasVideo = true;
-//                 const video = att.video;
-//                 let mp4Url = '';
-//                 if (video.files) {
-//                     const qualities = ['mp4_1080', 'mp4_720', 'mp4_480', 'mp4_360', 'mp4_240'];
-//                     for (const q of qualities) {
-//                         if (video.files[q]) {
-//                             mp4Url = video.files[q];
-//                             break;
-//                         }
-//                     }
-//                 }
-//
-//                 const preview = video.image?.sort((a, b) => b.width - a.width)[0]?.url || '';
-//                 if (mp4Url) {
-//                     return `<video class="post-video" controls preload="metadata" poster="${preview}" style="max-width:300px; border-radius:8px; background:#000; margin:10px 0;">
-//                         <source src="${mp4Url}" type="video/mp4">
-//                     </video>`;
-//                 }
-//                 const link = `https://vk.com/video${video.owner_id}_${video.id}`;
-//                 return `<div style="margin:10px 0;">
-//                     ${preview ? `<img src="${preview}" class="post-image" style="max-width:300px; border-radius:8px;">` : ''}
-//                     <br><a href="${link}" target="_blank" class="post-video-link">Смотреть видео во ВКонтакте</a>
-// <!--                    <video src="https://vk.com/video-2608975_456239469" controls></video>-->
-//                 </div>`;
-//             }
-//             return '';
-//         }
-//             ).join('');
-
         let fullText = post.text || '';
         if (!fullText && repostText) fullText = repostText;
         if (!fullText && hasVideo) fullText = 'Видео';

@@ -74,6 +74,6 @@ public class PdfCategoriesService {
     }
 
     public List<Category> getAllCategories() {
-        return categories; // возвращаем тот же объект (immutable по смыслу)
+        return categories;
     }
 }
