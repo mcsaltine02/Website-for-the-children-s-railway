@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -25,53 +24,42 @@ public class ImageController implements WebMvcConfigurer {
             ".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp"
     );
 
-    // Кэш списка фотографий (загружается один раз)
-    private volatile List<Map<String, String>> cachedImages = null;
-
-    @PostConstruct
-    public void init() {
-        // Загружаем фотографии при старте приложения
-        this.cachedImages = loadAllImages();
-        System.out.println("Фотографии успешно загружены в кэш для странички 'Фотогаллерея'. Всего: " + cachedImages.size() + " шт.");
-    }
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // Сильное кэширование статических ресурсов (фотографии)
+        // Без кэширования изображений
         registry.addResourceHandler("/NewPhoto/**")
                 .addResourceLocations("classpath:/NewPhoto/")
-                .setCachePeriod(86400)   // 24 часа
-                .setCacheControl(CacheControl.maxAge(24, TimeUnit.HOURS).cachePublic());
+                .setCachePeriod(0)
+                .setCacheControl(CacheControl.noCache().mustRevalidate());
 
         registry.addResourceHandler("/OldPhoto/**")
                 .addResourceLocations("classpath:/OldPhoto/")
-                .setCachePeriod(86400)
-                .setCacheControl(CacheControl.maxAge(24, TimeUnit.HOURS).cachePublic());
+                .setCachePeriod(0)
+                .setCacheControl(CacheControl.noCache().mustRevalidate());
     }
 
     /**
-     * Основной эндпоинт — очень быстрый, возвращает кэш
+     * Возвращает список всех фотографий (загружается заново при каждом запросе)
      */
     @GetMapping("/api/images")
     public List<Map<String, String>> getImages() {
-        return cachedImages != null ? cachedImages : List.of();
+        return loadAllImages();
     }
 
     /**
-     * Принудительное обновление кэша (на всякий случай)
+     * Принудительное обновление списка (на всякий случай)
      */
     @PostMapping("/api/images/refresh")
     public Map<String, String> refreshCache() {
-        this.cachedImages = loadAllImages();
         return Map.of(
                 "status", "success",
-                "message", "Кэш обновлён",
-                "total", String.valueOf(cachedImages.size())
+                "message", "Список фотографий обновлён",
+                "total", String.valueOf(loadAllImages().size())
         );
     }
 
     /**
-     * Загрузка всех фотографий
+     * Загрузка всех фотографий из папок
      */
     private List<Map<String, String>> loadAllImages() {
         List<Map<String, String>> images1 = loadImagesFromFolder("NewPhoto", "Новые фото");

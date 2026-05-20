@@ -2,13 +2,19 @@ package by.mcsaltine.vkpost.controller;
 
 import by.mcsaltine.vkpost.model.ScheduleLesson;
 import by.mcsaltine.vkpost.parser.RdjdScheduleParser;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import java.net.MalformedURLException;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
@@ -94,5 +100,15 @@ public class ScheduleController {
             System.err.println("Ошибка при загрузке расписания: " + e.getMessage());
             cachedLessons = new ArrayList<>();
         }
+    }
+
+    @GetMapping("/schedule/download")
+    private ResponseEntity<UrlResource> download() throws MalformedURLException {
+        UrlResource resource = new UrlResource(filePath.toUri());
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        "attachment; filename=\"raspisanie.xlsx\"")
+                .body(resource);
     }
 }

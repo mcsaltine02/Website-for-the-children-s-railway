@@ -98,7 +98,7 @@ public class EmployeeService {
         employee.getProfessionalDevelopments().clear();
         employee.getProfessionalRetraining().clear();
         employee.getTaughtPrograms().clear();
-        programEmployeesRepository.deleteAllByEmployee(employee);
+        programEmployeesRepository.deleteAllByEmployeeId(employee.getEId());
 
         // Добавляем новые связи
         addEducationLevels(employee, dto.getNewEducationLevels());
