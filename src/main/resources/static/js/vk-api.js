@@ -1,24 +1,24 @@
 const CACHE_KEY = 'vk_posts_cache';
-const CACHE_TTL = 60 * 60 * 1000; // 10 минут
+const CACHE_TTL = 60 * 60 * 1000;
 
 // === КЭШИРОВАНИЕ ===
-// function getCachedPosts() {
-//     const cached = localStorage.getItem(CACHE_KEY);
-//     if (!cached) return null;
-//     const {data, timestamp} = JSON.parse(cached);
-//     if (Date.now() - timestamp > CACHE_TTL) {
-//         localStorage.removeItem(CACHE_KEY);
-//         return null;
-//     }
-//     return data;
-// }
+function getCachedPosts() {
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (!cached) return null;
+    const {data, timestamp} = JSON.parse(cached);
+    if (Date.now() - timestamp > CACHE_TTL) {
+        localStorage.removeItem(CACHE_KEY);
+        return null;
+    }
+    return data;
+}
 
 function setCachedPosts(data) {
     const cacheObj = {data, timestamp: Date.now()};
     localStorage.setItem(CACHE_KEY, JSON.stringify(cacheObj));
 }
 
-// === ОСНОВНАЯ ЗАГРУЗКА ===
+//  ОСНОВНАЯ ЗАГРУЗКА
 async function fetchPosts(forceRefresh = false) {
     const loading = document.getElementById('loading');
     const errorDiv = document.getElementById('error');
@@ -28,12 +28,12 @@ async function fetchPosts(forceRefresh = false) {
         localStorage.removeItem(CACHE_KEY);
     }
 
-    // const cached = getCachedPosts();
-    // if (cached && !forceRefresh) {
-    //     loading.style.display = 'none';
-    //     displayPosts(cached.response.items);
-    //     return;
-    // }
+    const cached = getCachedPosts();
+    if (cached && !forceRefresh) {
+        loading.style.display = 'none';
+        displayPosts(cached.response.items);
+        return;
+    }
 
     try {
         loading.style.display = 'block';
@@ -220,7 +220,7 @@ function initPhotoBlocksLazy() {
     document.querySelectorAll('.post-imag').forEach(block => observer.observe(block));
 }
 
-// === МОДАЛКА ===
+//  модалка
 let currentVkIndex = 0;
 let currentVkPhotos = [];
 

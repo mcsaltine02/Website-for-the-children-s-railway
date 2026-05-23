@@ -40,6 +40,7 @@ public class VkService {
 
             JsonNode jsonNode = objectMapper.readTree(response.getBody());
 
+
             if (jsonNode.has("error")) {
                 JsonNode error = jsonNode.get("error");
                 String errorMessage = "VK API Error " + error.get("error_code").asText() + ": " + error.get("error_msg").asText();

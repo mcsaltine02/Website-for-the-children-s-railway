@@ -23,11 +23,7 @@ main {
     font-weight: bold
 }
 
-#Start_Info,
-#become_railway,
-#How_to_find_us,
-.img_shema,
-.block_values {
+#Start_Info, #become_railway, #How_to_find_us, .block_values {
     margin-top: 70px;
 }
 
@@ -819,6 +815,11 @@ main a:hover,
     .scroll-progress{display: none}!important;
 }
 @media (max-width: 540px) {
+
+    .script_shema{
+        width: -webkit-fill-available;
+    }
+
     .slider-foreground {
         bottom: -20px;
         border-radius: 10px 10px 0 0;
@@ -833,8 +834,11 @@ main a:hover,
 
 .img_shema {
     display: block;
-    margin: 70px auto;
-    max-width: 800px;
+    margin-bottom: 70px;
+    width: -webkit-fill-available;
+    max-width: 700px;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .img_shema img {
@@ -1069,3 +1073,6 @@ main a:hover,
 .section {
     scroll-margin-top: 100px;
 }
+
+
+

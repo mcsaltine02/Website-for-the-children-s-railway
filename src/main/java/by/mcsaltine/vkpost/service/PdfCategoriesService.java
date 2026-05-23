@@ -37,7 +37,6 @@ public class PdfCategoriesService {
                 new Category("Обучающимся", "Obuchayuschimsya", "obuchayuschimsya"),
                 new Category("Педагогам", "Pedagogam", "pedagogam"),
                 new Category("Родителям", "Roditelyam", "roditelyam"),
-//                new Category("Локальные акты", "LokalnyeAkty", "lokalnye-akty"),
                 new Category("Нормативное регулирование", "NormativnoeRegulirovanie", "normativnoe-regulirovanie"),
                 new Category("Детские безопасные сайты", "DetskieBezopasnyeSajty", "detskie-bezopasnye-sajty")
         );
@@ -65,7 +64,7 @@ public class PdfCategoriesService {
                         .sorted()
                         .collect(Collectors.toList());
 
-                cat.files = files;   // заполняем один раз
+                cat.files = files;
 
             } catch (IOException e) {
                 cat.files = Collections.emptyList();

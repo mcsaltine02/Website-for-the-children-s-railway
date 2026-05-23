@@ -88,7 +88,7 @@
 
             const res = await fetch('/api/images', {
                 method: 'GET',
-                cache: 'force-cache',           // сильное кэширование браузером
+                cache: 'force-cache',
                 headers: {
                     'Cache-Control': 'max-age=7200'  // 2 часа
                 }

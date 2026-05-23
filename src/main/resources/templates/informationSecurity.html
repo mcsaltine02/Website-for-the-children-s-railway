@@ -78,13 +78,14 @@
 </main>
 
 <footer th:insert="~{fragment :: footer}"></footer>
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.worker.min.js';
 
 <!--отображение ПДФ-->
 <script th:inline="javascript">
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.worker.min.js';
 
     // === Настройки ===
-    const MAX_CONCURRENT = 1;           // сколько PDF можно рендерить одновременно
+    const MAX_CONCURRENT = 2;           // сколько PDF можно рендерить одновременно
     const RENDER_QUEUE = [];
     let activeRenders = 0;
 

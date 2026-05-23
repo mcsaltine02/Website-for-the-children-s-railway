@@ -2,4 +2,9 @@ spring:
   web:
     resources:
       static-locations: classpath:/static/,classpath:/NewPhoto/,classpath:/OldPhoto/
+      cache:
+        cachecontrol:
+          max-age: 10d
+          cache-public: true
+          immutable: true
 
