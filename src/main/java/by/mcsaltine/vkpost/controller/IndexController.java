@@ -20,7 +20,7 @@ public class IndexController {
         return "news";
     }
 
-    @GetMapping("/passengers")
+    @GetMapping("/schedule")
     public String passengers() {
         return "passengers";
     }
