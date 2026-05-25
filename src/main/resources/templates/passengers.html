@@ -57,182 +57,75 @@
             </tr>
         </table>
 
-        <!-- Исходная таблица для экранов > 590px -->
-        <table class="timetable section" id="timetable">
-            <tr>
-                <td colspan="4">
-                    <h1 class="timetable_name">Расписание движения поезда</h1>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>Отправление</h3>
-                </td>
-                <td>
-                    <h3>Прибытие</h3>
-                </td>
-                <td>
-                    <h3>Отправление</h3>
-                </td>
-                <td>
-                    <h3>Прибытие</h3>
-                </td>
-            </tr>
-            <tr>
-                <td>10:00</td>
-                <td>10:22</td>
-                <td>14:00</td>
-                <td>14:22</td>
-            </tr>
-            <tr>
-                <td>10:15</td>
-                <td>10:37</td>
-                <td>14:15</td>
-                <td>14:37</td>
-            </tr>
-            <tr>
-                <td>10:30</td>
-                <td>10:52</td>
-                <td>14:30</td>
-                <td>14:52</td>
-            </tr>
-            <tr>
-                <td>10:45</td>
-                <td>11:07</td>
-                <td>14:45</td>
-                <td>15:07</td>
-            </tr>
-            <tr>
-                <td>11:00</td>
-                <td>11:22</td>
-                <td>15:00</td>
-                <td>15:22</td>
-            </tr>
-            <tr>
-                <td>11:15</td>
-                <td>11:37</td>
-                <td>15:15</td>
-                <td>15:37</td>
-            </tr>
-            <tr>
-                <td>11:30</td>
-                <td>11:52</td>
-                <td>15:30</td>
-                <td>15:52</td>
-            </tr>
-            <tr>
-                <td>11:45</td>
-                <td>12:07</td>
-                <td>15:45</td>
-                <td>16:07</td>
-            </tr>
-            <tr>
-                <td>12:00</td>
-                <td>12:22</td>
-                <td>16:00</td>
-                <td>16:22</td>
-            </tr>
-            <tr>
-                <td colspan="4">
-                    <h3>ПЕРЕРЫВ с 12:00 до 14:00</h3>
-                </td>
-            </tr>
-        </table>
+        <div class="container">
 
-        <!-- Альтернативная таблица для экранов <= 590px -->
-        <table class="iksweb section" id="iksweb" style="display: none;">
-            <tr>
-                <td colspan="2"><h1>Расписание движения поезда</h1></td>
-            </tr>
-            <tr>
-                <td>
-                    <h3>Отправление</h3>
-                </td>
-                <td>
-                    <h3>Прибытие</h3>
-                </td>
-            </tr>
-            <tr>
-                <td>10:00</td>
-                <td>10:22</td>
-            </tr>
-            <tr>
-                <td>10:15</td>
-                <td>10:37</td>
-            </tr>
-            <tr>
-                <td>10:30</td>
-                <td>10:52</td>
-            </tr>
-            <tr>
-                <td>10:45</td>
-                <td>11:07</td>
-            </tr>
-            <tr>
-                <td>11:00</td>
-                <td>11:22</td>
-            </tr>
-            <tr>
-                <td>11:15</td>
-                <td>11:37</td>
-            </tr>
-            <tr>
-                <td>11:30</td>
-                <td>11:52</td>
-            </tr>
-            <tr>
-                <td>11:45</td>
-                <td>12:07</td>
-            </tr>
-            <tr>
-                <td>12:00</td>
-                <td>12:22</td>
-            </tr>
-            <tr>
-                <td colspan="2"><h3>ПЕРЕРЫВ до 14:00</h3></td>
-            </tr>
-            <tr>
-                <td>14:00</td>
-                <td>14:22</td>
-            </tr>
-            <tr>
-                <td>14:15</td>
-                <td>14:37</td>
-            </tr>
-            <tr>
-                <td>14:30</td>
-                <td>14:52</td>
-            </tr>
-            <tr>
-                <td>14:45</td>
-                <td>15:07</td>
-            </tr>
-            <tr>
-                <td>15:00</td>
-                <td>15:22</td>
-            </tr>
-            <tr>
-                <td>15:15</td>
-                <td>15:37</td>
-            </tr>
-            <tr>
-                <td>15:30</td>
-                <td>15:52</td>
-            </tr>
-            <tr>
-                <td>15:45</td>
-                <td>16:07</td>
-            </tr>
-            <tr>
-                <td>16:00</td>
-                <td>16:22</td>
-            </tr>
-        </table>
+            <!-- КРАТКИЙ ВИД -->
+            <div id="short-view">
+                <div id="current-section">
+                    <h2>Текущее положение поезда</h2>
+                    <table class="current-train" id="currentTable">
+                        <tbody></tbody>
+                    </table>
+                </div>
 
-        <div class="img_shema section" id="img_shema">
-            <h1 class="shema_name">Схема</h1>
-            <img src="/images/схема.WebP" alt="">
+                <div id="next-section">
+                    <h2 id="next-title">Расписание следующего отбытия</h2>
+                    <table class="next-schedule" id="nextTable">
+                        <thead>
+                        <tr>
+                            <th>Солнечная</th>
+                            <th>Вити Черевичкина</th>
+                            <th>Победа</th>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <button id="btnDetails" class="btn-primary">Подробнее</button>
+            </div>
+
+            <!-- ПОЛНОЕ РАСПИСАНИЕ -->
+            <div id="full-view" style="display: none;">
+                <h2>Расписание</h2>
+                <table class="full-schedule" id="fullTable">
+                    <thead>
+                    <tr>
+                        <th>Солнечная</th>
+                        <th>Вити Черевичкина</th>
+                        <th>Победа</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <button id="btnBack" class="btn-secondary">Краткая информация</button>
+            </div>
         </div>
+
+        <!-- Картинка со станциями -->
+        <div class="map-wrapper" style="position: relative; display: inline-block; max-width: 100%;">
+            <img id="routeMap" src="/images/схема.WebP" alt="Схема" style="width: 100%; height: auto;">
+
+            <!-- SVG overlay -->
+            <svg id="stationOverlay" width="100%" height="100%" style="position: absolute; top: 0; left: 0;">
+                <circle cx="30%" cy="84%" r="35" opacity="0" data-station="solar" class="station-point"></circle>
+                <circle cx="28%" cy="41%" r="35" opacity="0" data-station="viti" class="station-point"></circle>
+                <circle cx="80%" cy="14%" r="35" opacity="0" data-station="pobeda" class="station-point"></circle>
+            </svg>
+        </div>
+
+        <!-- Модальное окно -->
+        <div id="stationModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modalStationName"></h2>
+                <div id="modalSchedule" class="modal-schedule"></div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script th:src="@{/js/schedule.js}"></script>
     </main>
 
 

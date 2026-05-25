@@ -6,14 +6,99 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 h3{
     margin-top: 10px;
 }
 
-table {
+.prices {
     margin-top: 70px;
+    color: var(--blue);
 }
+#current-section{
+    text-align: -webkit-center;
+}
+.container{
+    margin-top: 50px;
+}
+.next-schedule, .current-train{
+    width: -webkit-fill-available;
+    text-align: center;
+    color: var(--blue);
+}
+#full-view{
+    text-align: center;
+}
+.full-schedule{
+    margin-top: 20px;
+}
+
+.modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px 35px;
+    border-radius: 12px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.modal-schedule {
+    max-height: 420px;
+    overflow-y: auto;
+    margin-top: 15px;
+}
+
+.times-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 8px;
+    text-align: center;
+}
+
+.time-item {
+    padding: 10px 8px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.time-item.past {
+    color: #9e9e9e;
+    background-color: #f5f5f5;
+    text-decoration: line-through;
+}
+
+.time-item.future {
+    color: #1565c0;
+    background-color: #e3f2fd;
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+
 
 table.timetable {
     width: 600px;
@@ -44,9 +129,9 @@ table.timetable table.prices th {
     color: #fff;
     font-weight: normal;
 }
-/* Добавляем вертикальную границу между 2-м и 3-м столбцами */
+/* Ð”Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼ Ð²ÐµÑ€Ñ‚Ð¸ÐºÐ°Ð»ÑŒÐ½ÑƒÑŽ Ð³Ñ€Ð°Ð½Ð¸Ñ†Ñƒ Ð¼ÐµÐ¶Ð´Ñƒ 2-Ð¼ Ð¸ 3-Ð¼ ÑÑ‚Ð¾Ð»Ð±Ñ†Ð°Ð¼Ð¸ */
 table.timetable tr td:nth-child(2) {
-    border-right: 1.5px solid #595959; /* Вертикальная граница */
+    border-right: 1.5px solid #595959; /* Ð’ÐµÑ€Ñ‚Ð¸ÐºÐ°Ð»ÑŒÐ½Ð°Ñ Ð³Ñ€Ð°Ð½Ð¸Ñ†Ð° */
 }
 table.prices tr td[colspan="2"] {
     border-right: none;
@@ -54,7 +139,7 @@ table.prices tr td[colspan="2"] {
 }
 
 table.prices tr td:nth-child(1) {
-    border-right: 1.5px solid #595959; /* Вертикальная граница */
+    border-right: 1.5px solid #595959; /* Ð’ÐµÑ€Ñ‚Ð¸ÐºÐ°Ð»ÑŒÐ½Ð°Ñ Ð³Ñ€Ð°Ð½Ð¸Ñ†Ð° */
 }
 
 
@@ -91,9 +176,9 @@ table.price_free th {
 
 table.prices td,
 table.prices th {
-    padding: 3px;
+    /* padding: 3px; */
     width: 30px;
-    height: 35px;
+    /* height: 35px; */
 }
 
 table.prices th {
@@ -149,4 +234,106 @@ table.iksweb {
         width: 100%;
         height: 100%;
     }
+    .full-schedule{
+        font-size: 15px;
+        color: var(--blue);
+        width: 50px;
+    }
+}
+
+
+
+.current-row {
+    /*background-color: #fff3cd !important;*/
+    /*font-weight: bold;*/
+}
+
+.red {
+    /*background-color: #ffebee !important;*/
+    color: #d32f2f !important;
+    font-weight: bold;
+}
+
+.green {
+    /*background-color: #e8f5e9 !important;*/
+    /*color: #2e7d32 !important;*/
+    /*font-weight: bold;*/
+}
+
+
+.current-train .green {
+    /*background-color: #e8f5e9 !important;*/
+    /*color: #2e7d32 !important;*/
+}
+
+.current-row {
+    /*background-color: #fff3cd !important;*/
+    /*font-weight: bold;*/
+}
+
+
+.past {
+    color: #9e9e9e !important;
+    text-decoration: line-through;
+    font-weight: normal !important;
+}
+
+
+.full-schedule td {
+    padding: 3px 10px;
+    text-align: center;
+}
+
+.full-schedule tr:hover {
+    background-color: #f8f9fa;
+}
+.full-schedule {
+    border-collapse: separate;
+    border-spacing: 16px 0px;
+    width: 50px;
+    color: var(--blue);
+}
+
+
+
+.price_free{
+    font-size: 14px;
+    color: var(--text-gray);
+}
+.map-wrapper{
+    margin-top: 35px;
+}
+
+#next-section, #current-section{
+    margin-bottom:  35px;
+}
+
+
+
+
+.time-item {
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.time-item.past {
+    color: #9e9e9e;
+    background-color: #f5f5f5;
+    text-decoration: line-through;
+}
+
+.time-item.future {
+    color: #1565c0;
+    background-color: #e3f2fd;
+}
+
+.time-item.current {
+    background-color: #ffebee !important;
+    color: #d32f2f !important;
+    font-weight: bold;
+    border: 2px solid #d32f2f;
+    box-shadow: 0 0 8px rgba(211, 47, 47, 0.3);
 }
