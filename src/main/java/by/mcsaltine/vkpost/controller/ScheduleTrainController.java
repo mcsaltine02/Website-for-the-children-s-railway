@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.*;
 
 @Controller
@@ -49,7 +50,7 @@ public class ScheduleTrainController {
     @GetMapping("/current")
     @ResponseBody
     public Map<String, Object> getCurrentAndNext() {
-        LocalTime now = LocalTime.now();
+        LocalTime now = LocalTime.now(ZoneId.of("Europe/Moscow"));
         int currentIndex = -1;
 
         // Поиск текущего рейса
@@ -127,7 +128,7 @@ public class ScheduleTrainController {
     @GetMapping("/full")
     @ResponseBody
     public Map<String, Object> getFullSchedule() {
-        LocalTime now = LocalTime.now();
+        LocalTime now = LocalTime.now(ZoneId.of("Europe/Moscow"));
         int currentIndex = -1;
         String currentPhase = "NONE";
 
