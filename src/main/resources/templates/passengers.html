@@ -105,7 +105,17 @@
 
         <!-- Картинка со станциями -->
         <div class="map-wrapper" style="position: relative; display: inline-block; max-width: 100%;">
-            <img id="routeMap" src="/images/схема.WebP" alt="Схема" style="width: 100%; height: auto;">
+<!--            <img id="routeMap" src="/images/схема.webp" alt="Схема" style="width: 100%; height: auto; max-width: 900px">-->
+
+            <img id="routeMapDesktop"
+                 src="/images/схема.webp"
+                 alt="Схема"
+                 class="route-image desktop">
+
+            <img id="routeMapMobile"
+                 src="/images/схемаТелефон.webp"
+                 alt="Схема"
+                 class="route-image mobile">
 
             <!-- SVG overlay -->
             <svg id="stationOverlay" width="100%" height="100%" style="position: absolute; top: 0; left: 0;">

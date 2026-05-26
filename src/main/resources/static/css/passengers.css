@@ -331,9 +331,32 @@ table.iksweb {
 }
 
 .time-item.current {
-    background-color: #ffebee !important;
+    /*background-color: #ffebee !important;*/
     color: #d32f2f !important;
     font-weight: bold;
-    border: 2px solid #d32f2f;
-    box-shadow: 0 0 8px rgba(211, 47, 47, 0.3);
+    /*border: 2px solid #d32f2f;*/
+    /*box-shadow: 0 0 8px rgba(211, 47, 47, 0.3);*/
+}
+
+.route-image.desktop {
+    display: block;
+}
+
+/* Мобильная версия */
+.route-image.mobile {
+    display: none;
+    width:  -webkit-fill-available;
+}
+@media (max-width: 550px) {
+    .route-image.desktop {
+        display: none;
+    }
+    .route-image.mobile {
+        display: block;
+    }
+
+    /* Можно скорректировать позиции точек под мобильную картинку */
+    /*#stationOverlay circle[data-station="solar"] { cx: 25%; cy: 82%; }*/
+    /*#stationOverlay circle[data-station="viti"]  { cx: 48%; cy: 48%; }*/
+    /*#stationOverlay circle[data-station="pobeda"]{ cx: 78%; cy: 18%; }*/
 }

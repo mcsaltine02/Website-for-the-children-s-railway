@@ -30,7 +30,7 @@ function loadCurrentAndNext() {
                     <td class="${vitiClass}">Вити Черевичкина</td>
                     <td class="${pobedaClass}">Победа</td>
                 </tr>
-                <tr >
+                <tr>
                     <td class="${solarClass}">${t.departure}</td>
                     <td class="${vitiClass}">${t.middle}</td>
                     <td class="${pobedaClass}">${t.arrival}</td>
@@ -38,17 +38,17 @@ function loadCurrentAndNext() {
             `);
         }
         else if (data.dayIsOver) {
-            // === Весь день закончился ===
+            // === День полностью завершён ===
             currentSection.hide();
             nextTitle.text("Расписание завтрашнего отбытия");
         }
         else {
-            // === Перерыв между рейсами (но день ещё не закончился) ===
+            // === Перерыв между рейсами ===
             currentSection.hide();
-            nextTitle.text("Расписание cледующего отбытия");
+            nextTitle.text("Следующее расписание отбытия");
         }
 
-        // Заполняем следующие рейсы
+        // === ВСЕГДА заполняем таблицу следующих рейсов ===
         if (data.nextTrips && data.nextTrips.length > 0) {
             data.nextTrips.forEach(t => {
                 nextBody.append(`
@@ -59,6 +59,14 @@ function loadCurrentAndNext() {
                     </tr>
                 `);
             });
+        } else {
+            nextBody.append(`
+                <tr>
+                        <td>10:00</td>
+                        <td>10:05</td>
+                        <td>10:12</td>
+                    </tr>
+            `);
         }
     });
 }
